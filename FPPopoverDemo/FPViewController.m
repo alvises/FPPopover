@@ -7,6 +7,9 @@
 //
 
 #import "FPViewController.h"
+#import "DemoTableController.h"
+
+#import "FPPopoverController.h"
 
 @interface FPViewController ()
 
@@ -34,5 +37,29 @@
         return YES;
     }
 }
+
+
+
+-(IBAction)topLeft:(id)sender
+{
+    //the controller we want to present as a popover
+    DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
+
+    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+    [controller release];
+    
+    //sender is the UIButton view
+    [popover presentPopoverFromView:sender];
+}
+
+-(IBAction)topCenter:(id)sender
+{
+    
+}
+-(IBAction)topRight:(id)sender
+{
+    
+}
+
 
 @end

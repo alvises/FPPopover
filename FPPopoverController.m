@@ -8,6 +8,11 @@
 
 #import "FPPopoverController.h"
 
+@interface FPPopoverController(Private)
+-(CGPoint)originFromView:(UIView*)fromView;
+
+@end
+
 @implementation FPPopoverController
 @synthesize delegate = _delegate;
 @synthesize contentSize = _contentSize;
@@ -21,6 +26,7 @@
      selector:@selector(deviceOrientationDidChange:) 
      name:@"UIDeviceOrientationDidChangeNotification" 
      object:nil]; 
+    _deviceOrientation = [UIDevice currentDevice].orientation;
 }
 
 -(void)removeObservers
@@ -52,13 +58,14 @@
         _viewController = [viewController retain];
 
         [self.view addSubview:_contentView];
-        self.contentSize = CGSizeMake(200, 300);
+        self.contentSize = CGSizeMake(200, 300); //default size
         
         [_contentView addSubview:_viewController.view];
         _viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.clipsToBounds = NO;
-    
+        self.view.layer.borderColor = [UIColor redColor].CGColor;
+        self.view.layer.borderWidth = 2.0;
         //setting contentview
         _contentView.title = _viewController.title;
         _contentView.clipsToBounds = NO;
@@ -74,11 +81,15 @@
 
 -(void)setupView
 {
+    self.view.frame = _parentView.bounds;
     
     //view position
+    if(_fromView) self.origin = [self originFromView:_fromView];
     _contentView.frame = [self bestViewFrameForFromPoint:self.origin];
     _contentView.relativeOrigin = [_parentView convertPoint:self.origin toView:_contentView];
 
+    [_contentView setNeedsDisplay];
+    [self.view setNeedsDisplay];
 }
 
 - (void)viewDidLoad
@@ -105,21 +116,20 @@
 
 -(CGFloat)parentWidth
 {
-    
-    return _window.bounds.size.width;
+    if(UIDeviceOrientationIsLandscape(_deviceOrientation)) return _parentView.bounds.size.height;
+    else return _parentView.bounds.size.width;
 }
 -(CGFloat)parentHeight
 {
-    return _window.bounds.size.height;
+    if(UIDeviceOrientationIsLandscape(_deviceOrientation)) return _parentView.bounds.size.width;
+    else return _parentView.bounds.size.height;
 }
 
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
 {
     self.origin = fromPoint;
-    CGPoint realFromPoint = fromPoint;
-    realFromPoint.x -= (self.contentSize.width/2.0 + 20);
-    _contentView.relativeOrigin = [_parentView convertPoint:realFromPoint toView:_contentView];
-    
+    _contentView.relativeOrigin = [_parentView convertPoint:fromPoint toView:_contentView];
+
     [self.view removeFromSuperview];
     NSArray *windows = [UIApplication sharedApplication].windows;
     if(windows.count > 0)
@@ -134,10 +144,7 @@
             [_parentView addSubview:self.view];
         }
         
-        //ORIENTATION
-        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        
-    }
+   }
     else
     {
         [self dismissPopoverAnimated:NO];
@@ -153,7 +160,7 @@
     }];
 }
 
--(void)presentPopoverFromView:(UIView*)fromView
+-(CGPoint)originFromView:(UIView*)fromView
 {
     CGPoint p;
     if([_contentView arrowDirection] == FPPopoverArrowDirectionUp)
@@ -161,7 +168,13 @@
         p.x = fromView.frame.origin.x + fromView.frame.size.width/2.0;
         p.y = fromView.frame.origin.y + fromView.frame.size.height;
     }
-    [self presentPopoverFromPoint:p];
+    return p;
+}
+
+-(void)presentPopoverFromView:(UIView*)fromView
+{
+    [_fromView release]; _fromView = [fromView retain];
+    [self presentPopoverFromPoint:[self originFromView:_fromView]];
 }
 
 -(void)dismissPopover
@@ -195,7 +208,6 @@
 -(void)setOrigin:(CGPoint)origin
 {
     _origin = origin;
-    [self setupView];
 }
 
 #pragma mark observing
@@ -208,6 +220,7 @@
 -(void)deviceOrientationDidChange:(NSNotification*)notification
 {
     [UIView animateWithDuration:0.2 animations:^{
+        _deviceOrientation = [UIDevice currentDevice].orientation;
         [self setupView]; 
     }];
 }
@@ -244,21 +257,21 @@
     r.size.height += 50;
     
     //size limits
-    CGFloat w = MIN(r.size.width, _parentView.bounds.size.width);
-    CGFloat h = MIN(r.size.height,_parentView.bounds.size.height);
-    r.size.width = (w == self.view.bounds.size.width) ? w-50 : w;
-    r.size.height = (h == self.view.bounds.size.height) ? h-30 : h;
+    CGFloat w = MIN(r.size.width, [self parentWidth]);
+    CGFloat h = MIN(r.size.height,[self parentHeight]);
+    r.size.width = (w == [self parentWidth]) ? [self parentWidth]-50 : w;
+    r.size.height = (h == [self parentHeight]) ? [self parentHeight]-30 : h;
     
     CGFloat r_w = r.size.width;
     CGFloat r_h = r.size.height;
     
     //lm + rm
-    CGFloat wm = _parentView.bounds.size.width - r_w;
+    CGFloat wm = [self parentWidth] - r_w;
     CGFloat wm_l = wm/2.0;
     CGFloat ws = r_w;
     CGFloat rm_x = wm_l + ws;
     
-    CGFloat hm = _parentView.bounds.size.height - r_h;
+    CGFloat hm = [self parentHeight] - r_h;
     CGFloat hm_t = hm/2.0; //top
     CGFloat hs = r_h;
     CGFloat hm_b = hm_t + hs; //bottom
@@ -271,7 +284,7 @@
         if(point.x <= wm_l)
         {
             //move the popup to the left, with the left side near the origin point
-            r.origin.x = point.x;            
+            r.origin.x = point.x;
         }
         else if(point.x > rm_x)
         {
@@ -283,7 +296,11 @@
         {
             //the point is in the "s" zone and then I will move only the arrow
             //put in the x center the popup
-            r.origin.x = wm_l;
+            r.origin.x = wm_l-12;
+            
+            //12px are the number of point from the border to the arrow when the
+            //arrow is totally at left
+            //I have considered a standard border of 2px
         }
     }
     
@@ -305,7 +322,6 @@
             r.origin.y = hm_t;
         }
     }
-    
 
     return r;
 }

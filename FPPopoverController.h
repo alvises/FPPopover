@@ -24,6 +24,7 @@
     UIViewController *_viewController;
     UIWindow *_window;
     UIView *_parentView;
+    UIView *_fromView;
     UIDeviceOrientation _deviceOrientation;
 }
 @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
@@ -35,8 +36,13 @@
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
 
+/** @brief Presenting the popover from a specified point **/
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint;
+
+/** @brief Presenting the popover from a specified view **/
 -(void)presentPopoverFromView:(UIView*)fromView;
+
+/** @brief Dismiss the popover **/
 -(void)dismissPopoverAnimated:(BOOL)animated;
 
 -(CGFloat)parentWidth;

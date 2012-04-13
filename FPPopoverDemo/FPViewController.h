@@ -10,4 +10,9 @@
 
 @interface FPViewController : UIViewController
 
+
+-(IBAction)topLeft:(id)sender;
+-(IBAction)topCenter:(id)sender;
+-(IBAction)topRight:(id)sender;
+
 @end
