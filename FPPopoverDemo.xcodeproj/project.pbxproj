@@ -18,6 +18,7 @@
 		186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C438B1538512200502D64 /* FPViewController_iPad.xib */; };
 		186C43981538513B00502D64 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43951538513B00502D64 /* FPPopoverController.m */; };
 		186C43991538513B00502D64 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43971538513B00502D64 /* FPPopoverView.m */; };
+		186C439B153851F600502D64 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 186C439A153851F600502D64 /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		186C43951538513B00502D64 /* FPPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverController.m; sourceTree = "<group>"; };
 		186C43961538513B00502D64 /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverView.h; sourceTree = "<group>"; };
 		186C43971538513B00502D64 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
+		186C439A153851F600502D64 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		186C43641538512100502D64 = {
 			isa = PBXGroup;
 			children = (
+				186C439A153851F600502D64 /* README */,
 				186C43931538512A00502D64 /* FPPopover */,
 				186C43791538512100502D64 /* FPPopoverDemo */,
 				186C43721538512100502D64 /* Frameworks */,
@@ -174,6 +177,7 @@
 				186C437E1538512100502D64 /* InfoPlist.strings in Resources */,
 				186C438A1538512200502D64 /* FPViewController_iPhone.xib in Resources */,
 				186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */,
+				186C439B153851F600502D64 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

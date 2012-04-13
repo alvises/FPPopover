@@ -1,0 +1,2 @@
+FPPopoverController is our implementation of the Apple's UIPopoverController.
+The big difference is that you can use FPPopoverController on a iPhone environment and not only on iPad.
