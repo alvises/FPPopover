@@ -38,27 +38,70 @@
     }
 }
 
-
-
--(IBAction)topLeft:(id)sender
+-(void)popover:(id)sender
 {
     //the controller we want to present as a popover
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
-
+    
     FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
     [controller release];
     
     //sender is the UIButton view
-    [popover presentPopoverFromView:sender];
+    [popover presentPopoverFromView:sender]; 
+}
+
+-(IBAction)topLeft:(id)sender
+{
+    [self popover:sender];
 }
 
 -(IBAction)topCenter:(id)sender
 {
-    
+    [self popover:sender];
 }
 -(IBAction)topRight:(id)sender
 {
-    
+    [self popover:sender];
+}
+
+-(IBAction)lt:(id)sender
+{
+    [self popover:sender];
+
+}
+
+-(IBAction)rt:(id)sender
+{
+    [self popover:sender];
+}
+
+
+
+-(IBAction)midLeft:(id)sender
+{
+    [self popover:sender];
+}
+
+-(IBAction)midCenter:(id)sender
+{
+    [self popover:sender];
+}
+-(IBAction)midRight:(id)sender
+{
+    [self popover:sender];
+}
+
+-(IBAction)bottomLeft:(id)sender
+{
+    [self popover:sender];
+}
+-(IBAction)bottomCenter:(id)sender
+{
+    [self popover:sender];
+}
+-(IBAction)bottomRight:(id)sender
+{
+    [self popover:sender];
 }
 
 

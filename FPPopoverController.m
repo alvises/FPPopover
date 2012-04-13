@@ -11,6 +11,18 @@
 @interface FPPopoverController(Private)
 -(CGPoint)originFromView:(UIView*)fromView;
 
+
+-(CGFloat)parentWidth;
+-(CGFloat)parentHeight;
+
+#pragma mark Space management
+/* This methods helps the controller to found a proper way to display the view.
+ * If the "from point" will be on the left, the arrow will be on the left and the 
+ * view will be move on the right of the from point.
+ */
+-(CGRect)bestViewFrameForFromPoint:(CGPoint)point;
+
+
 @end
 
 @implementation FPPopoverController
@@ -116,13 +128,11 @@
 
 -(CGFloat)parentWidth
 {
-    if(UIDeviceOrientationIsLandscape(_deviceOrientation)) return _parentView.bounds.size.height;
-    else return _parentView.bounds.size.width;
+    return _parentView.bounds.size.width;
 }
 -(CGFloat)parentHeight
 {
-    if(UIDeviceOrientationIsLandscape(_deviceOrientation)) return _parentView.bounds.size.width;
-    else return _parentView.bounds.size.height;
+    return _parentView.bounds.size.height;
 }
 
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
@@ -219,8 +229,9 @@
 }
 -(void)deviceOrientationDidChange:(NSNotification*)notification
 {
+    _deviceOrientation = [UIDevice currentDevice].orientation;
+
     [UIView animateWithDuration:0.2 animations:^{
-        _deviceOrientation = [UIDevice currentDevice].orientation;
         [self setupView]; 
     }];
 }
@@ -259,6 +270,8 @@
     //size limits
     CGFloat w = MIN(r.size.width, [self parentWidth]);
     CGFloat h = MIN(r.size.height,[self parentHeight]);
+    
+    NSLog(@"%g %g",w,h);
     r.size.width = (w == [self parentWidth]) ? [self parentWidth]-50 : w;
     r.size.height = (h == [self parentHeight]) ? [self parentHeight]-30 : h;
     
@@ -281,36 +294,42 @@
         //s < lm + rm
         //our content size is smaller then width
         
-        if(point.x <= wm_l)
+        //15px are the number of point from the border to the arrow when the
+        //arrow is totally at left
+        //I have considered a standard border of 2px
+
+        if(point.x+15 <= wm_l)
         {
             //move the popup to the left, with the left side near the origin point
-            r.origin.x = point.x;
+            r.origin.x = point.x-15;
         }
-        else if(point.x > rm_x)
+        else if(point.x+15 >= rm_x)
         {
             //move the popup to the right, with the right side near the origin point
-            r.origin.x = point.x - ws;
+            r.origin.x = point.x - ws + 22;
         }
         
         else
         {
             //the point is in the "s" zone and then I will move only the arrow
             //put in the x center the popup
-            r.origin.x = wm_l-12;
-            
-            //12px are the number of point from the border to the arrow when the
-            //arrow is totally at left
-            //I have considered a standard border of 2px
+            r.origin.x = wm_l;
+                        
         }
+        NSLog(@"RM: %g %g %@ %@",rm_x,point.x,NSStringFromCGRect(r),NSStringFromCGSize(self.contentSize));
     }
     
     
     if(hm > 0)
     {
+        //the point is on the top
+        //let's move up the view
         if(point.y <= hm_t)
         {
             r.origin.y = point.y;            
         }
+        //the point is on the bottom, 
+        //let's move down the view
         else if(point.y > hm_b)
         {
             r.origin.y = point.y - hs;
@@ -318,10 +337,16 @@
         
         else
         {
-            //center in y the popup
-            r.origin.y = hm_t;
+            //we need to resize the content
+            r.origin.y = point.y;
+            r.size.height = MIN(self.contentSize.height,[self parentHeight] - point.y - 10); //resizing
         }
     }
+    
+    NSLog(@"parent size: %g %g",[self parentWidth],[self parentHeight]);
+    NSLog(@"point: %@",NSStringFromCGPoint(point));
+    NSLog(@"r: %@",NSStringFromCGRect(r));
+
 
     return r;
 }

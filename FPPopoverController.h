@@ -45,16 +45,8 @@
 /** @brief Dismiss the popover **/
 -(void)dismissPopoverAnimated:(BOOL)animated;
 
--(CGFloat)parentWidth;
--(CGFloat)parentHeight;
 
 
-#pragma mark Space management
-/* This methods helps the controller to found a proper way to display the view.
- * If the "from point" will be on the left, the arrow will be on the left and the 
- * view will be move on the right of the from point.
- */
--(CGRect)bestViewFrameForFromPoint:(CGPoint)point;
 
 
 @end
