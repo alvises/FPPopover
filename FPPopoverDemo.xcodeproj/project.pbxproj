@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		186C43741538512100502D64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43731538512100502D64 /* UIKit.framework */; };
+		186C43761538512100502D64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43751538512100502D64 /* Foundation.framework */; };
+		186C43781538512100502D64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43771538512100502D64 /* CoreGraphics.framework */; };
+		186C437E1538512100502D64 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 186C437C1538512100502D64 /* InfoPlist.strings */; };
+		186C43801538512200502D64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C437F1538512100502D64 /* main.m */; };
+		186C43841538512200502D64 /* FPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43831538512200502D64 /* FPAppDelegate.m */; };
+		186C43871538512200502D64 /* FPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43861538512200502D64 /* FPViewController.m */; };
+		186C438A1538512200502D64 /* FPViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C43881538512200502D64 /* FPViewController_iPhone.xib */; };
+		186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C438B1538512200502D64 /* FPViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		186C436F1538512100502D64 /* FPPopoverDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPPopoverDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		186C43731538512100502D64 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		186C43751538512100502D64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		186C43771538512100502D64 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		186C437B1538512100502D64 /* FPPopoverDemo-Info.plist */ = {isa = PBXFileReference; path = "FPPopoverDemo-Info.plist"; sourceTree = "<group>"; };
+		186C437D1538512100502D64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		186C437F1538512100502D64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		186C43811538512200502D64 /* FPPopoverDemo-Prefix.pch */ = {isa = PBXFileReference; path = "FPPopoverDemo-Prefix.pch"; sourceTree = "<group>"; };
+		186C43821538512200502D64 /* FPAppDelegate.h */ = {isa = PBXFileReference; path = FPAppDelegate.h; sourceTree = "<group>"; };
+		186C43831538512200502D64 /* FPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAppDelegate.m; sourceTree = "<group>"; };
+		186C43851538512200502D64 /* FPViewController.h */ = {isa = PBXFileReference; path = FPViewController.h; sourceTree = "<group>"; };
+		186C43861538512200502D64 /* FPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPViewController.m; sourceTree = "<group>"; };
+		186C43891538512200502D64 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FPViewController_iPhone.xib; sourceTree = "<group>"; };
+		186C438C1538512200502D64 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FPViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		186C436C1538512100502D64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				186C43741538512100502D64 /* UIKit.framework in Frameworks */,
+				186C43761538512100502D64 /* Foundation.framework in Frameworks */,
+				186C43781538512100502D64 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		186C43641538512100502D64 = {
+			isa = PBXGroup;
+			children = (
+				186C43791538512100502D64 /* FPPopoverDemo */,
+				186C43721538512100502D64 /* Frameworks */,
+				186C43701538512100502D64 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		186C43701538512100502D64 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				186C436F1538512100502D64 /* FPPopoverDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		186C43721538512100502D64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				186C43731538512100502D64 /* UIKit.framework */,
+				186C43751538512100502D64 /* Foundation.framework */,
+				186C43771538512100502D64 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		186C43791538512100502D64 /* FPPopoverDemo */ = {
+			isa = PBXGroup;
+			children = (
+				186C43821538512200502D64 /* FPAppDelegate.h */,
+				186C43831538512200502D64 /* FPAppDelegate.m */,
+				186C43851538512200502D64 /* FPViewController.h */,
+				186C43861538512200502D64 /* FPViewController.m */,
+				186C43881538512200502D64 /* FPViewController_iPhone.xib */,
+				186C438B1538512200502D64 /* FPViewController_iPad.xib */,
+				186C437A1538512100502D64 /* Supporting Files */,
+			);
+			path = FPPopoverDemo;
+			sourceTree = "<group>";
+		};
+		186C437A1538512100502D64 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				186C437B1538512100502D64 /* FPPopoverDemo-Info.plist */,
+				186C437C1538512100502D64 /* InfoPlist.strings */,
+				186C437F1538512100502D64 /* main.m */,
+				186C43811538512200502D64 /* FPPopoverDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		186C436E1538512100502D64 /* FPPopoverDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 186C43901538512200502D64 /* Build configuration list for PBXNativeTarget "FPPopoverDemo" */;
+			buildPhases = (
+				186C436B1538512100502D64 /* Sources */,
+				186C436C1538512100502D64 /* Frameworks */,
+				186C436D1538512100502D64 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FPPopoverDemo;
+			productName = FPPopoverDemo;
+			productReference = 186C436F1538512100502D64 /* FPPopoverDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		186C43661538512100502D64 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FP;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Fifty Pixels Ltd";
+			};
+			buildConfigurationList = 186C43691538512100502D64 /* Build configuration list for PBXProject "FPPopoverDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 186C43641538512100502D64;
+			productRefGroup = 186C43701538512100502D64 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				186C436E1538512100502D64 /* FPPopoverDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		186C436D1538512100502D64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				186C437E1538512100502D64 /* InfoPlist.strings in Resources */,
+				186C438A1538512200502D64 /* FPViewController_iPhone.xib in Resources */,
+				186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		186C436B1538512100502D64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				186C43801538512200502D64 /* main.m in Sources */,
+				186C43841538512200502D64 /* FPAppDelegate.m in Sources */,
+				186C43871538512200502D64 /* FPViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		186C437C1538512100502D64 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				186C437D1538512100502D64 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		186C43881538512200502D64 /* FPViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				186C43891538512200502D64 /* en */,
+			);
+			name = FPViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		186C438B1538512200502D64 /* FPViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				186C438C1538512200502D64 /* en */,
+			);
+			name = FPViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		186C438E1538512200502D64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		186C438F1538512200502D64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		186C43911538512200502D64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FPPopoverDemo/FPPopoverDemo-Prefix.pch";
+				INFOPLIST_FILE = "FPPopoverDemo/FPPopoverDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		186C43921538512200502D64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FPPopoverDemo/FPPopoverDemo-Prefix.pch";
+				INFOPLIST_FILE = "FPPopoverDemo/FPPopoverDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		186C43691538512100502D64 /* Build configuration list for PBXProject "FPPopoverDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				186C438E1538512200502D64 /* Debug */,
+				186C438F1538512200502D64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		186C43901538512200502D64 /* Build configuration list for PBXNativeTarget "FPPopoverDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				186C43911538512200502D64 /* Debug */,
+				186C43921538512200502D64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 186C43661538512100502D64 /* Project object */;
+}
