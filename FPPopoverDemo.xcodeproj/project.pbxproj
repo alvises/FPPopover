@@ -16,6 +16,8 @@
 		186C43871538512200502D64 /* FPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43861538512200502D64 /* FPViewController.m */; };
 		186C438A1538512200502D64 /* FPViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C43881538512200502D64 /* FPViewController_iPhone.xib */; };
 		186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C438B1538512200502D64 /* FPViewController_iPad.xib */; };
+		186C43981538513B00502D64 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43951538513B00502D64 /* FPPopoverController.m */; };
+		186C43991538513B00502D64 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43971538513B00502D64 /* FPPopoverView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +25,20 @@
 		186C43731538512100502D64 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		186C43751538512100502D64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		186C43771538512100502D64 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		186C437B1538512100502D64 /* FPPopoverDemo-Info.plist */ = {isa = PBXFileReference; path = "FPPopoverDemo-Info.plist"; sourceTree = "<group>"; };
+		186C437B1538512100502D64 /* FPPopoverDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FPPopoverDemo-Info.plist"; sourceTree = "<group>"; };
 		186C437D1538512100502D64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		186C437F1538512100502D64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		186C43811538512200502D64 /* FPPopoverDemo-Prefix.pch */ = {isa = PBXFileReference; path = "FPPopoverDemo-Prefix.pch"; sourceTree = "<group>"; };
-		186C43821538512200502D64 /* FPAppDelegate.h */ = {isa = PBXFileReference; path = FPAppDelegate.h; sourceTree = "<group>"; };
+		186C43811538512200502D64 /* FPPopoverDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FPPopoverDemo-Prefix.pch"; sourceTree = "<group>"; };
+		186C43821538512200502D64 /* FPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAppDelegate.h; sourceTree = "<group>"; };
 		186C43831538512200502D64 /* FPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAppDelegate.m; sourceTree = "<group>"; };
-		186C43851538512200502D64 /* FPViewController.h */ = {isa = PBXFileReference; path = FPViewController.h; sourceTree = "<group>"; };
+		186C43851538512200502D64 /* FPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPViewController.h; sourceTree = "<group>"; };
 		186C43861538512200502D64 /* FPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPViewController.m; sourceTree = "<group>"; };
 		186C43891538512200502D64 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FPViewController_iPhone.xib; sourceTree = "<group>"; };
 		186C438C1538512200502D64 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FPViewController_iPad.xib; sourceTree = "<group>"; };
+		186C43941538513B00502D64 /* FPPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverController.h; sourceTree = "<group>"; };
+		186C43951538513B00502D64 /* FPPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverController.m; sourceTree = "<group>"; };
+		186C43961538513B00502D64 /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverView.h; sourceTree = "<group>"; };
+		186C43971538513B00502D64 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +58,7 @@
 		186C43641538512100502D64 = {
 			isa = PBXGroup;
 			children = (
+				186C43931538512A00502D64 /* FPPopover */,
 				186C43791538512100502D64 /* FPPopoverDemo */,
 				186C43721538512100502D64 /* Frameworks */,
 				186C43701538512100502D64 /* Products */,
@@ -99,6 +106,17 @@
 				186C43811538512200502D64 /* FPPopoverDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		186C43931538512A00502D64 /* FPPopover */ = {
+			isa = PBXGroup;
+			children = (
+				186C43941538513B00502D64 /* FPPopoverController.h */,
+				186C43951538513B00502D64 /* FPPopoverController.m */,
+				186C43961538513B00502D64 /* FPPopoverView.h */,
+				186C43971538513B00502D64 /* FPPopoverView.m */,
+			);
+			name = FPPopover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +187,8 @@
 				186C43801538512200502D64 /* main.m in Sources */,
 				186C43841538512200502D64 /* FPAppDelegate.m in Sources */,
 				186C43871538512200502D64 /* FPViewController.m in Sources */,
+				186C43981538513B00502D64 /* FPPopoverController.m in Sources */,
+				186C43991538513B00502D64 /* FPPopoverView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
