@@ -113,6 +113,7 @@
 
     
     //ROUNDED RECT
+    // arrow UP
     CGRect innerRect = CGRectInset(rect, radius, radius);
 	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
 	CGFloat outside_right = rect.origin.x + rect.size.width;
@@ -122,6 +123,7 @@
 	CGFloat outside_top = rect.origin.y;
 	CGFloat outside_left = rect.origin.x;
 
+    
     //drawing the border with arrow
     CGMutablePathRef path = CGPathCreateMutable();
 
@@ -144,6 +146,7 @@
     //down arrow
     if(direction == FPPopoverArrowDirectionDown)
     {
+        NSLog(@"DOWN");
         CGPathAddLineToPoint(path, NULL, ax+2*aw, outside_bottom);
         CGPathAddLineToPoint(path, NULL, ax+aw, outside_bottom + ah);
         CGPathAddLineToPoint(path, NULL, ax, outside_bottom);
@@ -165,12 +168,23 @@
     [super drawRect:rect];
     
     // make a gradient
-    CGFloat colors [] = { 
-        0.6, 0.6, 0.6, 1.0,
-        0.1, 0.1, 0.1, 1.0 
-    };
+    CGFloat colors[8];
+    colors[0] = colors[1] = colors[2] = 0.6;
+    colors[4] = colors[5] = colors[6] = 0.1;
+    colors[3] = colors[7] = 1.0;
+
+    if(_arrowDirection == FPPopoverArrowDirectionDown)
+    {
+        colors[0] = colors[1] = colors[2] = 0.4;
+        colors[4] = colors[5] = colors[6] = 0.1;
+        colors[3] = colors[7] = 1.0;
+    }
+
+    
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
+
+    
     CFRelease(colorSpace);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();    
@@ -185,12 +199,15 @@
     //  Draw a linear gradient from top to bottom
     CGPoint start = CGPointMake(self.bounds.size.width/2.0, 0);
     CGPoint end = CGPointMake(self.bounds.size.width/2.0,40);
-    
+    if(_arrowDirection == FPPopoverArrowDirectionDown)
+    {
+        end.y = 20;
+    }
     CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
     CGGradientRelease(gradient);
     //fill the other part of path
     CGContextSetRGBFillColor(ctx, 0.1, 0.1, 0.1, 1.0);
-    CGContextFillRect(ctx, CGRectMake(0, 40, self.bounds.size.width, self.bounds.size.height-40));
+    CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
     //internal border
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, contentPath);
@@ -232,12 +249,21 @@
     //content posizion and size
     CGRect contentRect = _contentView.frame;
     contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
-    contentRect.origin = CGPointMake(10, 60);
+
+    if(_arrowDirection == FPPopoverArrowDirectionUp)
+    {
+        contentRect.origin = CGPointMake(10, 60);        
+        _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);        
+    }
+    else if(_arrowDirection == FPPopoverArrowDirectionDown)
+    {
+        contentRect.origin = CGPointMake(10, 40);        
+        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);           
+    }
+    
     _contentView.frame = contentRect;
+    _titleLabel.text = self.title;    
     
-    
-    _titleLabel.text = self.title;
-    _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);
         
 }
 

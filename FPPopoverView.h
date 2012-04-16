@@ -14,10 +14,15 @@ typedef enum {
     FPPopoverArrowDirectionDown = 1UL << 1,
     FPPopoverArrowDirectionLeft = 1UL << 2,
     FPPopoverArrowDirectionRight = 1UL << 3,
+
+    FPPopoverArrowDirectionVertical = FPPopoverArrowDirectionUp | FPPopoverArrowDirectionDown,
+    FPPopoverArrowDirectionHorizontal = FPPopoverArrowDirectionLeft | FPPopoverArrowDirectionRight,
+    
     FPPopoverArrowDirectionAny = FPPopoverArrowDirectionUp | FPPopoverArrowDirectionDown | 
     FPPopoverArrowDirectionLeft | FPPopoverArrowDirectionRight
     
 } FPPopoverArrowDirection;
+
 
 @interface FPPopoverView : UIView
 {

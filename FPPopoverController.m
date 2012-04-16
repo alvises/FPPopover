@@ -22,6 +22,7 @@
  */
 -(CGRect)bestViewFrameForFromPoint:(CGPoint)point;
 
+-(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v;
 
 @end
 
@@ -29,6 +30,7 @@
 @synthesize delegate = _delegate;
 @synthesize contentSize = _contentSize;
 @synthesize origin = _origin;
+@synthesize arrowDirection = _arrowDirection;
 
 -(void)addObservers
 {
@@ -66,6 +68,8 @@
     self = [super init];
     if(self)
     {
+        self.arrowDirection = FPPopoverArrowDirectionVertical;
+        
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 200, 300)];
         _viewController = [viewController retain];
 
@@ -76,8 +80,7 @@
         _viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.clipsToBounds = NO;
-        self.view.layer.borderColor = [UIColor redColor].CGColor;
-        self.view.layer.borderWidth = 2.0;
+
         //setting contentview
         _contentView.title = _viewController.title;
         _contentView.clipsToBounds = NO;
@@ -93,12 +96,11 @@
 
 -(void)setupView
 {
-    self.view.frame = _parentView.bounds;
-    
-    //view position
-    if(_fromView) self.origin = [self originFromView:_fromView];
-    _contentView.frame = [self bestViewFrameForFromPoint:self.origin];
-    _contentView.relativeOrigin = [_parentView convertPoint:self.origin toView:_contentView];
+    self.view.frame = CGRectMake(0, 0, [self parentWidth], [self parentHeight]);
+    self.view.layer.borderColor = [UIColor redColor].CGColor;
+    self.view.layer.borderWidth = 2.0;
+    //view position, size and best arrow direction
+    [self bestArrowDirectionAndFrameFromView:_fromView];
 
     [_contentView setNeedsDisplay];
     [self.view setNeedsDisplay];
@@ -128,11 +130,11 @@
 
 -(CGFloat)parentWidth
 {
-    return _parentView.bounds.size.width;
+    return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
 }
 -(CGFloat)parentHeight
 {
-    return _parentView.bounds.size.height;
+    return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
 }
 
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
@@ -178,6 +180,22 @@
         p.x = fromView.frame.origin.x + fromView.frame.size.width/2.0;
         p.y = fromView.frame.origin.y + fromView.frame.size.height;
     }
+    else if([_contentView arrowDirection] == FPPopoverArrowDirectionDown)
+    {
+        p.x = fromView.frame.origin.x + fromView.frame.size.width/2.0;
+        p.y = fromView.frame.origin.y;        
+    }
+    else if([_contentView arrowDirection] == FPPopoverArrowDirectionLeft)
+    {
+        p.x = fromView.frame.origin.x + fromView.frame.size.width;
+        p.y = fromView.frame.origin.y + fromView.frame.size.height/2.0;
+    }
+    else if([_contentView arrowDirection] == FPPopoverArrowDirectionRight)
+    {
+        p.x = fromView.frame.origin.x;
+        p.y = fromView.frame.origin.y + fromView.frame.size.height/2.0;
+    }
+
     return p;
 }
 
@@ -271,7 +289,6 @@
     CGFloat w = MIN(r.size.width, [self parentWidth]);
     CGFloat h = MIN(r.size.height,[self parentHeight]);
     
-    NSLog(@"%g %g",w,h);
     r.size.width = (w == [self parentWidth]) ? [self parentWidth]-50 : w;
     r.size.height = (h == [self parentHeight]) ? [self parentHeight]-30 : h;
     
@@ -314,9 +331,7 @@
             //the point is in the "s" zone and then I will move only the arrow
             //put in the x center the popup
             r.origin.x = wm_l;
-                        
         }
-        NSLog(@"RM: %g %g %@ %@",rm_x,point.x,NSStringFromCGRect(r),NSStringFromCGSize(self.contentSize));
     }
     
     
@@ -343,10 +358,117 @@
         }
     }
     
-    NSLog(@"parent size: %g %g",[self parentWidth],[self parentHeight]);
-    NSLog(@"point: %@",NSStringFromCGPoint(point));
-    NSLog(@"r: %@",NSStringFromCGRect(r));
+     return r;
+}
 
+-(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v
+{
+    NSLog(@"%g %g",[self parentWidth],[self parentHeight]);
+    CGPoint p = [v.superview convertPoint:v.frame.origin toView:self.view];
+    
+    CGFloat ht = p.y; //available vertical space on top of the view
+    CGFloat hb = [self parentHeight] -  (p.y + v.frame.size.height); //on the bottom
+    CGFloat wl = p.x; //on the left
+    CGFloat wr = [self parentWidth] - (p.x + v.frame.size.width); //on the right
+        
+    CGFloat best_h = MAX(ht, hb); //much space down or up ?
+    CGFloat best_w = MAX(wl, wr);
+    
+    CGRect r;
+    r.size = self.contentSize;
+
+    FPPopoverArrowDirection bestDirection;
+    
+    //if the user wants vertical arrow, check if the content will fit vertically 
+    if(self.arrowDirection == FPPopoverArrowDirectionVertical || 
+       (self.arrowDirection == FPPopoverArrowDirectionAny && best_h >= best_w))
+    {
+
+        //ok, will be vertical
+        if(ht == best_h)
+        {
+            //on the top and arrow down
+            bestDirection = FPPopoverArrowDirectionDown;
+            
+            r.origin.x = p.x + v.frame.size.width/2.0 - r.size.width/2.0;
+            r.origin.y = p.y - r.size.height;
+        }
+        else
+        {
+            //on the bottom and arrow up
+            bestDirection = FPPopoverArrowDirectionUp;
+
+            r.origin.x = p.x + v.frame.size.width/2.0 - r.size.width/2.0;
+            r.origin.y = p.y + v.frame.size.height;
+        }
+        
+        
+        //need to moved left ? 
+        if(r.origin.x + r.size.width > [self parentWidth])
+        {
+            r.origin.x = [self parentWidth] - r.size.width;
+        }
+        
+        //need to moved right ?
+        else if(r.origin.x < 0)
+        {
+            r.origin.x = 0;
+        }
+     
+        
+        //need to move up?
+        if(r.origin.y < 0)
+        {
+            CGFloat old_y = r.origin.y;
+            r.origin.y = 0;
+            r.size.height += old_y;
+        }
+        
+        //need to be resized horizontally ?
+        if(r.origin.x + r.size.width > [self parentWidth])
+        {
+            r.size.width = [self parentWidth] - r.origin.x;
+        }
+        
+        //need to be resized vertically ?
+        if(r.origin.y + r.size.height > [self parentHeight])
+        {
+            r.size.height = [self parentHeight] - r.origin.y;
+        }
+
+    }
+    
+    
+    else 
+    {
+        //ok, will be horizontal 
+        
+        if(wl == best_w)
+        {
+            //on the left and arrow right
+            bestDirection = FPPopoverArrowDirectionRight;
+
+            r.origin.x = p.x - r.size.width;
+            r.origin.y = p.y + v.frame.size.height/2.0;
+
+        }
+        else
+        {
+            //on the right then arrow left
+            bestDirection = FPPopoverArrowDirectionLeft;
+
+            r.origin.x = p.x + v.frame.size.width;
+            r.origin.y = p.y + v.frame.size.height/2.0;
+        }
+        
+
+    }
+
+    _contentView.arrowDirection = bestDirection;
+    _contentView.frame = r;
+
+    self.origin = v.center;
+    _contentView.relativeOrigin = [_parentView convertPoint:self.origin toView:_contentView];
 
     return r;
 }

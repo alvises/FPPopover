@@ -28,6 +28,10 @@
     UIDeviceOrientation _deviceOrientation;
 }
 @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
+/** @brief must be only FPPopoverArrowDirectionVertical, FPPopoverArrowDirectionHorizontal or  FPPopoverArrowDirectionAny.
+  * The default value is FPPopoverArrowDirectionVertical .
+ **/
+@property(nonatomic,assign) FPPopoverArrowDirection arrowDirection;
 
 @property(nonatomic,assign) CGSize contentSize;
 @property(nonatomic,assign) CGPoint origin;
