@@ -130,10 +130,12 @@
 
 -(CGFloat)parentWidth
 {
+    return _parentView.bounds.size.width;
     return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
 }
 -(CGFloat)parentHeight
 {
+    return _parentView.bounds.size.height;
     return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
 }
 
@@ -245,10 +247,11 @@
     [super touchesBegan:touches withEvent:event];
     [self dismissPopoverAnimated:YES];
 }
+
 -(void)deviceOrientationDidChange:(NSNotification*)notification
 {
     _deviceOrientation = [UIDevice currentDevice].orientation;
-
+    
     [UIView animateWithDuration:0.2 animations:^{
         [self setupView]; 
     }];
