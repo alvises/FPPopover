@@ -264,7 +264,6 @@
     _contentView.frame = contentRect;
     _titleLabel.text = self.title;    
     
-        
 }
 
 

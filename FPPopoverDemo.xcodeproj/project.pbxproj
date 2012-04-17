@@ -20,6 +20,7 @@
 		186C43991538513B00502D64 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43971538513B00502D64 /* FPPopoverView.m */; };
 		186C439B153851F600502D64 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 186C439A153851F600502D64 /* README */; };
 		186C43A115386E2200502D64 /* DemoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43A015386E2200502D64 /* DemoTableController.m */; };
+		186C43AC153CAD1000502D64 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43AB153CAD1000502D64 /* FPTouchView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +43,10 @@
 		186C43961538513B00502D64 /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverView.h; sourceTree = "<group>"; };
 		186C43971538513B00502D64 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
 		186C439A153851F600502D64 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		186C439F15386E2200502D64 /* DemoTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DemoTableController.h; sourceTree = "<group>"; };
+		186C439F15386E2200502D64 /* DemoTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableController.h; sourceTree = "<group>"; };
 		186C43A015386E2200502D64 /* DemoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableController.m; sourceTree = "<group>"; };
+		186C43AA153CAD1000502D64 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
+		186C43AB153CAD1000502D64 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 				186C43951538513B00502D64 /* FPPopoverController.m */,
 				186C43961538513B00502D64 /* FPPopoverView.h */,
 				186C43971538513B00502D64 /* FPPopoverView.m */,
+				186C43AA153CAD1000502D64 /* FPTouchView.h */,
+				186C43AB153CAD1000502D64 /* FPTouchView.m */,
 			);
 			name = FPPopover;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				186C43981538513B00502D64 /* FPPopoverController.m in Sources */,
 				186C43991538513B00502D64 /* FPPopoverView.m in Sources */,
 				186C43A115386E2200502D64 /* DemoTableController.m in Sources */,
+				186C43AC153CAD1000502D64 /* FPTouchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +324,7 @@
 				186C43921538512200502D64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

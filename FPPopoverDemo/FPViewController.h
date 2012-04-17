@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FPPopoverController.h"
 
-@interface FPViewController : UIViewController
-
+@interface FPViewController : UIViewController <FPPopoverControllerDelegate>
+{
+}
 
 
 -(IBAction)topLeft:(id)sender;

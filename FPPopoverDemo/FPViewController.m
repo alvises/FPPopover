@@ -50,6 +50,14 @@
     [popover presentPopoverFromView:sender]; 
 }
 
+
+- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
+          shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
+{
+    [visiblePopoverController dismissPopoverAnimated:YES];
+    [visiblePopoverController autorelease];
+}
+
 -(IBAction)topLeft:(id)sender
 {
     [self popover:sender];

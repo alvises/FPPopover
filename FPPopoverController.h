@@ -10,16 +10,20 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "FPPopoverView.h"
+#import "FPTouchView.h"
 
 @class FPPopoverController;
 @protocol FPPopoverControllerDelegate <NSObject>
 
 @optional
 - (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController;
+- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
+          shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
 @end
 
 @interface FPPopoverController : UIViewController
 {
+    FPTouchView *_touchView;
     FPPopoverView *_contentView;
     UIViewController *_viewController;
     UIWindow *_window;

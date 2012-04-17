@@ -35,12 +35,18 @@
 -(void)addObservers
 {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
+    
     [[NSNotificationCenter defaultCenter] 
      addObserver:self 
      selector:@selector(deviceOrientationDidChange:) 
      name:@"UIDeviceOrientationDidChangeNotification" 
      object:nil]; 
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
+    
     _deviceOrientation = [UIDevice currentDevice].orientation;
+    
 }
 
 -(void)removeObservers
@@ -54,6 +60,7 @@
 -(void)dealloc
 {
     [self removeObservers];
+    [_touchView release];
     [_viewController release];
     [_contentView release];
     [_window release];
@@ -69,18 +76,31 @@
     if(self)
     {
         self.arrowDirection = FPPopoverArrowDirectionVertical;
+        self.view.userInteractionEnabled = YES;
+        _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
+        _touchView.backgroundColor = [UIColor clearColor];
+        _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _touchView.clipsToBounds = NO;
+        [self.view addSubview:_touchView];
+        [_touchView setTouchedOutsideBlock:^{
+            [self dismissPopoverAnimated:YES]; 
+        }];
+        
         
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 200, 300)];
         _viewController = [viewController retain];
-
-        [self.view addSubview:_contentView];
+        
+        [_touchView addSubview:_contentView];
         self.contentSize = CGSizeMake(200, 300); //default size
         
-        [_contentView addSubview:_viewController.view];
+        [_contentView addContentView:_viewController.view];
         _viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.clipsToBounds = NO;
 
+        _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _touchView.clipsToBounds = NO;
+        
         //setting contentview
         _contentView.title = _viewController.title;
         _contentView.clipsToBounds = NO;
@@ -97,13 +117,13 @@
 -(void)setupView
 {
     self.view.frame = CGRectMake(0, 0, [self parentWidth], [self parentHeight]);
-    self.view.layer.borderColor = [UIColor redColor].CGColor;
-    self.view.layer.borderWidth = 2.0;
+    _touchView.frame = self.view.bounds;
+    
     //view position, size and best arrow direction
     [self bestArrowDirectionAndFrameFromView:_fromView];
 
     [_contentView setNeedsDisplay];
-    [self.view setNeedsDisplay];
+    [_touchView setNeedsDisplay];
 }
 
 - (void)viewDidLoad
@@ -172,6 +192,8 @@
         
         self.view.alpha = 1.0;
     }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"FPNewPopoverPresented" object:self];
 }
 
 -(CGPoint)originFromView:(UIView*)fromView
@@ -242,11 +264,7 @@
 
 #pragma mark observing
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
-    [self dismissPopoverAnimated:YES];
-}
+
 
 -(void)deviceOrientationDidChange:(NSNotification*)notification
 {
@@ -255,6 +273,18 @@
     [UIView animateWithDuration:0.2 animations:^{
         [self setupView]; 
     }];
+}
+
+-(void)willPresentNewPopover:(NSNotification*)notification
+{
+    if(notification.object != self)
+    {
+        if([self.delegate respondsToSelector:@selector(presentedNewPopoverController:shouldDismissVisiblePopover:)])
+        {
+            [self.delegate presentedNewPopoverController:notification.object
+                             shouldDismissVisiblePopover:self];
+        }
+    }
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -475,5 +505,8 @@
 
     return r;
 }
+
+
+
 
 @end
