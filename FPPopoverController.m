@@ -444,7 +444,6 @@
     else 
     {
         //ok, will be horizontal 
-        
         if(wl == best_w)
         {
             //on the left and arrow right

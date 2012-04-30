@@ -45,7 +45,7 @@
     
     FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
     [controller release];
-    popover.arrowDirection = FPPopoverArrowDirectionHorizontal;
+    popover.arrowDirection = FPPopoverArrowDirectionAny;
     //sender is the UIButton view
     [popover presentPopoverFromView:sender]; 
 }
