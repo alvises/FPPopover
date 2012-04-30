@@ -15,6 +15,7 @@
 @implementation FPPopoverView
 @synthesize title;
 @synthesize relativeOrigin;
+@synthesize tint = _tint;
 
 -(void)dealloc
 {
@@ -46,6 +47,8 @@
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = UITextAlignmentCenter;
         _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+        
+        self.tint = FPPopoverDefaultTint;
         
         [self addSubview:_titleLabel];
         [self setupViews];
@@ -163,29 +166,95 @@
     return path;
 }
 
+
+
+-(CGGradientRef)createGradient
+{
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+
+    // make a gradient
+    CGFloat colors[8];
+    
+    if(self.tint == FPPopoverBlackTint)
+    {
+        if(_arrowDirection == FPPopoverArrowDirectionUp)
+        {
+            colors[0] = colors[1] = colors[2] = 0.6;
+            colors[4] = colors[5] = colors[6] = 0.1;
+            colors[3] = colors[7] = 1.0;
+        }
+        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        {
+            colors[0] = colors[1] = colors[2] = 0.4;
+            colors[4] = colors[5] = colors[6] = 0.1;
+            colors[3] = colors[7] = 1.0;
+        }        
+    }
+    
+    else if(self.tint == FPPopoverLightGrayTint)
+    {
+        if(_arrowDirection == FPPopoverArrowDirectionUp)
+        {
+            colors[0] = colors[1] = colors[2] = 0.8;
+            colors[4] = colors[5] = colors[6] = 0.3;
+            colors[3] = colors[7] = 1.0;
+        }
+        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        {
+            colors[0] = colors[1] = colors[2] = 0.6;
+            colors[4] = colors[5] = colors[6] = 0.1;
+            colors[3] = colors[7] = 1.0;
+        }        
+    }
+    else if(self.tint == FPPopoverRedTint)
+    {
+        if(_arrowDirection == FPPopoverArrowDirectionUp)
+        {
+            colors[0] = 0.72; colors[1] = 0.35; colors[2] = 0.32;
+            colors[4] = 0.36; colors[5] = 0.0;  colors[6] = 0.09;
+            colors[3] = colors[7] = 1.0;
+
+        }
+        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        {
+            colors[0] = 0.82; colors[1] = 0.45; colors[2] = 0.42;
+            colors[4] = 0.36; colors[5] = 0.0;  colors[6] = 0.09;
+            colors[3] = colors[7] = 1.0;
+        }        
+    }
+    
+    else if(self.tint == FPPopoverGreenTint)
+    {
+        if(_arrowDirection == FPPopoverArrowDirectionUp)
+        {
+            colors[0] = 0.35; colors[1] = 0.72; colors[2] = 0.17;
+            colors[4] = 0.18; colors[5] = 0.30;  colors[6] = 0.03;
+            colors[3] = colors[7] = 1.0;
+            
+        }
+        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        {
+            colors[0] = 0.45; colors[1] = 0.82; colors[2] = 0.27;
+            colors[4] = 0.18; colors[5] = 0.30;  colors[6] = 0.03;
+            colors[3] = colors[7] = 1.0;
+        }        
+    }
+    
+    
+
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
+
+    CFRelease(colorSpace);
+    return gradient;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     
-    // make a gradient
-    CGFloat colors[8];
-    colors[0] = colors[1] = colors[2] = 0.6;
-    colors[4] = colors[5] = colors[6] = 0.1;
-    colors[3] = colors[7] = 1.0;
 
-    if(_arrowDirection == FPPopoverArrowDirectionDown)
-    {
-        colors[0] = colors[1] = colors[2] = 0.4;
-        colors[4] = colors[5] = colors[6] = 0.1;
-        colors[3] = colors[7] = 1.0;
-    }
-
+    CGGradientRef gradient = [self createGradient];
     
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
-
-    
-    CFRelease(colorSpace);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();    
     CGContextSaveGState(ctx);
@@ -206,7 +275,24 @@
     CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
     CGGradientRelease(gradient);
     //fill the other part of path
-    CGContextSetRGBFillColor(ctx, 0.1, 0.1, 0.1, 1.0);
+    if(self.tint == FPPopoverBlackTint)
+    {
+        CGContextSetRGBFillColor(ctx, 0.1, 0.1, 0.1, 1.0);        
+    }
+    else if(self.tint == FPPopoverLightGrayTint)
+    {
+        CGContextSetRGBFillColor(ctx, 0.3, 0.3, 0.3, 1.0);        
+    }
+    else if(self.tint == FPPopoverRedTint)
+    {
+        CGContextSetRGBFillColor(ctx, 0.36, 0.0, 0.09, 1.0);        
+    }
+    else if(self.tint == FPPopoverGreenTint)
+    {
+        CGContextSetRGBFillColor(ctx, 0.18, 0.30, 0.03, 1.0);        
+    }
+
+    
     CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
     //internal border
     CGContextBeginPath(ctx);

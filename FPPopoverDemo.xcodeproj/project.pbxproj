@@ -21,6 +21,8 @@
 		186C439B153851F600502D64 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 186C439A153851F600502D64 /* README */; };
 		186C43A115386E2200502D64 /* DemoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43A015386E2200502D64 /* DemoTableController.m */; };
 		186C43AC153CAD1000502D64 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43AB153CAD1000502D64 /* FPTouchView.m */; };
+		18EF6DEB154ED27D005AB1DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DE9154ED27D005AB1DD /* background.png */; };
+		18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DEA154ED27D005AB1DD /* background@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,14 @@
 		186C43A015386E2200502D64 /* DemoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableController.m; sourceTree = "<group>"; };
 		186C43AA153CAD1000502D64 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		186C43AB153CAD1000502D64 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
+		18715A2D154853B500EEF54C /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/es.lproj/FPViewController_iPhone.xib; sourceTree = "<absolute>"; };
+		18715A2E154853B500EEF54C /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/es.lproj/FPViewController_iPad.xib; sourceTree = "<absolute>"; };
+		18715A2F154853B500EEF54C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/es.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
+		1892EE5E153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/FPViewController_iPhone.xib; sourceTree = "<absolute>"; };
+		1892EE5F153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
+		1892EE60153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/FPViewController_iPad.xib; sourceTree = "<absolute>"; };
+		18EF6DE9154ED27D005AB1DD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		18EF6DEA154ED27D005AB1DD /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +112,7 @@
 				186C43881538512200502D64 /* FPViewController_iPhone.xib */,
 				186C438B1538512200502D64 /* FPViewController_iPad.xib */,
 				186C437A1538512100502D64 /* Supporting Files */,
+				18EF6DD9154ECC72005AB1DD /* Resources */,
 				186C439F15386E2200502D64 /* DemoTableController.h */,
 				186C43A015386E2200502D64 /* DemoTableController.m */,
 			);
@@ -130,6 +141,23 @@
 				186C43AB153CAD1000502D64 /* FPTouchView.m */,
 			);
 			name = FPPopover;
+			sourceTree = "<group>";
+		};
+		18EF6DD9154ECC72005AB1DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18EF6DDB154ECC80005AB1DD /* DemoImages */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		18EF6DDB154ECC80005AB1DD /* DemoImages */ = {
+			isa = PBXGroup;
+			children = (
+				18EF6DE9154ED27D005AB1DD /* background.png */,
+				18EF6DEA154ED27D005AB1DD /* background@2x.png */,
+			);
+			name = DemoImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +216,8 @@
 				186C438A1538512200502D64 /* FPViewController_iPhone.xib in Resources */,
 				186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */,
 				186C439B153851F600502D64 /* README in Resources */,
+				18EF6DEB154ED27D005AB1DD /* background.png in Resources */,
+				18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +245,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				186C437D1538512100502D64 /* en */,
+				1892EE5F153EE1BC000344F1 /* it */,
+				18715A2F154853B500EEF54C /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -223,6 +255,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				186C43891538512200502D64 /* en */,
+				1892EE5E153EE1BC000344F1 /* it */,
+				18715A2D154853B500EEF54C /* es */,
 			);
 			name = FPViewController_iPhone.xib;
 			sourceTree = "<group>";
@@ -231,6 +265,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				186C438C1538512200502D64 /* en */,
+				1892EE60153EE1BC000344F1 /* it */,
+				18715A2E154853B500EEF54C /* es */,
 			);
 			name = FPViewController_iPad.xib;
 			sourceTree = "<group>";
