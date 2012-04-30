@@ -7,6 +7,12 @@
 //
 
 #import "FPPopoverView.h"
+
+#define FP_POPOVER_ARROW_HEIGHT 20.0
+#define FP_POPOVER_ARROW_BASE 20.0
+#define FP_POPOVER_RADIUS 10.0
+
+
 @interface FPPopoverView(Private)
 -(void)setupViews;
 @end
@@ -86,10 +92,9 @@
 {
     CGFloat w = self.bounds.size.width;
     CGFloat h = self.bounds.size.height;
-    CGFloat ah = 20.0; //is the height of the triangle of the arrow
-    CGFloat aw = 10.0; //is the 1/2 of the base of the arrow
-    CGFloat ax = w/2.0 - aw; //FPPopoverArrowDirectionUp and Down
-    CGFloat radius = 10;
+    CGFloat ah = FP_POPOVER_ARROW_HEIGHT; //is the height of the triangle of the arrow
+    CGFloat aw = FP_POPOVER_ARROW_BASE/2.0; //is the 1/2 of the base of the arrow
+    CGFloat radius = FP_POPOVER_RADIUS;
     CGFloat b = borderWidth;
     
     CGRect rect;
@@ -109,11 +114,31 @@
         rect.origin.y = b;                
     }
     
+    
+    else if(direction == FPPopoverArrowDirectionRight)
+    {
+        rect.size.width = w - ah - 2*b;
+        rect.size.height = h - 2*b;
+        rect.origin.x = b;
+        rect.origin.y = b;                
+    }
+    else if(direction == FPPopoverArrowDirectionLeft)
+    {
+        rect.size.width = w - ah - 2*b;
+        rect.size.height = h - 2*b;
+        rect.origin.x = ah + b;
+        rect.origin.y = b;                
+    }
+    
     //the arrow will be near the origin
-    ax = self.relativeOrigin.x - aw;
+    CGFloat ax = self.relativeOrigin.x - aw; //the start of the arrow when UP or DOWN
     if(ax < aw + b) ax = aw + b;
     else if (ax +2*aw + 2*b> self.bounds.size.width) ax = self.bounds.size.width - 2*aw - 2*b;
 
+    CGFloat ay = self.relativeOrigin.y - aw; //the start of the arrow when RIGHT or LEFT
+    if(ay < aw + b) ay = aw + b;
+    else if (ay +2*aw + 2*b > self.bounds.size.height) ay = self.bounds.size.height - 2*aw - 2*b;
+    
     
     //ROUNDED RECT
     // arrow UP
@@ -140,16 +165,26 @@
         CGPathAddLineToPoint(path, NULL, ax+2*aw, ah+b);
         
     }
+    
 
-	CGPathAddLineToPoint(path, NULL, inside_right, outside_top);
+    CGPathAddLineToPoint(path, NULL, inside_right, outside_top);
 	CGPathAddArcToPoint(path, NULL, outside_right, outside_top, outside_right, inside_top, radius);
+
+    //right arrow
+    if(direction == FPPopoverArrowDirectionRight)
+    {
+        CGPathAddLineToPoint(path, NULL, outside_right, ay);
+        CGPathAddLineToPoint(path, NULL, outside_right + ah+b, ay + aw);
+        CGPathAddLineToPoint(path, NULL, outside_right, ay + 2*aw);
+    }
+       
+
 	CGPathAddLineToPoint(path, NULL, outside_right, inside_bottom);
 	CGPathAddArcToPoint(path, NULL,  outside_right, outside_bottom, inside_right, outside_bottom, radius);
 
     //down arrow
     if(direction == FPPopoverArrowDirectionDown)
     {
-        NSLog(@"DOWN");
         CGPathAddLineToPoint(path, NULL, ax+2*aw, outside_bottom);
         CGPathAddLineToPoint(path, NULL, ax+aw, outside_bottom + ah);
         CGPathAddLineToPoint(path, NULL, ax, outside_bottom);
@@ -157,6 +192,16 @@
 
 	CGPathAddLineToPoint(path, NULL, innerRect.origin.x, outside_bottom);
 	CGPathAddArcToPoint(path, NULL,  outside_left, outside_bottom, outside_left, inside_bottom, radius);
+    
+    //left arrow
+    if(direction == FPPopoverArrowDirectionLeft)
+    {
+        CGPathAddLineToPoint(path, NULL, outside_left, ay + 2*aw);
+        CGPathAddLineToPoint(path, NULL, outside_left - ah-b, ay + aw);
+        CGPathAddLineToPoint(path, NULL, outside_left, ay);
+    }
+    
+
 	CGPathAddLineToPoint(path, NULL, outside_left, inside_top);
 	CGPathAddArcToPoint(path, NULL,  outside_left, outside_top, innerRect.origin.x, outside_top, radius);
 
@@ -183,7 +228,7 @@
             colors[4] = colors[5] = colors[6] = 0.1;
             colors[3] = colors[7] = 1.0;
         }
-        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        else
         {
             colors[0] = colors[1] = colors[2] = 0.4;
             colors[4] = colors[5] = colors[6] = 0.1;
@@ -199,7 +244,7 @@
             colors[4] = colors[5] = colors[6] = 0.3;
             colors[3] = colors[7] = 1.0;
         }
-        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        else
         {
             colors[0] = colors[1] = colors[2] = 0.6;
             colors[4] = colors[5] = colors[6] = 0.1;
@@ -215,7 +260,7 @@
             colors[3] = colors[7] = 1.0;
 
         }
-        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        else
         {
             colors[0] = 0.82; colors[1] = 0.45; colors[2] = 0.42;
             colors[4] = 0.36; colors[5] = 0.0;  colors[6] = 0.09;
@@ -232,7 +277,7 @@
             colors[3] = colors[7] = 1.0;
             
         }
-        if(_arrowDirection == FPPopoverArrowDirectionDown)
+        else
         {
             colors[0] = 0.45; colors[1] = 0.82; colors[2] = 0.27;
             colors[4] = 0.18; colors[5] = 0.30;  colors[6] = 0.03;
@@ -247,6 +292,8 @@
     CFRelease(colorSpace);
     return gradient;
 }
+
+
 
 - (void)drawRect:(CGRect)rect
 {
@@ -266,13 +313,23 @@
     CGContextClip(ctx);
 
     //  Draw a linear gradient from top to bottom
-    CGPoint start = CGPointMake(self.bounds.size.width/2.0, 0);
-    CGPoint end = CGPointMake(self.bounds.size.width/2.0,40);
-    if(_arrowDirection == FPPopoverArrowDirectionDown)
+    CGPoint start;
+    CGPoint end;
+    if(_arrowDirection == FPPopoverArrowDirectionUp)
     {
-        end.y = 20;
+        start = CGPointMake(self.bounds.size.width/2.0, 0);
+        end = CGPointMake(self.bounds.size.width/2.0,40);
     }
+    else 
+    {
+        start = CGPointMake(self.bounds.size.width/2.0, 0);
+        end = CGPointMake(self.bounds.size.width/2.0,20);
+    }
+
+
+    
     CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
+    
     CGGradientRelease(gradient);
     //fill the other part of path
     if(self.tint == FPPopoverBlackTint)
@@ -334,19 +391,35 @@
 {
     //content posizion and size
     CGRect contentRect = _contentView.frame;
-    contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
 
     if(_arrowDirection == FPPopoverArrowDirectionUp)
     {
-        contentRect.origin = CGPointMake(10, 60);        
+        contentRect.origin = CGPointMake(10, 60);  
+        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
         _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);        
     }
     else if(_arrowDirection == FPPopoverArrowDirectionDown)
     {
         contentRect.origin = CGPointMake(10, 40);        
+        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);           
     }
     
+    
+    else if(_arrowDirection == FPPopoverArrowDirectionRight)
+    {
+        contentRect.origin = CGPointMake(10, 40);        
+        contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
+        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);           
+    }
+
+    else if(_arrowDirection == FPPopoverArrowDirectionLeft)
+    {
+        contentRect.origin = CGPointMake(10 + FP_POPOVER_ARROW_HEIGHT, 40);        
+        contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
+        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);           
+    }
+
     _contentView.frame = contentRect;
     _titleLabel.text = self.title;    
     

@@ -87,11 +87,14 @@
         }];
         
         
-        _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 200, 300)];
+        self.contentSize = CGSizeMake(200, 300); //default size
+
+        _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
+                                              self.contentSize.width, self.contentSize.height)];
+        
         _viewController = [viewController retain];
         
         [_touchView addSubview:_contentView];
-        self.contentSize = CGSizeMake(200, 300); //default size
         
         [_contentView addContentView:_viewController.view];
         _viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -396,7 +399,6 @@
 
 -(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v
 {
-    NSLog(@"%g %g",[self parentWidth],[self parentHeight]);
     CGPoint p = [v.superview convertPoint:v.frame.origin toView:self.view];
     
     CGFloat ht = p.y; //available vertical space on top of the view
@@ -435,39 +437,6 @@
             r.origin.y = p.y + v.frame.size.height;
         }
         
-        
-        //need to moved left ? 
-        if(r.origin.x + r.size.width > [self parentWidth])
-        {
-            r.origin.x = [self parentWidth] - r.size.width;
-        }
-        
-        //need to moved right ?
-        else if(r.origin.x < 0)
-        {
-            r.origin.x = 0;
-        }
-     
-        
-        //need to move up?
-        if(r.origin.y < 0)
-        {
-            CGFloat old_y = r.origin.y;
-            r.origin.y = 0;
-            r.size.height += old_y;
-        }
-        
-        //need to be resized horizontally ?
-        if(r.origin.x + r.size.width > [self parentWidth])
-        {
-            r.size.width = [self parentWidth] - r.origin.x;
-        }
-        
-        //need to be resized vertically ?
-        if(r.origin.y + r.size.height > [self parentHeight])
-        {
-            r.size.height = [self parentHeight] - r.origin.y;
-        }
 
     }
     
@@ -482,7 +451,7 @@
             bestDirection = FPPopoverArrowDirectionRight;
 
             r.origin.x = p.x - r.size.width;
-            r.origin.y = p.y + v.frame.size.height/2.0;
+            r.origin.y = p.y + v.frame.size.height/2.0 - r.size.height/2.0;
 
         }
         else
@@ -491,11 +460,49 @@
             bestDirection = FPPopoverArrowDirectionLeft;
 
             r.origin.x = p.x + v.frame.size.width;
-            r.origin.y = p.y + v.frame.size.height/2.0;
+            r.origin.y = p.y + v.frame.size.height/2.0 - r.size.height/2.0;
         }
         
 
     }
+    
+    
+    
+    //need to moved left ? 
+    if(r.origin.x + r.size.width > [self parentWidth])
+    {
+        r.origin.x = [self parentWidth] - r.size.width;
+    }
+    
+    //need to moved right ?
+    else if(r.origin.x < 0)
+    {
+        r.origin.x = 0;
+    }
+    
+    
+    //need to move up?
+    if(r.origin.y < 0)
+    {
+        CGFloat old_y = r.origin.y;
+        r.origin.y = 0;
+        r.size.height += old_y;
+    }
+    
+    //need to be resized horizontally ?
+    if(r.origin.x + r.size.width > [self parentWidth])
+    {
+        r.size.width = [self parentWidth] - r.origin.x;
+    }
+    
+    //need to be resized vertically ?
+    if(r.origin.y + r.size.height > [self parentHeight])
+    {
+        r.size.height = [self parentHeight] - r.origin.y;
+    }
+    
+    
+    
 
     _contentView.arrowDirection = bestDirection;
     _contentView.frame = r;
