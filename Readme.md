@@ -11,7 +11,8 @@ Features
 
 
 What you need
--------------
+=============
+
 To use FPPopoverController you only need
 
 * FPPopoverController.m and .h    (the controller)
@@ -19,3 +20,14 @@ To use FPPopoverController you only need
 * FPTouchView.m and .m
 
 That's it.
+
+
+
+
+How to use it
+=============
+
+    Simple example
+    ==============
+    
+    test
