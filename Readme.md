@@ -54,10 +54,12 @@ This will display a black popover with automatic arrow positioning and a maximum
 The title of YourViewController (controller.title) will be presented on the top.
 
 ###Customize the size
-The default size of the content in popover is 200x300. That means the content size will be maximum 200x300 because it could be resized to fill inside the view. If we need to change the size we can use the property 
+Default content size is 200x300. This can be set using the following property
 
     popover.contentSize = CGSizeMake(150,200);
 
+This property defines a maximum boundary for content, but the actual content area displayed may
+vary according to the what is found to be the optimal size to fit the popover on the screen (e.g. when adjusting the layout from portrait to landscape mode).
 
 ###Customize the tint
 
@@ -87,7 +89,7 @@ Set your delegate
         
 In this case we are setting up the YourViewController as our popover delegate.
 
-####Know when a new popover will be displayed
+####Know when a new popover is displayed
 
     - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
@@ -105,5 +107,5 @@ Use this delegate method to know when a new different popover is displayed. If y
 
     - (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController;
 
-Use this delegate method to know when the popover is dismissed. This could happen when the user tap outside the popover or when a dismiss message is sent by other actions.
+Use this delegate method to know when the popover is dismissed. This could happen when the user taps outside the popover or when a dismiss message is sent by other actions.
 
