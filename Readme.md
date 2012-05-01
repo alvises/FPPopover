@@ -1,13 +1,18 @@
+FPPopover
+========
+This library provides an alternative to the native iOS UIPopoverController, 
+adding support for iPhone and additional opportunities to customize the look and feel of the popovers.
+
+
 Features
 ========
 
-* UIPopoverController like working on iPhone and iPad
-* Popover rendered using no images, only Quartz code
-* Automatic orientation. It will find the best orientation and size for every situation
-* MIT License (you can use it on your commercial apps, edit and redistribute)
-
-
-
+* Works like UIPopoverController.
+* Runs on both iPhone and iPad.
+* Popover rendered using no images, only Quartz code.
+* Customize the look of popovers (color, dimensions).
+* Automatic orientation. It will find the best orientation and size for every situation.
+* MIT License (you can use it for commercial apps, edit and redistribute).
 
 
 What you need
