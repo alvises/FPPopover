@@ -11,7 +11,7 @@ Features
 
 
 What you need
-=============
+---
 
 To use FPPopoverController you only need
 
@@ -25,6 +25,15 @@ That's it.
 
 
 How to use it
-=============
+---  
+
+
+Simple example
+    -(IBAction)buttonClicked:(UIButton*)okButton
+    {
+        YourViewController *controller = [[YourViewController alloc] init]; //the view controller you want to present as popover
+        FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller]; //our popover
+        [popover presentPopoverFromView:okButton]; //the popover will be presented from the okButton view 
+    }
     
-** Simple example **
+

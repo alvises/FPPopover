@@ -76,7 +76,7 @@
     self = [super init];
     if(self)
     {
-        self.arrowDirection = FPPopoverArrowDirectionVertical;
+        self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
         _touchView.backgroundColor = [UIColor clearColor];
