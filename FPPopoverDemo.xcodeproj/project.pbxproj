@@ -74,7 +74,7 @@
 		18D8FA30155050F0005E2222 /* libfppopover.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfppopover.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D8FA34155050F0005E2222 /* fppopover-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fppopover-Prefix.pch"; sourceTree = "<group>"; };
 		18D8FA44155051BA005E2222 /* background_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_iPad.png; sourceTree = "<group>"; };
-		18D8FA4815505DFD005E2222 /* LICENSE */ = {isa = PBXFileReference; path = LICENSE; sourceTree = "<group>"; };
+		18D8FA4815505DFD005E2222 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18EF6DE9154ED27D005AB1DD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		18EF6DEA154ED27D005AB1DD /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
