@@ -26,8 +26,5 @@ That's it.
 
 How to use it
 =============
-
-    Simple example
-    ==============
     
-    test
+** Simple example **
