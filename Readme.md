@@ -87,7 +87,7 @@ In this case we are setting up the YourViewController as our popover delegate.
     - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
 
-Use this delegate method if you want to know when a popover is displayed. If you want to dismiss the old popover, and release it, send the dismiss message inside this method.
+Use this delegate method to know when a new different popover is displayed. If you want to dismiss the old popover, and release it, send the dismiss message inside this method.
 
         - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
@@ -95,3 +95,10 @@ Use this delegate method if you want to know when a popover is displayed. If you
             [visiblePopoverController dismissPopoverAnimated:YES];
             [visiblePopoverController autorelease];
         }
+
+####Know when the popover is dismissed
+
+    - (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController;
+
+Use this delegate method to know when the popover is dismissed. This could happen when the user tap outside the popover or when a dismiss message is sent by other actions.
+

@@ -46,11 +46,12 @@
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
 
+/** @brief Presenting the popover from a specified view **/
+-(void)presentPopoverFromView:(UIView*)fromView;
+
 /** @brief Presenting the popover from a specified point **/
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint;
 
-/** @brief Presenting the popover from a specified view **/
--(void)presentPopoverFromView:(UIView*)fromView;
 
 /** @brief Dismiss the popover **/
 -(void)dismissPopoverAnimated:(BOOL)animated;
