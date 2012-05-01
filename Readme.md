@@ -26,9 +26,8 @@ That's it.
 
 How to use it
 ---  
-
-
-Simple example
+Let's start with a simple example
+    
     -(IBAction)buttonClicked:(UIButton*)okButton
     {
         YourViewController *controller = [[YourViewController alloc] init]; //the view controller you want to present as popover
