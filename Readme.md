@@ -61,7 +61,7 @@ The default size of the content in popover is 200x300. That means the content si
 * FPPopoverGreenTint
 * FPPopoverRedTint
 
-    popover.tint = FPPopoverRedTint;
+        popover.tint = FPPopoverRedTint;
     
 Contact us if you need more tints!
 
