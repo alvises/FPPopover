@@ -24,6 +24,11 @@ typedef enum {
 } FPPopoverArrowDirection;
 
 
+#define FPPopoverArrowDirectionIsVertical(direction)    ((direction) == FPPopoverArrowDirectionVertical || (direction) == FPPopoverArrowDirectionUp || (direction) == FPPopoverArrowDirectionDown)
+
+#define FPPopoverArrowDirectionIsHorizontal(direction)    ((direction) == FPPopoverArrowDirectionHorizontal || (direction) == FPPopoverArrowDirectionLeft || (direction) == FPPopoverArrowDirectionRight)
+
+
 typedef enum {
     FPPopoverBlackTint = 1UL << 0, // default
     FPPopoverLightGrayTint = 1UL << 1,

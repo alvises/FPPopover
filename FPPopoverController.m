@@ -426,12 +426,12 @@
     FPPopoverArrowDirection bestDirection;
     
     //if the user wants vertical arrow, check if the content will fit vertically 
-    if(self.arrowDirection == FPPopoverArrowDirectionVertical || 
+    if(FPPopoverArrowDirectionIsVertical(self.arrowDirection) || 
        (self.arrowDirection == FPPopoverArrowDirectionAny && best_h >= best_w))
     {
 
         //ok, will be vertical
-        if(ht == best_h)
+        if(ht == best_h || self.arrowDirection == FPPopoverArrowDirectionDown)
         {
             //on the top and arrow down
             bestDirection = FPPopoverArrowDirectionDown;
@@ -455,7 +455,7 @@
     else 
     {
         //ok, will be horizontal 
-        if(wl == best_w)
+        if(wl == best_w || self.arrowDirection == FPPopoverArrowDirectionRight)
         {
             //on the left and arrow right
             bestDirection = FPPopoverArrowDirectionRight;
