@@ -1,10 +1,11 @@
 //
 //  FPPopoverController.m
-//  FiftyKit
 //
 //  Created by Alvise Susmel on 1/5/12.
 //  Copyright (c) 2012 Fifty Pixels Ltd. All rights reserved.
 //
+//  https://github.com/50pixels/FPPopover
+
 
 #import "FPPopoverController.h"
 
@@ -16,7 +17,7 @@
 -(CGFloat)parentHeight;
 
 #pragma mark Space management
-/* This methods helps the controller to found a proper way to display the view.
+/* This methods help the controller to found a proper way to display the view.
  * If the "from point" will be on the left, the arrow will be on the left and the 
  * view will be move on the right of the from point.
  */

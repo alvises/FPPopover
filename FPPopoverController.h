@@ -1,10 +1,10 @@
 //
 //  FPPopoverController.h
-//  FiftyKit
 //
 //  Created by Alvise Susmel on 1/5/12.
 //  Copyright (c) 2012 Fifty Pixels Ltd. All rights reserved.
 //
+//  https://github.com/50pixels/FPPopover
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
@@ -32,14 +32,14 @@
     UIDeviceOrientation _deviceOrientation;
 }
 @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
-/** @brief must be only FPPopoverArrowDirectionVertical, FPPopoverArrowDirectionHorizontal or  FPPopoverArrowDirectionAny.
-  * The default value is FPPopoverArrowDirectionVertical .
+/** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
  **/
 @property(nonatomic,assign) FPPopoverArrowDirection arrowDirection;
 
 @property(nonatomic,assign) CGSize contentSize;
 @property(nonatomic,assign) CGPoint origin;
 
+/** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
 
 /** @brief Initialize the popover with the content view controller

@@ -1,10 +1,11 @@
 //
 //  FPPopoverView.h
-//  FiftyKit
 //
 //  Created by Alvise Susmel on 1/4/12.
 //  Copyright (c) 2012 Fifty Pixels Ltd. All rights reserved.
 //
+//  https://github.com/50pixels/FPPopover
+
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
