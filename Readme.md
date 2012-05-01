@@ -44,11 +44,14 @@ Let's start with a simple example
         [controller release];
     }
     
-This will display a black popover with automatic arrow positioning and a maximum of 300x200 content size and no delegate messages.
+This will display a black popover with automatic arrow positioning and a maximum of 200x300 content size and no delegate messages.
+
 The title of YourViewController (controller.title) will be presented on the top.
 
+###Customize the size
+The default size of the content in popover is 200x300. That means the 
 
-Customize the tint
+###Customize the tint
 
 * FPPopoverBlackTint  (default)
 * FPPopoverLightGrayTint
@@ -56,3 +59,9 @@ Customize the tint
 * FPPopoverRedTint
 
     popover.tint = FPPopoverRedTint;
+    
+
+###Force the arrow direction
+
+###Delegate messages
+

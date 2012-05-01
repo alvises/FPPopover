@@ -16,14 +16,29 @@
 		186C43871538512200502D64 /* FPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43861538512200502D64 /* FPViewController.m */; };
 		186C438A1538512200502D64 /* FPViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C43881538512200502D64 /* FPViewController_iPhone.xib */; };
 		186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C438B1538512200502D64 /* FPViewController_iPad.xib */; };
-		186C43981538513B00502D64 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43951538513B00502D64 /* FPPopoverController.m */; };
-		186C43991538513B00502D64 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43971538513B00502D64 /* FPPopoverView.m */; };
 		186C439B153851F600502D64 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 186C439A153851F600502D64 /* Readme.md */; };
 		186C43A115386E2200502D64 /* DemoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43A015386E2200502D64 /* DemoTableController.m */; };
-		186C43AC153CAD1000502D64 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43AB153CAD1000502D64 /* FPTouchView.m */; };
+		18D8FA31155050F0005E2222 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43751538512100502D64 /* Foundation.framework */; };
+		18D8FA3B155050FE005E2222 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43951538513B00502D64 /* FPPopoverController.m */; };
+		18D8FA3C155050FE005E2222 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43971538513B00502D64 /* FPPopoverView.m */; };
+		18D8FA3D155050FE005E2222 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43AB153CAD1000502D64 /* FPTouchView.m */; };
+		18D8FA3E15505102005E2222 /* FPPopoverController.h in Headers */ = {isa = PBXBuildFile; fileRef = 186C43941538513B00502D64 /* FPPopoverController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18D8FA3F15505102005E2222 /* FPPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = 186C43961538513B00502D64 /* FPPopoverView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18D8FA4015505102005E2222 /* FPTouchView.h in Headers */ = {isa = PBXBuildFile; fileRef = 186C43AA153CAD1000502D64 /* FPTouchView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18D8FA4315505122005E2222 /* libfppopover.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8FA30155050F0005E2222 /* libfppopover.a */; };
 		18EF6DEB154ED27D005AB1DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DE9154ED27D005AB1DD /* background.png */; };
 		18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DEA154ED27D005AB1DD /* background@2x.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18D8FA4115505114005E2222 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 186C43661538512100502D64 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18D8FA2F155050F0005E2222;
+			remoteInfo = fppopover;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		186C436F1538512100502D64 /* FPPopoverDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPPopoverDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +70,8 @@
 		1892EE5E153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/FPViewController_iPhone.xib; sourceTree = "<absolute>"; };
 		1892EE5F153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		1892EE60153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/FPViewController_iPad.xib; sourceTree = "<absolute>"; };
+		18D8FA30155050F0005E2222 /* libfppopover.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfppopover.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D8FA34155050F0005E2222 /* fppopover-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fppopover-Prefix.pch"; sourceTree = "<group>"; };
 		18EF6DE9154ED27D005AB1DD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		18EF6DEA154ED27D005AB1DD /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,9 +81,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D8FA4315505122005E2222 /* libfppopover.a in Frameworks */,
 				186C43741538512100502D64 /* UIKit.framework in Frameworks */,
 				186C43761538512100502D64 /* Foundation.framework in Frameworks */,
 				186C43781538512100502D64 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D8FA2D155050F0005E2222 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D8FA31155050F0005E2222 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +105,7 @@
 				186C439A153851F600502D64 /* Readme.md */,
 				186C43931538512A00502D64 /* FPPopover */,
 				186C43791538512100502D64 /* FPPopoverDemo */,
+				18D8FA32155050F0005E2222 /* fppopover */,
 				186C43721538512100502D64 /* Frameworks */,
 				186C43701538512100502D64 /* Products */,
 			);
@@ -88,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				186C436F1538512100502D64 /* FPPopoverDemo.app */,
+				18D8FA30155050F0005E2222 /* libfppopover.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,6 +171,22 @@
 			name = FPPopover;
 			sourceTree = "<group>";
 		};
+		18D8FA32155050F0005E2222 /* fppopover */ = {
+			isa = PBXGroup;
+			children = (
+				18D8FA33155050F0005E2222 /* Supporting Files */,
+			);
+			path = fppopover;
+			sourceTree = "<group>";
+		};
+		18D8FA33155050F0005E2222 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18D8FA34155050F0005E2222 /* fppopover-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		18EF6DD9154ECC72005AB1DD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +206,19 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		18D8FA2E155050F0005E2222 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D8FA3E15505102005E2222 /* FPPopoverController.h in Headers */,
+				18D8FA3F15505102005E2222 /* FPPopoverView.h in Headers */,
+				18D8FA4015505102005E2222 /* FPTouchView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		186C436E1538512100502D64 /* FPPopoverDemo */ = {
 			isa = PBXNativeTarget;
@@ -174,11 +231,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				18D8FA4215505114005E2222 /* PBXTargetDependency */,
 			);
 			name = FPPopoverDemo;
 			productName = FPPopoverDemo;
 			productReference = 186C436F1538512100502D64 /* FPPopoverDemo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		18D8FA2F155050F0005E2222 /* fppopover */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18D8FA38155050F0005E2222 /* Build configuration list for PBXNativeTarget "fppopover" */;
+			buildPhases = (
+				18D8FA2C155050F0005E2222 /* Sources */,
+				18D8FA2D155050F0005E2222 /* Frameworks */,
+				18D8FA2E155050F0005E2222 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fppopover;
+			productName = fppopover;
+			productReference = 18D8FA30155050F0005E2222 /* libfppopover.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -203,6 +278,7 @@
 			projectRoot = "";
 			targets = (
 				186C436E1538512100502D64 /* FPPopoverDemo */,
+				18D8FA2F155050F0005E2222 /* fppopover */,
 			);
 		};
 /* End PBXProject section */
@@ -231,14 +307,29 @@
 				186C43801538512200502D64 /* main.m in Sources */,
 				186C43841538512200502D64 /* FPAppDelegate.m in Sources */,
 				186C43871538512200502D64 /* FPViewController.m in Sources */,
-				186C43981538513B00502D64 /* FPPopoverController.m in Sources */,
-				186C43991538513B00502D64 /* FPPopoverView.m in Sources */,
 				186C43A115386E2200502D64 /* DemoTableController.m in Sources */,
-				186C43AC153CAD1000502D64 /* FPTouchView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18D8FA2C155050F0005E2222 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D8FA3B155050FE005E2222 /* FPPopoverController.m in Sources */,
+				18D8FA3C155050FE005E2222 /* FPPopoverView.m in Sources */,
+				18D8FA3D155050FE005E2222 /* FPTouchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18D8FA4215505114005E2222 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18D8FA2F155050F0005E2222 /* fppopover */;
+			targetProxy = 18D8FA4115505114005E2222 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		186C437C1538512100502D64 /* InfoPlist.strings */ = {
@@ -341,6 +432,30 @@
 			};
 			name = Release;
 		};
+		18D8FA39155050F0005E2222 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/fppopover.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "fppopover/fppopover-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		18D8FA3A155050F0005E2222 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/fppopover.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "fppopover/fppopover-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -361,6 +476,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		18D8FA38155050F0005E2222 /* Build configuration list for PBXNativeTarget "fppopover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D8FA39155050F0005E2222 /* Debug */,
+				18D8FA3A155050F0005E2222 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

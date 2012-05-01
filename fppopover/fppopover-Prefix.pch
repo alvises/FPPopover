@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'fppopover' target in the 'fppopover' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
