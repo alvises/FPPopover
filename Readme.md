@@ -77,12 +77,12 @@ Set your delegate
     
         YourViewController *controller = [[YourViewController alloc] init]; 
         FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller]; 
-        popover.delegate = controller
+        popover.delegate = controller;
         ....
         
 In this case we are setting up the YourViewController as our popover delegate.
 
-***Know when a new popover will be displayed
+####Know when a new popover will be displayed
 
     - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
