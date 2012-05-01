@@ -26,6 +26,7 @@ That's it.
 
 How to use it
 ---  
+
 Let's start with a simple example
     
     -(IBAction)buttonClicked:(UIButton*)okButton
@@ -39,9 +40,19 @@ Let's start with a simple example
         //the popover will be presented from the okButton view 
         [popover presentPopoverFromView:okButton]; 
     
-    
         //release
         [controller release];
     }
     
+This will display a black popover with automatic arrow positioning and a maximum of 300x200 content size and no delegate messages.
+The title of YourViewController (controller.title) will be presented on the top.
 
+
+Customize the tint
+
+* FPPopoverBlackTint  (default)
+* FPPopoverLightGrayTint
+* FPPopoverGreenTint
+* FPPopoverRedTint
+
+    popover.tint = FPPopoverRedTint;
