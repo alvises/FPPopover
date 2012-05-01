@@ -46,6 +46,7 @@
     FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
     [controller release];
     popover.arrowDirection = FPPopoverArrowDirectionAny;
+    popover.tint = FPPopoverDefaultTint;
     //sender is the UIButton view
     [popover presentPopoverFromView:sender]; 
 }
