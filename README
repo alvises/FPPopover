@@ -1,8 +1,0 @@
-FPPopoverController is our implementation of the Apple's UIPopoverController.
-The big difference beetween those is you can use FPPopoverController on a iPhone environment and not only on the iPad.
-
-# Features #
-
-* UIPopoverController like working on iPhone and iPad
-* Popover rendered using no images, only Quartz code
-* Automatic orientation. It will find the best orientation and size for every situation
