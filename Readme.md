@@ -30,9 +30,18 @@ Let's start with a simple example
     
     -(IBAction)buttonClicked:(UIButton*)okButton
     {
-        YourViewController *controller = [[YourViewController alloc] init]; //the view controller you want to present as popover
-        FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller]; //our popover
-        [popover presentPopoverFromView:okButton]; //the popover will be presented from the okButton view 
+        //the view controller you want to present as popover
+        YourViewController *controller = [[YourViewController alloc] init]; 
+
+        //our popover
+        FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller]; 
+        
+        //the popover will be presented from the okButton view 
+        [popover presentPopoverFromView:okButton]; 
+    
+    
+        //release
+        [controller release];
     }
     
 
