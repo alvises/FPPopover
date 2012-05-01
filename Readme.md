@@ -68,7 +68,7 @@ Contact us if you need more tints!
 ###Force the arrow direction
 If you need to force the arrow direction use the arrowDirection property
 
-    popover.arrowDirection = FPPopoverArrowDirectionUp;
+        popover.arrowDirection = FPPopoverArrowDirectionUp;
 
 
 ###Delegate messages
