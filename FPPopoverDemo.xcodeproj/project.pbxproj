@@ -65,12 +65,6 @@
 		186C43A015386E2200502D64 /* DemoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableController.m; sourceTree = "<group>"; };
 		186C43AA153CAD1000502D64 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		186C43AB153CAD1000502D64 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
-		18715A2D154853B500EEF54C /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/es.lproj/FPViewController_iPhone.xib; sourceTree = "<absolute>"; };
-		18715A2E154853B500EEF54C /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/es.lproj/FPViewController_iPad.xib; sourceTree = "<absolute>"; };
-		18715A2F154853B500EEF54C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/es.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
-		1892EE5E153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/FPViewController_iPhone.xib; sourceTree = "<absolute>"; };
-		1892EE5F153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
-		1892EE60153EE1BC000344F1 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = /Users/alvise/Documents/50public/FPPopoverDemo/FPPopoverDemo/it.lproj/FPViewController_iPad.xib; sourceTree = "<absolute>"; };
 		18D8FA30155050F0005E2222 /* libfppopover.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfppopover.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D8FA34155050F0005E2222 /* fppopover-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fppopover-Prefix.pch"; sourceTree = "<group>"; };
 		18D8FA44155051BA005E2222 /* background_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_iPad.png; sourceTree = "<group>"; };
@@ -342,8 +336,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				186C437D1538512100502D64 /* en */,
-				1892EE5F153EE1BC000344F1 /* it */,
-				18715A2F154853B500EEF54C /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -352,8 +344,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				186C43891538512200502D64 /* en */,
-				1892EE5E153EE1BC000344F1 /* it */,
-				18715A2D154853B500EEF54C /* es */,
 			);
 			name = FPViewController_iPhone.xib;
 			sourceTree = "<group>";
@@ -362,8 +352,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				186C438C1538512200502D64 /* en */,
-				1892EE60153EE1BC000344F1 /* it */,
-				18715A2E154853B500EEF54C /* es */,
 			);
 			name = FPViewController_iPad.xib;
 			sourceTree = "<group>";
@@ -490,6 +478,7 @@
 				18D8FA3A155050F0005E2222 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
