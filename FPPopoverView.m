@@ -89,7 +89,7 @@
 #pragma mark drawing
 
 //the content with the arrow
--(CGPathRef)createContentPathWithBorderWidth:(CGFloat)borderWidth arrowDirection:(FPPopoverArrowDirection)direction
+-(CGPathRef)newContentPathWithBorderWidth:(CGFloat)borderWidth arrowDirection:(FPPopoverArrowDirection)direction
 {
     CGFloat w = self.bounds.size.width;
     CGFloat h = self.bounds.size.height;
@@ -123,8 +123,9 @@
         rect.origin.x = b;
         rect.origin.y = b;                
     }
-    else if(direction == FPPopoverArrowDirectionLeft)
+    else
     {
+        //Assuming direction == FPPopoverArrowDirectionLeft to suppress static analyzer warnings
         rect.size.width = w - ah - 2*b;
         rect.size.height = h - 2*b;
         rect.origin.x = ah + b;
@@ -214,7 +215,7 @@
 
 
 
--(CGGradientRef)createGradient
+-(CGGradientRef)newGradient
 {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 
@@ -301,14 +302,14 @@
     [super drawRect:rect];
     
 
-    CGGradientRef gradient = [self createGradient];
+    CGGradientRef gradient = [self newGradient];
     
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();    
     CGContextSaveGState(ctx);
     
     //content fill
-    CGPathRef contentPath = [self createContentPathWithBorderWidth:2.0 arrowDirection:_arrowDirection];
+    CGPathRef contentPath = [self newContentPathWithBorderWidth:2.0 arrowDirection:_arrowDirection];
     
     CGContextAddPath(ctx, contentPath);    
     CGContextClip(ctx);
@@ -363,7 +364,7 @@
     CGPathRelease(contentPath);
 
     //external border
-    CGPathRef externalBorderPath = [self createContentPathWithBorderWidth:1.0 arrowDirection:_arrowDirection];
+    CGPathRef externalBorderPath = [self newContentPathWithBorderWidth:1.0 arrowDirection:_arrowDirection];
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, externalBorderPath);
     CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
