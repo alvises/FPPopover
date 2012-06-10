@@ -10,7 +10,7 @@
 #import "DemoTableController.h"
 
 #import "FPPopoverController.h"
-
+#import "FPDemoTableViewController.h"
 @interface FPViewController ()
 
 @end
@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewDidUnload
@@ -120,6 +120,14 @@
 -(IBAction)bottomRight:(id)sender
 {
     [self popover:sender];
+}
+
+
+-(IBAction)goToTableView:(id)sender
+{
+    FPDemoTableViewController *controller = [[FPDemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 

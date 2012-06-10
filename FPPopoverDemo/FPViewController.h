@@ -30,4 +30,5 @@
 -(IBAction)bottomCenter:(id)sender;
 -(IBAction)bottomRight:(id)sender;
 
+-(IBAction)goToTableView:(id)sender;
 @end

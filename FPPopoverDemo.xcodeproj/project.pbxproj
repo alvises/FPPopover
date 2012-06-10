@@ -29,6 +29,7 @@
 		18D8FA45155051BA005E2222 /* background_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D8FA44155051BA005E2222 /* background_iPad.png */; };
 		18EF6DEB154ED27D005AB1DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DE9154ED27D005AB1DD /* background.png */; };
 		18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DEA154ED27D005AB1DD /* background@2x.png */; };
+		18F357271584E6E700AD4F07 /* FPDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		18D8FA4815505DFD005E2222 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18EF6DE9154ED27D005AB1DD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		18EF6DEA154ED27D005AB1DD /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		18F357251584E6E700AD4F07 /* FPDemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPDemoTableViewController.h; sourceTree = "<group>"; };
+		18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPDemoTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 				186C43831538512200502D64 /* FPAppDelegate.m */,
 				186C43851538512200502D64 /* FPViewController.h */,
 				186C43861538512200502D64 /* FPViewController.m */,
+				18F357251584E6E700AD4F07 /* FPDemoTableViewController.h */,
+				18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */,
 				186C43881538512200502D64 /* FPViewController_iPhone.xib */,
 				186C438B1538512200502D64 /* FPViewController_iPad.xib */,
 				186C437A1538512100502D64 /* Supporting Files */,
@@ -308,6 +313,7 @@
 				186C43841538512200502D64 /* FPAppDelegate.m in Sources */,
 				186C43871538512200502D64 /* FPViewController.m in Sources */,
 				186C43A115386E2200502D64 /* DemoTableController.m in Sources */,
+				18F357271584E6E700AD4F07 /* FPDemoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
