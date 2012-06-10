@@ -513,12 +513,15 @@
     }
     
     
-    
+    if([[UIApplication sharedApplication] isStatusBarHidden] == NO)
+    {
+        if(r.origin.y <= 20) r.origin.y += 20;
+    }
 
     _contentView.arrowDirection = bestDirection;
     _contentView.frame = r;
 
-    self.origin = v.center;
+    self.origin = CGPointMake(p.x + v.frame.size.width/2.0, p.y + v.frame.size.height/2.0);
     _contentView.relativeOrigin = [_parentView convertPoint:self.origin toView:_contentView];
 
     return r;
