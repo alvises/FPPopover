@@ -53,6 +53,10 @@
     {
         popover.contentSize = CGSizeMake(300, 500);
     }
+    else {
+        popover.contentSize = CGSizeMake(100, 100);
+    }
+    
     popover.arrowDirection = FPPopoverArrowDirectionAny;
     
     //sender is the UIButton view
