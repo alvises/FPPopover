@@ -47,7 +47,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
     
-    _deviceOrientation = [UIDevice currentDevice].orientation;
+    _deviceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
     
 }
 
@@ -55,13 +55,12 @@
 {
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_viewController removeObserver:self forKeyPath:@"title"];
 }
 
 
 -(void)dealloc
 {
-    [self removeObservers];
+    [_viewController removeObserver:self forKeyPath:@"title"];
     [_touchView release];
     [_viewController release];
     [_contentView release];
@@ -251,6 +250,7 @@
     {
         [self.delegate popoverControllerDidDismissPopover:self];
     }
+    [self removeObservers];
     [_window release]; _window=nil;
     [_parentView release]; _parentView=nil;
 }
@@ -283,11 +283,14 @@
 
 -(void)deviceOrientationDidChange:(NSNotification*)notification
 {
-    _deviceOrientation = [UIDevice currentDevice].orientation;
+    // Ignoring device orientation unless its portrait or landscape
+    if ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)  ||  UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ) {
+        _deviceOrientation = [UIDevice currentDevice].orientation;
+        [UIView animateWithDuration:0.2 animations:^{
+            [self setupView];
+        }];
+    }
     
-    [UIView animateWithDuration:0.2 animations:^{
-        [self setupView]; 
-    }];
 }
 
 -(void)willPresentNewPopover:(NSNotification*)notification
@@ -411,13 +414,21 @@
 
 -(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v
 {
-    CGPoint p = [v.superview convertPoint:v.frame.origin toView:self.view];
+    // If we presentFromPoint with _fromView nil will calculate based on self.orgin with 2x2 size.
+    float width = 2.0f;
+    float height = 2.0f;
+    CGPoint p = CGPointMake(self.origin.x, self.origin.y);
+    if (v != nil) {
+        p = [v.superview convertPoint:v.frame.origin toView:self.view];
+        width = v.frame.size.width;
+        height = v.frame.size.height;
+    }
     
     CGFloat ht = p.y; //available vertical space on top of the view
-    CGFloat hb = [self parentHeight] -  (p.y + v.frame.size.height); //on the bottom
+    CGFloat hb = [self parentHeight] -  (p.y + height); //on the bottom
     CGFloat wl = p.x; //on the left
-    CGFloat wr = [self parentWidth] - (p.x + v.frame.size.width); //on the right
-        
+    CGFloat wr = [self parentWidth] - (p.x + width); //on the right
+    
     CGFloat best_h = MAX(ht, hb); //much space down or up ?
     CGFloat best_w = MAX(wl, wr);
     
