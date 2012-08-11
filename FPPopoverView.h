@@ -6,6 +6,9 @@
 //
 //  https://github.com/50pixels/FPPopover
 
+#define FP_POPOVER_ARROW_HEIGHT 10.0
+#define FP_POPOVER_ARROW_BASE 20.0
+#define FP_POPOVER_RADIUS 10.0
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>

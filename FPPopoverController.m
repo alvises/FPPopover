@@ -8,6 +8,7 @@
 
 
 #import "FPPopoverController.h"
+#define TOP_MARGIN 10
 
 @interface FPPopoverController(Private)
 -(CGPoint)originFromView:(UIView*)fromView;
@@ -443,6 +444,11 @@
     {
 
         //ok, will be vertical
+        // I've change calculation to assume that content size we pass is ACTUAL size for content.
+        // So we need to add space for arrow and borders
+        r.size.height = r.size.height + 20 + FP_POPOVER_ARROW_HEIGHT;
+        r.size.width = r.size.width + 20;
+
         if(ht == best_h || self.arrowDirection == FPPopoverArrowDirectionDown)
         {
             //on the top and arrow down
@@ -456,8 +462,9 @@
             //on the bottom and arrow up
             bestDirection = FPPopoverArrowDirectionUp;
 
-            r.origin.x = p.x + v.frame.size.width/2.0 - r.size.width/2.0;
-            r.origin.y = p.y + v.frame.size.height;
+            r.origin.x = p.x + width/2.0 - r.size.width/2.0;
+            r.origin.y = p.y + height;
+
         }
         
 
@@ -466,14 +473,19 @@
     
     else 
     {
-        //ok, will be horizontal 
+        //ok, will be horizontal
+        // I've change calculation to assume that content size we pass is ACTUAL size for content.
+        // So we need to add space for arrow and borders
+        r.size.width = r.size.width + 20 + FP_POPOVER_ARROW_HEIGHT;
+        r.size.height = r.size.height + 20;
+        
         if(wl == best_w || self.arrowDirection == FPPopoverArrowDirectionRight)
         {
             //on the left and arrow right
             bestDirection = FPPopoverArrowDirectionRight;
 
             r.origin.x = p.x - r.size.width;
-            r.origin.y = p.y + v.frame.size.height/2.0 - r.size.height/2.0;
+            r.origin.y = MAX(TOP_MARGIN, p.y + height/2.0 - r.size.height/2.0) ;
 
         }
         else
@@ -481,8 +493,8 @@
             //on the right then arrow left
             bestDirection = FPPopoverArrowDirectionLeft;
 
-            r.origin.x = p.x + v.frame.size.width;
-            r.origin.y = p.y + v.frame.size.height/2.0 - r.size.height/2.0;
+            r.origin.x = p.x + width;
+            r.origin.y = MAX(TOP_MARGIN, p.y + height/2.0 - r.size.height/2.0) ;
         }
         
 
@@ -490,25 +502,22 @@
     
     
     
-    //need to moved left ? 
-    if(r.origin.x + r.size.width > [self parentWidth])
-    {
-        r.origin.x = [self parentWidth] - r.size.width;
-    }
-    
-    //need to moved right ?
-    else if(r.origin.x < 0)
-    {
-        r.origin.x = 0;
-    }
-    
-    
     //need to move up?
-    if(r.origin.y < 0)
-    {
-        CGFloat old_y = r.origin.y;
-        r.origin.y = 0;
-        r.size.height += old_y;
+    if (bestDirection == FPPopoverArrowDirectionUp || bestDirection ==  FPPopoverArrowDirectionDown) {
+        // Original codition seems to move and resize
+        if(r.origin.y < 0)
+        {
+            CGFloat old_y = r.origin.y;
+            r.origin.y = 0;
+            r.size.height += old_y;
+        }
+    } else {
+        // ALEX - condition for the horizontal arrows
+        if(r.origin.y + r.size.height > [self parentHeight])
+        {
+            CGFloat delta = r.origin.y + r.size.height - [self parentHeight];
+            r.origin.y = r.origin.y - delta;
+        }
     }
     
     //need to be resized horizontally ?
@@ -518,9 +527,17 @@
     }
     
     //need to be resized vertically ?
-    if(r.origin.y + r.size.height > [self parentHeight])
-    {
-        r.size.height = [self parentHeight] - r.origin.y;
+    if (bestDirection == FPPopoverArrowDirectionUp || bestDirection ==  FPPopoverArrowDirectionDown) {
+        if(r.origin.y + r.size.height > [self parentHeight])
+        {
+            r.size.height = [self parentHeight] - r.origin.y;
+            
+        }
+    } else {
+        if(r.size.height > [self parentHeight])
+        {
+            r.size.height = [self parentHeight];
+        }
     }
     
     
@@ -532,7 +549,7 @@
     _contentView.arrowDirection = bestDirection;
     _contentView.frame = r;
 
-    self.origin = CGPointMake(p.x + v.frame.size.width/2.0, p.y + v.frame.size.height/2.0);
+    self.origin = CGPointMake(p.x + width/2.0, p.y + height/2.0);
     _contentView.relativeOrigin = [_parentView convertPoint:self.origin toView:_contentView];
 
     return r;
