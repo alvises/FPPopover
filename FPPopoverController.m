@@ -68,6 +68,7 @@
     [_window release];
     [_parentView release];
     self.delegate = nil;
+    if(_shadowColor) CGColorRelease(_shadowColor);
     [super dealloc];
 }
 
@@ -527,6 +528,31 @@
     return r;
 }
 
+
+-(void)setShadowsHidden:(BOOL)hidden
+{
+    _shadowsHidden = hidden;
+    if(hidden)
+    {
+        _contentView.layer.shadowOpacity = 0;
+        _contentView.layer.shadowRadius = 0;
+        _contentView.layer.shadowOffset = CGSizeMake(0, 0);
+        _shadowColor = CGColorRetain(_contentView.layer.shadowColor);
+        _contentView.layer.shadowColor = nil;
+    }
+    else
+    {
+        _contentView.layer.shadowOpacity = 0.7;
+        _contentView.layer.shadowRadius = 5;
+        _contentView.layer.shadowOffset = CGSizeMake(-3, 3);
+        _contentView.layer.shadowColor = _shadowColor;
+        if(_shadowColor)
+        {
+            CGColorRelease(_shadowColor);
+            _shadowColor=nil;
+        }
+    }
+}
 
 
 

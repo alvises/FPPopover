@@ -30,6 +30,9 @@
     UIView *_parentView;
     UIView *_fromView;
     UIDeviceOrientation _deviceOrientation;
+    
+    BOOL _shadowsHidden;
+    CGColorRef _shadowColor;
 }
 @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
@@ -56,6 +59,8 @@
 /** @brief Dismiss the popover **/
 -(void)dismissPopoverAnimated:(BOOL)animated;
 
+/** @brief Hide the shadows to get better performances **/
+-(void)setShadowsHidden:(BOOL)hidden;
 
 
 
