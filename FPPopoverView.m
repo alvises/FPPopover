@@ -65,10 +65,20 @@
     [self setNeedsDisplay];
 }
 
+-(void)setTitleColor:(UIColor *)titleColor {
+    if (_titleColor != titleColor) {
+        [_titleColor release];
+        _titleColor = [titleColor retain];
+    }
+    _titleLabel.textColor = _titleColor;
+     [self setNeedsDisplay];
+}
+
 -(FPPopoverArrowDirection)arrowDirection
 {
     return _arrowDirection;
 }
+
 -(void)addContentView:(UIView *)contentView
 {
     if(_contentView != contentView)

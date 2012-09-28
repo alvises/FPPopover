@@ -42,6 +42,9 @@
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
 
+/** @brief The color for the title. **/
+@property(nonatomic,retain) UIColor *titleColor;
+
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;

@@ -34,6 +34,7 @@
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
+@synthesize titleColor = _titleColor;
 
 -(void)addObservers
 {
@@ -119,6 +120,12 @@
 -(void)setTint:(FPPopoverTint)tint
 {
     _contentView.tint = tint;
+    [_contentView setNeedsDisplay];
+}
+
+-(void)setTitleColor:(UIColor *)titleColor {
+    
+    _contentView.titleColor = titleColor;
     [_contentView setNeedsDisplay];
 }
 
