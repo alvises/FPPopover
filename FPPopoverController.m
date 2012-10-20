@@ -343,7 +343,9 @@
     r.size = self.contentSize;
     r.size.width += 20;
     r.size.height += 50;
-    
+    if (self.title && self.title.length >0) {
+        r.size.height += 30;
+    }
     //size limits
     CGFloat w = MIN(r.size.width, [self parentWidth]);
     CGFloat h = MIN(r.size.height,[self parentHeight]);
