@@ -36,6 +36,7 @@
 @synthesize popoverLayoutMargins = _popoverLayoutMargins;
 
 
+
 -(void)addObservers
 {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
