@@ -45,6 +45,10 @@
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
 
+/** @brief The margins that define the portion of the screen in which it is permissible to display the popover.
+ **/
+@property(nonatomic,assign) UIEdgeInsets popoverLayoutMargins;
+
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
