@@ -35,6 +35,7 @@
 @synthesize tint = _tint;
 @synthesize popoverLayoutMargins = _popoverLayoutMargins;
 
+
 -(void)addObservers
 {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
@@ -129,6 +130,14 @@
 -(FPPopoverTint)tint
 {
     return _contentView.tint;
+}
+
+-(void)setPassthroughViews:(NSArray *)passthroughViews {
+    _touchView.passthroughViews = passthroughViews;
+}
+
+-(NSArray *)passthroughViews {
+    return _touchView.passthroughViews;
 }
 
 #pragma mark - View lifecycle
