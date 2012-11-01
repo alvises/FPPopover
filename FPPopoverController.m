@@ -34,6 +34,7 @@
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
 
+
 -(void)addObservers
 {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
@@ -126,6 +127,14 @@
 -(FPPopoverTint)tint
 {
     return _contentView.tint;
+}
+
+-(void)setPassthroughViews:(NSArray *)passthroughViews {
+    _touchView.passthroughViews = passthroughViews;
+}
+
+-(NSArray *)passthroughViews {
+    return _touchView.passthroughViews;
 }
 
 #pragma mark - View lifecycle
