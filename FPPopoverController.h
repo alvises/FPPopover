@@ -44,6 +44,8 @@
 
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
+@property(nonatomic,retain) UIColor *backgroundColor;
+@property(nonatomic,assign) BOOL needs3DEffectBorder;
 
 /** @brief Initialize the popover with the content view controller
  **/

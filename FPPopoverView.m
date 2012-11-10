@@ -9,7 +9,7 @@
 
 #import "FPPopoverView.h"
 
-#define FP_POPOVER_ARROW_HEIGHT 20.0
+#define FP_POPOVER_ARROW_HEIGHT 11.0
 #define FP_POPOVER_ARROW_BASE 20.0
 #define FP_POPOVER_RADIUS 10.0
 
@@ -23,6 +23,8 @@
 @synthesize title;
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
+@synthesize backgroundColor = _backgroundColor;
+@synthesize needs3DEffectBorder = _needs3DEffectBorder;
 
 -(void)dealloc
 {
@@ -55,7 +57,11 @@
         _titleLabel.textAlignment = UITextAlignmentCenter;
         _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
         
+        // set defaults
         self.tint = FPPopoverDefaultTint;
+        [super setBackgroundColor:[UIColor clearColor]];
+        self.backgroundColor = nil;
+        self.needs3DEffectBorder = YES;
         
         [self addSubview:_titleLabel];
         [self setupViews];
@@ -301,58 +307,66 @@
 {
     [super drawRect:rect];
     
-
-    CGGradientRef gradient = [self newGradient];
-    
-    
-    CGContextRef ctx = UIGraphicsGetCurrentContext();    
+    CGGradientRef gradient;
+        
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSaveGState(ctx);
     
+    if (self.backgroundColor) {
+        CGContextSetFillColorWithColor(ctx, self.backgroundColor.CGColor);
+    }
     //content fill
     CGPathRef contentPath = [self newContentPathWithBorderWidth:2.0 arrowDirection:_arrowDirection];
     
     CGContextAddPath(ctx, contentPath);    
     CGContextClip(ctx);
 
-    //  Draw a linear gradient from top to bottom
-    CGPoint start;
-    CGPoint end;
-    if(_arrowDirection == FPPopoverArrowDirectionUp)
-    {
-        start = CGPointMake(self.bounds.size.width/2.0, 0);
-        end = CGPointMake(self.bounds.size.width/2.0,40);
+    if (!self.backgroundColor) {
+        //  Draw a linear gradient from top to bottom
+        gradient = [self newGradient];
+      
+        CGPoint start;
+        CGPoint end;
+        if(_arrowDirection == FPPopoverArrowDirectionUp)
+        {
+            start = CGPointMake(self.bounds.size.width/2.0, 0);
+            end = CGPointMake(self.bounds.size.width/2.0,40);
+        }
+        else
+        {
+            start = CGPointMake(self.bounds.size.width/2.0, 0);
+            end = CGPointMake(self.bounds.size.width/2.0,20);
+        }
+        
+        
+        
+        CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
+        
+        CGGradientRelease(gradient);
+        //fill the other part of path
+        if(self.tint == FPPopoverBlackTint)
+        {
+            CGContextSetRGBFillColor(ctx, 0.1, 0.1, 0.1, 1.0);
+        }
+        else if(self.tint == FPPopoverLightGrayTint)
+        {
+            CGContextSetRGBFillColor(ctx, 0.3, 0.3, 0.3, 1.0);
+        }
+        else if(self.tint == FPPopoverRedTint)
+        {
+            CGContextSetRGBFillColor(ctx, 0.36, 0.0, 0.09, 1.0);
+        }
+        else if(self.tint == FPPopoverGreenTint)
+        {
+            CGContextSetRGBFillColor(ctx, 0.18, 0.30, 0.03, 1.0);
+        }
+        
+        
+        CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
+    } else {
+        CGContextFillRect(ctx, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height));
     }
-    else 
-    {
-        start = CGPointMake(self.bounds.size.width/2.0, 0);
-        end = CGPointMake(self.bounds.size.width/2.0,20);
-    }
-
-
     
-    CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
-    
-    CGGradientRelease(gradient);
-    //fill the other part of path
-    if(self.tint == FPPopoverBlackTint)
-    {
-        CGContextSetRGBFillColor(ctx, 0.1, 0.1, 0.1, 1.0);        
-    }
-    else if(self.tint == FPPopoverLightGrayTint)
-    {
-        CGContextSetRGBFillColor(ctx, 0.3, 0.3, 0.3, 1.0);        
-    }
-    else if(self.tint == FPPopoverRedTint)
-    {
-        CGContextSetRGBFillColor(ctx, 0.36, 0.0, 0.09, 1.0);        
-    }
-    else if(self.tint == FPPopoverGreenTint)
-    {
-        CGContextSetRGBFillColor(ctx, 0.18, 0.30, 0.03, 1.0);        
-    }
-
-    
-    CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
     //internal border
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, contentPath);
@@ -374,16 +388,18 @@
     CGContextStrokePath(ctx);
     CGPathRelease(externalBorderPath);
 
-    //3D border of the content view
-    CGRect cvRect = _contentView.frame;
-    //firstLine
-    CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
-    CGContextStrokeRect(ctx, cvRect);
-    //secondLine
-    cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
-    CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
-    CGContextStrokeRect(ctx, cvRect);
     
+    if (self.needs3DEffectBorder) {
+        //3D border of the content view
+        CGRect cvRect = _contentView.frame;
+        //firstLine
+        CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+        CGContextStrokeRect(ctx, cvRect);
+        //secondLine
+        cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
+        CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
+        CGContextStrokeRect(ctx, cvRect);
+    }
     
     
     CGContextRestoreGState(ctx);
