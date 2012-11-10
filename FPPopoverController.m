@@ -32,6 +32,7 @@
 @synthesize contentSize = _contentSize;
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
+@synthesize contentView = _contentView;
 @dynamic tint;
 @dynamic backgroundColor;
 @dynamic needs3DEffectBorder;

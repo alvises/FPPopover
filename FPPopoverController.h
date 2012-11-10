@@ -42,6 +42,8 @@
 @property(nonatomic,assign) CGSize contentSize;
 @property(nonatomic,assign) CGPoint origin;
 
+@property (nonatomic, retain, readonly) FPPopoverView *contentView;
+
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
 @property(nonatomic,retain) UIColor *backgroundColor;
