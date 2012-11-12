@@ -25,6 +25,7 @@
 @synthesize tint = _tint;
 @synthesize backgroundColor = _backgroundColor;
 @synthesize needs3DEffectBorder = _needs3DEffectBorder;
+@synthesize titleLabel = _titleLabel;
 
 -(void)dealloc
 {
@@ -56,6 +57,8 @@
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = UITextAlignmentCenter;
         _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+        
+        
         
         // set defaults
         self.tint = FPPopoverDefaultTint;
@@ -321,24 +324,22 @@
     CGContextAddPath(ctx, contentPath);    
     CGContextClip(ctx);
 
+    CGPoint start;
+    CGPoint end;
+    if(_arrowDirection == FPPopoverArrowDirectionUp)
+    {
+        start = CGPointMake(self.bounds.size.width/2.0, 0);
+        end = CGPointMake(self.bounds.size.width/2.0,40);
+    }
+    else
+    {
+        start = CGPointMake(self.bounds.size.width/2.0, 0);
+        end = CGPointMake(self.bounds.size.width/2.0,20);
+    }
+    
     if (!self.backgroundColor) {
         //  Draw a linear gradient from top to bottom
         gradient = [self newGradient];
-      
-        CGPoint start;
-        CGPoint end;
-        if(_arrowDirection == FPPopoverArrowDirectionUp)
-        {
-            start = CGPointMake(self.bounds.size.width/2.0, 0);
-            end = CGPointMake(self.bounds.size.width/2.0,40);
-        }
-        else
-        {
-            start = CGPointMake(self.bounds.size.width/2.0, 0);
-            end = CGPointMake(self.bounds.size.width/2.0,20);
-        }
-        
-        
         
         CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
         
@@ -365,6 +366,15 @@
         CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
     } else {
         CGContextFillRect(ctx, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height));
+        
+        
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef) @[ (id)[UIColor clearColor].CGColor, (id)[UIColor colorWithWhite:0.0 alpha:0.3].CGColor ], NULL);
+        CGContextDrawLinearGradient(ctx, gradient, start, CGPointMake(self.bounds.size.width/2.0,self.bounds.size.height), 0);
+        
+        CGGradientRelease(gradient);
+        CFRelease(colorSpace);
+
     }
     
     //internal border
@@ -416,7 +426,7 @@
         contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
         _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);    
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 30);
+			contentRect.origin = CGPointMake(10, 5);
 			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
 		}
     }
@@ -426,7 +436,7 @@
         contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 10); 
+			contentRect.origin = CGPointMake(10, 5);
 			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
 		}
     }
@@ -438,7 +448,7 @@
         contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);    
 		if (self.title==nil || self.title.length==0) {
-			 contentRect.origin = CGPointMake(10, 10);
+			 contentRect.origin = CGPointMake(10, -10);
 			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
 		}
     }
