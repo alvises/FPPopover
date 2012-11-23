@@ -176,6 +176,11 @@
     [self addObservers];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setContentSize:_viewController.contentSizeForViewInPopover];
+}
+
 #pragma mark Orientation
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
