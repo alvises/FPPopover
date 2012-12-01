@@ -192,6 +192,7 @@
             [_parentView release]; 
             _parentView = [[_window.subviews objectAtIndex:0] retain];
             [_parentView addSubview:self.view];
+            [_viewController viewDidAppear:YES];
         }
         
    }

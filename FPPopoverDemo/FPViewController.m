@@ -54,7 +54,7 @@
         popover.contentSize = CGSizeMake(300, 500);
     }
     else {
-        popover.contentSize = CGSizeMake(100, 100);
+        popover.contentSize = CGSizeMake(200, 300);
     }
     
     popover.arrowDirection = FPPopoverArrowDirectionAny;
