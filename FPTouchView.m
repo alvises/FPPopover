@@ -10,8 +10,11 @@
 
 @implementation FPTouchView
 
+@synthesize passthroughViews = _passthroughViews;
+
 -(void)dealloc
 {
+    [_passthroughViews release];
     [_outsideBlock release];
     [_insideBlock release];
     [super dealloc];
@@ -47,6 +50,23 @@
                     break;
                 }
             }            
+        }
+        
+        // Perform passthroughViews logic
+        if (!touchedInside) {
+            for (UIView *passthroughView in _passthroughViews) {
+                UIView *passthroughHit = [passthroughView hitTest:[passthroughView convertPoint:point
+                                                                                       fromView:self]
+                                                        withEvent:event];
+                
+                if (passthroughHit) {
+                    // We found a hit with a passthrough view.
+                    //
+                    // Immediately return that view, without
+                    // invoking _outsideBlock.
+                    return passthroughHit;
+                }
+            }
         }
         
         if(touchedInside && _insideBlock)

@@ -45,6 +45,10 @@
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
 
+/** @brief An array of views that the user can interact with while the popover is visible.
+ **/
+@property(nonatomic,copy) NSArray *passthroughViews;
+
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
