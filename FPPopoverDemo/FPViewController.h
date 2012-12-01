@@ -11,6 +11,7 @@
 
 @interface FPViewController : UIViewController <FPPopoverControllerDelegate>
 {
+    FPPopoverController *popover;
 }
 
 
@@ -31,4 +32,6 @@
 -(IBAction)bottomRight:(id)sender;
 
 -(IBAction)goToTableView:(id)sender;
+
+-(void)selectedTableRow:(NSUInteger)rowNum;
 @end

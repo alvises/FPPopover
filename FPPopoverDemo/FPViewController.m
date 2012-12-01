@@ -42,8 +42,8 @@
 {
     //the controller we want to present as a popover
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
-    
-    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+    controller.delegate = self;
+    popover = [[FPPopoverController alloc] initWithViewController:controller];
     [controller release];
     
     //popover.arrowDirection = FPPopoverArrowDirectionAny;
@@ -134,5 +134,10 @@
     [controller release];
 }
 
+-(void)selectedTableRow:(NSUInteger)rowNum
+{
+    NSLog(@"SELECTED ROW %d",rowNum);
+    [popover dismissPopoverAnimated:YES];
+}
 
 @end

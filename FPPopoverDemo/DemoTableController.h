@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DemoTableController : UITableViewController
+@class FPViewController;
 
+@interface DemoTableController : UITableViewController
+@property(nonatomic,assign) FPViewController *delegate;
 @end
