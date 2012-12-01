@@ -33,6 +33,9 @@
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
+@synthesize popoverLayoutMargins = _popoverLayoutMargins;
+
+
 
 -(void)addObservers
 {
@@ -91,6 +94,8 @@
         
         
         self.contentSize = CGSizeMake(200, 300); //default size
+        
+        self.popoverLayoutMargins = UIEdgeInsetsMake(10, 10, 10, 10);
 
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
                                               self.contentSize.width, self.contentSize.height)];
@@ -126,6 +131,14 @@
 -(FPPopoverTint)tint
 {
     return _contentView.tint;
+}
+
+-(void)setPassthroughViews:(NSArray *)passthroughViews {
+    _touchView.passthroughViews = passthroughViews;
+}
+
+-(NSArray *)passthroughViews {
+    return _touchView.passthroughViews;
 }
 
 #pragma mark - View lifecycle
@@ -481,37 +494,37 @@
     
     
     
-    //need to moved left ? 
-    if(r.origin.x + r.size.width > [self parentWidth])
+    //need to moved left ?
+    if(r.origin.x + r.size.width > [self parentWidth]-self.popoverLayoutMargins.right)
     {
-        r.origin.x = [self parentWidth] - r.size.width;
+        r.origin.x = [self parentWidth] - r.size.width - self.popoverLayoutMargins.right;
     }
     
     //need to moved right ?
-    else if(r.origin.x < 0)
+    else if(r.origin.x < self.popoverLayoutMargins.left)
     {
-        r.origin.x = 0;
+        r.origin.x = self.popoverLayoutMargins.left;
     }
     
     
     //need to move up?
-    if(r.origin.y < 0)
+    if(r.origin.y < self.popoverLayoutMargins.top)
     {
         CGFloat old_y = r.origin.y;
-        r.origin.y = 0;
-        r.size.height += old_y;
+        r.origin.y = self.popoverLayoutMargins.top;
+        r.size.height += old_y - self.popoverLayoutMargins.top;
     }
     
     //need to be resized horizontally ?
-    if(r.origin.x + r.size.width > [self parentWidth])
+    if(r.origin.x + r.size.width > [self parentWidth]-self.popoverLayoutMargins.right)
     {
-        r.size.width = [self parentWidth] - r.origin.x;
+        r.size.width = [self parentWidth] - self.popoverLayoutMargins.right - r.origin.x;
     }
     
     //need to be resized vertically ?
-    if(r.origin.y + r.size.height > [self parentHeight])
+    if(r.origin.y + r.size.height > [self parentHeight]-self.popoverLayoutMargins.bottom)
     {
-        r.size.height = [self parentHeight] - r.origin.y;
+        r.size.height = [self parentHeight] - self.popoverLayoutMargins.bottom - r.origin.y;
     }
     
     
