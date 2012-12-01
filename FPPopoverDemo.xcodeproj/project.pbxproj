@@ -249,6 +249,7 @@
 				18D8FA2C155050F0005E2222 /* Sources */,
 				18D8FA2D155050F0005E2222 /* Frameworks */,
 				18D8FA2E155050F0005E2222 /* Headers */,
+				4CEC4448164E92EA000979EA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -303,6 +304,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4CEC4448164E92EA000979EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh Scripts/CopyHeadersToLegacyBuildDir.command";
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		186C436B1538512100502D64 /* Sources */ = {
@@ -441,7 +458,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fppopover/fppopover-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = include/FPPopover/private;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/FPPopover;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -453,7 +472,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fppopover/fppopover-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = include/FPPopover/private;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/FPPopover;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

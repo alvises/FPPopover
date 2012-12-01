@@ -32,7 +32,10 @@
 @synthesize contentSize = _contentSize;
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
-@synthesize tint = _tint;
+@synthesize contentView = _contentView;
+@dynamic tint;
+@dynamic backgroundColor;
+@dynamic needs3DEffectBorder;
 
 -(void)addObservers
 {
@@ -116,6 +119,7 @@
     return self;
 }
 
+#pragma mark - Properties handling
 
 -(void)setTint:(FPPopoverTint)tint
 {
@@ -126,6 +130,24 @@
 -(FPPopoverTint)tint
 {
     return _contentView.tint;
+}
+
+-(void)setBackgroundColor:(UIColor *)backgroundColor {
+    _contentView.backgroundColor = backgroundColor;
+    [_contentView setNeedsDisplay];
+}
+
+- (UIColor *)backgroundColor {
+    return _contentView.backgroundColor;
+}
+
+- (void)setNeeds3DEffectBorder:(BOOL)needs3DEffectBorder {
+    _contentView.needs3DEffectBorder = needs3DEffectBorder;
+    [_contentView setNeedsDisplay];
+}
+
+- (BOOL)needs3DEffectBorder {
+    return _contentView.needs3DEffectBorder;
 }
 
 #pragma mark - View lifecycle
@@ -152,6 +174,11 @@
 
     [self setupView];
     [self addObservers];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setContentSize:_viewController.contentSizeForViewInPopover];
 }
 
 #pragma mark Orientation
