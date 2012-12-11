@@ -8,6 +8,7 @@
 
 
 #import "FPPopoverController.h"
+#import "FPPopoverView_Internal.h"
 
 @interface FPPopoverController(Private)
 -(CGPoint)originFromView:(UIView*)fromView;
@@ -85,8 +86,9 @@
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
+        __block typeof (self) bself = self;
         [_touchView setTouchedOutsideBlock:^{
-            [self dismissPopoverAnimated:YES]; 
+            [bself dismissPopoverAnimated:YES];
         }];
         
         
@@ -479,6 +481,11 @@
 
     }
     
+    if (FPPopoverArrowDirectionIsHorizontal(bestDirection)){
+        r.size.width += FP_POPOVER_ARROW_HEIGHT;
+    } else {
+        r.size.height += FP_POPOVER_ARROW_HEIGHT;
+    }
     
     
     //need to moved left ? 

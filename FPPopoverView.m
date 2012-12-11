@@ -8,11 +8,7 @@
 
 
 #import "FPPopoverView.h"
-
-#define FP_POPOVER_ARROW_HEIGHT 20.0
-#define FP_POPOVER_ARROW_BASE 20.0
-#define FP_POPOVER_RADIUS 10.0
-
+#import "FPPopoverView_Internal.h"
 
 @interface FPPopoverView(Private)
 -(void)setupViews;
