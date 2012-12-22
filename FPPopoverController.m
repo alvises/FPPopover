@@ -29,6 +29,8 @@
 
 @implementation FPPopoverController
 @synthesize delegate = _delegate;
+@synthesize contentView = _contentView;
+@synthesize touchView = _touchView;
 @synthesize contentSize = _contentSize;
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
