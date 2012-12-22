@@ -257,7 +257,11 @@
     [_parentView release]; _parentView=nil;
 }
 
--(void)dismissPopoverAnimated:(BOOL)animated
+-(void)dismissPopoverAnimated:(BOOL)animated {
+	[self dismissPopoverAnimated:animated completion:nil];
+}
+
+-(void)dismissPopoverAnimated:(BOOL)animated completion:(FPPopoverCompletion)completionBlock
 {
     if(animated)
     {
@@ -265,11 +269,15 @@
             self.view.alpha = 0.0;
         } completion:^(BOOL finished) {
             [self dismissPopover];
+			if (completionBlock)
+				completionBlock();
         }];
     }
     else
     {
         [self dismissPopover];
+		if (completionBlock)
+			completionBlock();
     }
          
 }

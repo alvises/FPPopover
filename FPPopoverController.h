@@ -55,9 +55,12 @@
 /** @brief Presenting the popover from a specified point **/
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint;
 
-
 /** @brief Dismiss the popover **/
 -(void)dismissPopoverAnimated:(BOOL)animated;
+
+/** @brief Dismiss the popover with completion block for post-animation cleanup **/
+typedef void (^FPPopoverCompletion)();
+-(void)dismissPopoverAnimated:(BOOL)animated completion:(FPPopoverCompletion)completionBlock;
 
 /** @brief Hide the shadows to get better performances **/
 -(void)setShadowsHidden:(BOOL)hidden;
