@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-typedef enum {
+typedef enum FPPopoverArrowDirection: NSUInteger {
     FPPopoverArrowDirectionUp = 1UL << 0,
     FPPopoverArrowDirectionDown = 1UL << 1,
     FPPopoverArrowDirectionLeft = 1UL << 2,
@@ -31,10 +31,10 @@ typedef enum {
 
 
 typedef enum {
-    FPPopoverBlackTint = 1UL << 0, // default
-    FPPopoverLightGrayTint = 1UL << 1,
-    FPPopoverGreenTint = 1UL << 2,
-    FPPopoverRedTint = 1UL << 3,
+    FPPopoverBlackTint,
+    FPPopoverLightGrayTint,
+    FPPopoverGreenTint,
+    FPPopoverRedTint,
     FPPopoverDefaultTint = FPPopoverBlackTint
 } FPPopoverTint;
 
