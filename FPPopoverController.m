@@ -72,12 +72,18 @@
     [super dealloc];
 }
 
+-(id)initWithViewController:(UIViewController*)viewController {
+	return [self initWithViewController:viewController delegate:nil];
+}
 
 -(id)initWithViewController:(UIViewController*)viewController
+				   delegate:(id<FPPopoverControllerDelegate>)delegate
 {
     self = [super init];
     if(self)
     {
+		self.delegate = delegate;
+
         self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
@@ -85,11 +91,11 @@
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
+		
         [_touchView setTouchedOutsideBlock:^{
             [self dismissPopoverAnimated:YES]; 
         }];
-        
-        
+
         self.contentSize = CGSizeMake(200, 300); //default size
 
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
