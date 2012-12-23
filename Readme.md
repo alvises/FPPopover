@@ -13,7 +13,7 @@ Features
 * Customize the look of popovers (color, dimensions).
 * Automatic orientation. It will find the best orientation and size for every situation.
 * MIT License (you can use it for commercial apps, edit and redistribute).
-
+* Using ARC
 
 What you need
 ---
@@ -45,8 +45,8 @@ Let's start with a simple example
         //the popover will be presented from the okButton view 
         [popover presentPopoverFromView:okButton]; 
     
-        //release
-        [controller release];
+        //no release (ARC enable)
+        //[controller release];
     }
     
 This will display a black popover with automatic arrow positioning and a maximum of 200x300 content size and no delegate messages.
