@@ -29,6 +29,8 @@
 
 @implementation FPPopoverController
 @synthesize delegate = _delegate;
+@synthesize contentView = _contentView;
+@synthesize touchView = _touchView;
 @synthesize contentSize = _contentSize;
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
@@ -72,12 +74,18 @@
     [super dealloc];
 }
 
+-(id)initWithViewController:(UIViewController*)viewController {
+	return [self initWithViewController:viewController delegate:nil];
+}
 
 -(id)initWithViewController:(UIViewController*)viewController
+				   delegate:(id<FPPopoverControllerDelegate>)delegate
 {
     self = [super init];
     if(self)
     {
+		self.delegate = delegate;
+
         self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
@@ -85,11 +93,11 @@
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
+		
         [_touchView setTouchedOutsideBlock:^{
             [self dismissPopoverAnimated:YES]; 
         }];
-        
-        
+
         self.contentSize = CGSizeMake(200, 300); //default size
 
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
@@ -257,7 +265,11 @@
     [_parentView release]; _parentView=nil;
 }
 
--(void)dismissPopoverAnimated:(BOOL)animated
+-(void)dismissPopoverAnimated:(BOOL)animated {
+	[self dismissPopoverAnimated:animated completion:nil];
+}
+
+-(void)dismissPopoverAnimated:(BOOL)animated completion:(FPPopoverCompletion)completionBlock
 {
     if(animated)
     {
@@ -265,11 +277,15 @@
             self.view.alpha = 0.0;
         } completion:^(BOOL finished) {
             [self dismissPopover];
+			if (completionBlock)
+				completionBlock();
         }];
     }
     else
     {
         [self dismissPopover];
+		if (completionBlock)
+			completionBlock();
     }
          
 }
