@@ -37,6 +37,11 @@
 @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
  **/
+
+/** @brief allow reading in order to integrate other open-source **/
+@property(nonatomic,readonly) FPTouchView* touchView;
+@property(nonatomic,readonly) FPPopoverView* contentView;
+
 @property(nonatomic,assign) FPPopoverArrowDirection arrowDirection;
 
 @property(nonatomic,assign) CGSize contentSize;
@@ -48,6 +53,8 @@
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
+-(id)initWithViewController:(UIViewController*)viewController
+				   delegate:(id<FPPopoverControllerDelegate>)delegate;
 
 /** @brief Presenting the popover from a specified view **/
 -(void)presentPopoverFromView:(UIView*)fromView;
@@ -55,9 +62,12 @@
 /** @brief Presenting the popover from a specified point **/
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint;
 
-
 /** @brief Dismiss the popover **/
 -(void)dismissPopoverAnimated:(BOOL)animated;
+
+/** @brief Dismiss the popover with completion block for post-animation cleanup **/
+typedef void (^FPPopoverCompletion)();
+-(void)dismissPopoverAnimated:(BOOL)animated completion:(FPPopoverCompletion)completionBlock;
 
 /** @brief Hide the shadows to get better performances **/
 -(void)setShadowsHidden:(BOOL)hidden;
