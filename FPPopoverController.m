@@ -94,8 +94,9 @@
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
 		
+        __block typeof (self) bself = self;
         [_touchView setTouchedOutsideBlock:^{
-            [self dismissPopoverAnimated:YES]; 
+            [bself dismissPopoverAnimated:YES];
         }];
 
         self.contentSize = CGSizeMake(200, 300); //default size
