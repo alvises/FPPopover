@@ -12,30 +12,20 @@
 
 @implementation FPAppDelegate
 
-@synthesize window = _window;
-@synthesize viewController = _viewController;
-
-- (void)dealloc
-{
-    [_window release];
-    [_viewController release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[[FPViewController alloc] initWithNibName:@"FPViewController_iPhone" bundle:nil] autorelease];
+        self.viewController = [[FPViewController alloc] initWithNibName:@"FPViewController_iPhone" bundle:nil];
     } else {
-        self.viewController = [[[FPViewController alloc] initWithNibName:@"FPViewController_iPad" bundle:nil] autorelease];
+        self.viewController = [[FPViewController alloc] initWithNibName:@"FPViewController_iPad" bundle:nil];
     }
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
 
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
-    [navController release];
     
     
     return YES;

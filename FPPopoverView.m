@@ -24,13 +24,6 @@
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
 
--(void)dealloc
-{
-    self.title = nil;
-    [_contentView release];
-    [_titleLabel release];
-    [super dealloc];
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -52,7 +45,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.textAlignment = UITextAlignmentCenter;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
         
         self.tint = FPPopoverDefaultTint;
@@ -79,8 +72,7 @@
     if(_contentView != contentView)
     {
         [_contentView removeFromSuperview];
-        [_contentView release];
-        _contentView = [contentView retain];
+        _contentView = contentView;
         [self addSubview:_contentView];
     }
     [self setupViews];

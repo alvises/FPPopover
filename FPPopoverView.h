@@ -45,7 +45,7 @@ typedef enum {
     UIView *_contentView;
     UILabel *_titleLabel;
 }
-@property(nonatomic,retain) NSString *title;
+@property(nonatomic,strong) NSString *title;
 @property(nonatomic,assign) CGPoint relativeOrigin;
 @property(nonatomic,assign) FPPopoverTint tint;
 

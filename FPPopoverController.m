@@ -64,14 +64,7 @@
 -(void)dealloc
 {
     [self removeObservers];
-    [_touchView release];
-    [_viewController release];
-    [_contentView release];
-    [_window release];
-    [_parentView release];
-    self.delegate = nil;
     if(_shadowColor) CGColorRelease(_shadowColor);
-    [super dealloc];
 }
 
 -(id)initWithViewController:(UIViewController*)viewController {
@@ -94,7 +87,7 @@
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
 		
-        __block typeof (self) bself = self;
+        __weak typeof (self) bself = self;
         [_touchView setTouchedOutsideBlock:^{
             [bself dismissPopoverAnimated:YES];
         }];
@@ -104,7 +97,7 @@
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
                                               self.contentSize.width, self.contentSize.height)];
         
-        _viewController = [viewController retain];
+        _viewController = viewController;
         
         [_touchView addSubview:_contentView];
         
@@ -176,12 +169,12 @@
 -(CGFloat)parentWidth
 {
     return _parentView.bounds.size.width;
-    return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
+    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
 }
 -(CGFloat)parentHeight
 {
     return _parentView.bounds.size.height;
-    return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
+    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
 }
 
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
@@ -193,13 +186,12 @@
     NSArray *windows = [UIApplication sharedApplication].windows;
     if(windows.count > 0)
     {
-        [_window release]; [_parentView release]; _parentView=nil;
-        _window = [[windows objectAtIndex:0] retain];
+          _parentView=nil;
+        _window = [windows objectAtIndex:0];
         //keep the first subview
         if(_window.subviews.count > 0)
         {
-            [_parentView release]; 
-            _parentView = [[_window.subviews objectAtIndex:0] retain];
+            _parentView = [_window.subviews objectAtIndex:0];
             [_parentView addSubview:self.view];
             [_viewController viewDidAppear:YES];
         }
@@ -251,7 +243,7 @@
 
 -(void)presentPopoverFromView:(UIView*)fromView
 {
-    [_fromView release]; _fromView = [fromView retain];
+     _fromView = fromView;
     [self presentPopoverFromPoint:[self originFromView:_fromView]];
 }
 
@@ -262,8 +254,8 @@
     {
         [self.delegate popoverControllerDidDismissPopover:self];
     }
-    [_window release]; _window=nil;
-    [_parentView release]; _parentView=nil;
+     _window=nil;
+     _parentView=nil;
 }
 
 -(void)dismissPopoverAnimated:(BOOL)animated {

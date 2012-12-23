@@ -34,7 +34,7 @@
     BOOL _shadowsHidden;
     CGColorRef _shadowColor;
 }
-@property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
+@property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
  **/
 

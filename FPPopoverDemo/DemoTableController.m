@@ -44,7 +44,7 @@
     
     if(cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.text = [NSString stringWithFormat:@"cell %d",indexPath.row];
     

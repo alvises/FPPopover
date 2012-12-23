@@ -10,22 +10,14 @@
 
 @implementation FPTouchView
 
--(void)dealloc
-{
-    [_outsideBlock release];
-    [_insideBlock release];
-    [super dealloc];
-}
 
 -(void)setTouchedOutsideBlock:(FPTouchedOutsideBlock)outsideBlock
 {
-    [_outsideBlock release];
     _outsideBlock = [outsideBlock copy];
 }
 
 -(void)setTouchedInsideBlock:(FPTouchedInsideBlock)insideBlock
 {
-    [_insideBlock release];
     _insideBlock = [insideBlock copy];    
 }
 
