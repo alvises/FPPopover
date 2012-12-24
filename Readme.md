@@ -12,6 +12,7 @@ Features
 * Popover rendered using no images, only Quartz code.
 * Customize the look of popovers (color, dimensions).
 * Automatic orientation. It will find the best orientation and size for every situation.
+* Can draw popover with no arrows
 * MIT License (you can use it for commercial apps, edit and redistribute).
 * Using ARC
 
@@ -77,6 +78,10 @@ If you need to force the arrow direction use the arrowDirection property
 
         popover.arrowDirection = FPPopoverArrowDirectionUp;
 
+###No arrow
+If you want a popover like a popup, with no arrow
+
+        popover.arrowDirection = FPPopoverNoArrow;
 
 ###Delegate messages
 
