@@ -87,7 +87,7 @@
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
 		
-        __weak typeof (self) bself = self;
+        __block typeof (self) bself = self;
         [_touchView setTouchedOutsideBlock:^{
             [bself dismissPopoverAnimated:YES];
         }];
@@ -217,7 +217,8 @@
 -(CGPoint)originFromView:(UIView*)fromView
 {
     CGPoint p;
-    if([_contentView arrowDirection] == FPPopoverArrowDirectionUp)
+    if([_contentView arrowDirection] == FPPopoverArrowDirectionUp ||
+       [_contentView arrowDirection] == FPPopoverNoArrow)
     {
         p.x = fromView.frame.origin.x + fromView.frame.size.width/2.0;
         p.y = fromView.frame.origin.y + fromView.frame.size.height;
@@ -529,7 +530,14 @@
         if(r.origin.y <= 20) r.origin.y += 20;
     }
 
-    _contentView.arrowDirection = bestDirection;
+    //check if the developer wants and arror
+    if(self.arrowDirection != FPPopoverNoArrow)
+        _contentView.arrowDirection = bestDirection;
+    
+    //no arrow
+    else _contentView.arrowDirection = FPPopoverNoArrow;
+
+    //using the frame calculated
     _contentView.frame = r;
 
     self.origin = CGPointMake(p.x + v.frame.size.width/2.0, p.y + v.frame.size.height/2.0);

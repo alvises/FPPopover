@@ -13,12 +13,12 @@
 
 -(void)setTouchedOutsideBlock:(FPTouchedOutsideBlock)outsideBlock
 {
-    _outsideBlock = [outsideBlock copy];
+    _outsideBlock = outsideBlock;
 }
 
 -(void)setTouchedInsideBlock:(FPTouchedInsideBlock)insideBlock
 {
-    _insideBlock = [insideBlock copy];    
+    _insideBlock = insideBlock;
 }
 
 -(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event

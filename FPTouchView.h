@@ -13,8 +13,8 @@ typedef void (^FPTouchedInsideBlock)();
 
 @interface FPTouchView : UIView
 {
-    FPTouchedOutsideBlock _outsideBlock;
-    FPTouchedInsideBlock  _insideBlock;
+    __strong FPTouchedOutsideBlock _outsideBlock;
+    __strong FPTouchedInsideBlock  _insideBlock;
 }
 
 -(void)setTouchedOutsideBlock:(FPTouchedOutsideBlock)outsideBlock;

@@ -115,14 +115,24 @@
         rect.origin.x = b;
         rect.origin.y = b;                
     }
-    else
+    else if(direction == FPPopoverArrowDirectionLeft)
     {
-        //Assuming direction == FPPopoverArrowDirectionLeft to suppress static analyzer warnings
         rect.size.width = w - ah - 2*b;
         rect.size.height = h - 2*b;
         rect.origin.x = ah + b;
-        rect.origin.y = b;                
+        rect.origin.y = b;
     }
+    
+    //NO ARROW
+    else
+    {
+        rect.size.width = w - 2*b;
+        rect.size.height = h - 2*b;
+        rect.origin.x = b;
+        rect.origin.y = b;        
+    }
+    
+    
     
     //the arrow will be near the origin
     CGFloat ax = self.relativeOrigin.x - aw; //the start of the arrow when UP or DOWN
@@ -309,7 +319,7 @@
     //  Draw a linear gradient from top to bottom
     CGPoint start;
     CGPoint end;
-    if(_arrowDirection == FPPopoverArrowDirectionUp)
+    if(_arrowDirection == FPPopoverArrowDirectionUp || _arrowDirection == FPPopoverNoArrow)
     {
         start = CGPointMake(self.bounds.size.width/2.0, 0);
         end = CGPointMake(self.bounds.size.width/2.0,40);
@@ -427,6 +437,17 @@
 		if (self.title==nil || self.title.length==0) {
 			contentRect.origin = CGPointMake(10+ FP_POPOVER_ARROW_HEIGHT, 10);
 			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
+		}
+    }
+    
+    else if(_arrowDirection == FPPopoverNoArrow)
+    {
+        contentRect.origin = CGPointMake(10, 40);
+        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-50);
+        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
+		if (self.title==nil || self.title.length==0) {
+			contentRect.origin = CGPointMake(10, 30);
+			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
 		}
     }
 

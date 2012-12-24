@@ -66,7 +66,8 @@
     popover.arrowDirection = FPPopoverArrowDirectionRight;
     
     //sender is the UIButton view
-    [popover presentPopoverFromView:sender]; 
+    [popover presentPopoverFromView:sender];
+    
 }
 
 

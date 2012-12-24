@@ -45,7 +45,6 @@
     controller.delegate = self;
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     
-    //popover.arrowDirection = FPPopoverArrowDirectionAny;
     popover.tint = FPPopoverDefaultTint;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
