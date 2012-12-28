@@ -30,6 +30,7 @@
 		18EF6DEB154ED27D005AB1DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DE9154ED27D005AB1DD /* background.png */; };
 		18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DEA154ED27D005AB1DD /* background@2x.png */; };
 		18F357271584E6E700AD4F07 /* FPDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */; };
+		32D1F966168E5396006EA0AD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D1F965168E5396006EA0AD /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		18EF6DEA154ED27D005AB1DD /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		18F357251584E6E700AD4F07 /* FPDemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPDemoTableViewController.h; sourceTree = "<group>"; };
 		18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPDemoTableViewController.m; sourceTree = "<group>"; };
+		32D1F965168E5396006EA0AD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 		18EF6DDB154ECC80005AB1DD /* DemoImages */ = {
 			isa = PBXGroup;
 			children = (
+				32D1F965168E5396006EA0AD /* Default-568h@2x.png */,
 				18EF6DE9154ED27D005AB1DD /* background.png */,
 				18EF6DEA154ED27D005AB1DD /* background@2x.png */,
 				18D8FA44155051BA005E2222 /* background_iPad.png */,
@@ -299,6 +302,7 @@
 				18EF6DEB154ED27D005AB1DD /* background.png in Resources */,
 				18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */,
 				18D8FA45155051BA005E2222 /* background_iPad.png in Resources */,
+				32D1F966168E5396006EA0AD /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,9 @@
 -(IBAction)bottomCenter:(id)sender;
 -(IBAction)bottomRight:(id)sender;
 
+-(IBAction)noArrow:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *noArrow;
+
 -(IBAction)goToTableView:(id)sender;
 
 -(void)selectedTableRow:(NSUInteger)rowNum;
