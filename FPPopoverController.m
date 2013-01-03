@@ -98,6 +98,8 @@
                                               self.contentSize.width, self.contentSize.height)];
         
         _viewController = viewController;
+
+        _alpha = 1.0;
         
         [_touchView addSubview:_contentView];
         
@@ -208,7 +210,7 @@
     self.view.alpha = 0.0;
     [UIView animateWithDuration:0.2 animations:^{
         
-        self.view.alpha = 1.0;
+        self.view.alpha = self.alpha;
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FPNewPopoverPresented" object:self];
