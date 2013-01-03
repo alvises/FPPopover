@@ -288,9 +288,23 @@
             colors[3] = colors[7] = 1.0;
         }        
     }
+	else if(self.tint == FPPopoverForestGreenTint)
+    {
+        if(_arrowDirection == FPPopoverArrowDirectionUp)
+        {
+            colors[0] = 0.65; colors[1] = 0.92; colors[2] = 0.35;
+            colors[4] = 0.22; colors[5] = 0.47;  colors[6] = 0.10;
+            colors[3] = colors[7] = 1.0;
+            
+        }
+        else
+        {
+            colors[0] = 0.75; colors[1] = 0.92; colors[2] = 0.45;
+            colors[4] = 0.22; colors[5] = 0.47;  colors[6] = 0.10;
+            colors[3] = colors[7] = 1.0;
+        }
+    }
     
-    
-
     CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
 
     CFRelease(colorSpace);
@@ -352,8 +366,11 @@
     {
         CGContextSetRGBFillColor(ctx, 0.18, 0.30, 0.03, 1.0);        
     }
-
-    
+	else if(self.tint == FPPopoverForestGreenTint)
+    {
+        CGContextSetRGBFillColor(ctx, 0.22, 0.47, 0.10, 1.0);
+    }
+	
     CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
     //internal border
     CGContextBeginPath(ctx);

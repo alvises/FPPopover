@@ -62,7 +62,7 @@
 		popover.arrowDirection = FPPopoverNoArrow;
 	}
 	else {
-    popover.arrowDirection = FPPopoverArrowDirectionAny;
+		popover.arrowDirection = FPPopoverArrowDirectionAny;
 	}
     
     //sender is the UIButton view
