@@ -48,7 +48,7 @@
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     
     popover.tint = FPPopoverDefaultTint;
-    
+	
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         popover.contentSize = CGSizeMake(300, 500);

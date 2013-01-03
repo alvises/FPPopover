@@ -56,6 +56,9 @@ typedef enum {
 @property(nonatomic,assign) BOOL draw3dBorder;
 @property(nonatomic,assign) BOOL displayTitle;
 
+@property(nonatomic,assign) UIColor *borderColor;
+@property(nonatomic,assign) CGFloat borderLineWidth;
+
 -(void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection;
 -(FPPopoverArrowDirection)arrowDirection;
 

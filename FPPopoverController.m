@@ -39,6 +39,9 @@
 @synthesize draw3dBorder = _draw3dBorder;
 @synthesize displayTitle = _displayTitle;
 
+@synthesize borderColor = _borderColor;
+@synthesize borderLineWidth = _borderLineWidth;
+
 -(void)addObservers
 {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
@@ -119,6 +122,28 @@
         [_viewController addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
+}
+
+-(void)setBorderColor:(UIColor *)borderColor
+{
+    _contentView.borderColor = borderColor;
+    [_contentView setNeedsDisplay];
+}
+
+-(UIColor *)borderColor
+{
+    return _contentView.borderColor;
+}
+
+-(void)setBorderLineWidth:(CGFloat)borderLineWidth
+{
+    _contentView.borderLineWidth = borderLineWidth;
+    [_contentView setNeedsDisplay];
+}
+
+-(CGFloat)borderLineWidth
+{
+    return _contentView.borderLineWidth;
 }
 
 -(void)setDraw3dBorder:(BOOL)draw3dBorder

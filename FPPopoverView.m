@@ -27,6 +27,8 @@
 @synthesize draw3dBorder;
 @synthesize displayTitle;
 
+@synthesize borderColor = _borderColor;
+@synthesize borderLineWidth;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -55,6 +57,9 @@
 		
 		self.draw3dBorder = true;
 		self.displayTitle = true;
+		
+		self.borderColor = nil;
+		self.borderLineWidth = 1;
         
         [self addSubview:_titleLabel];
         [self setupViews];
@@ -378,11 +383,18 @@
     }
 	
     CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
+	
     //internal border
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, contentPath);
-    CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
-    CGContextSetLineWidth(ctx, 1);
+	
+	if (self.borderColor == nil)
+		CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+	else
+		CGContextSetStrokeColorWithColor(ctx, _borderColor.CGColor);
+	
+    CGContextSetLineWidth(ctx, borderLineWidth);
+	
     CGContextSetLineCap(ctx,kCGLineCapRound);
     CGContextSetLineJoin(ctx, kCGLineJoinRound);
     CGContextStrokePath(ctx);
