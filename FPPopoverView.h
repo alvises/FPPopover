@@ -52,7 +52,9 @@ typedef enum {
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,assign) CGPoint relativeOrigin;
 @property(nonatomic,assign) FPPopoverTint tint;
+
 @property(nonatomic,assign) BOOL draw3dBorder;
+@property(nonatomic,assign) BOOL displayTitle;
 
 -(void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection;
 -(FPPopoverArrowDirection)arrowDirection;

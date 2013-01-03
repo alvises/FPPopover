@@ -35,7 +35,9 @@
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
+
 @synthesize draw3dBorder = _draw3dBorder;
+@synthesize displayTitle = _displayTitle;
 
 -(void)addObservers
 {
@@ -130,6 +132,16 @@
     return _contentView.draw3dBorder;
 }
 
+-(void)setDisplayTitle:(BOOL)displayTitle
+{
+    _contentView.displayTitle = displayTitle;
+    [_contentView setNeedsDisplay];
+}
+
+-(BOOL)displayTitle
+{
+    return _contentView.displayTitle;
+}
 
 -(void)setTint:(FPPopoverTint)tint
 {

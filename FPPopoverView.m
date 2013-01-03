@@ -23,7 +23,9 @@
 @synthesize title;
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
+
 @synthesize draw3dBorder;
+@synthesize displayTitle;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -50,7 +52,9 @@
         _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
         
         self.tint = FPPopoverDefaultTint;
+		
 		self.draw3dBorder = true;
+		self.displayTitle = true;
         
         [self addSubview:_titleLabel];
         [self setupViews];
@@ -423,7 +427,7 @@
         contentRect.origin = CGPointMake(10, 60);  
         contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
         _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);    
-		if (self.title==nil || self.title.length==0) {
+		if (self.title==nil || self.title.length==0 || self.displayTitle==false) {
 			contentRect.origin = CGPointMake(10, 30);
 			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
 		}
@@ -433,7 +437,7 @@
         contentRect.origin = CGPointMake(10, 40);        
         contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
-		if (self.title==nil || self.title.length==0) {
+		if (self.title==nil || self.title.length==0 || self.displayTitle==false) {
 			contentRect.origin = CGPointMake(10, 10); 
 			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
 		}
@@ -445,7 +449,7 @@
         contentRect.origin = CGPointMake(10, 40);        
         contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);    
-		if (self.title==nil || self.title.length==0) {
+		if (self.title==nil || self.title.length==0 || self.displayTitle==false) {
 			 contentRect.origin = CGPointMake(10, 10);
 			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
 		}
@@ -456,7 +460,7 @@
         contentRect.origin = CGPointMake(10 + FP_POPOVER_ARROW_HEIGHT, 40);        
         contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20); 
-		if (self.title==nil || self.title.length==0) {
+		if (self.title==nil || self.title.length==0 || self.displayTitle==false) {
 			contentRect.origin = CGPointMake(10+ FP_POPOVER_ARROW_HEIGHT, 10);
 			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
 		}
@@ -467,7 +471,7 @@
         contentRect.origin = CGPointMake(10, 40);
         contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-50);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
-		if (self.title==nil || self.title.length==0) {
+		if (self.title==nil || self.title.length==0 || self.displayTitle==false) {
 			contentRect.origin = CGPointMake(10, 30);
 			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
 		}
