@@ -35,6 +35,7 @@
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
+@synthesize draw3dBorder = _draw3dBorder;
 
 -(void)addObservers
 {
@@ -116,6 +117,17 @@
         [_viewController addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
+}
+
+-(void)setDraw3dBorder:(BOOL)draw3dBorder
+{
+    _contentView.draw3dBorder = draw3dBorder;
+    [_contentView setNeedsDisplay];
+}
+
+-(BOOL)draw3dBorder
+{
+    return _contentView.draw3dBorder;
 }
 
 

@@ -23,6 +23,7 @@
 @synthesize title;
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
+@synthesize draw3dBorder;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -49,6 +50,7 @@
         _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
         
         self.tint = FPPopoverDefaultTint;
+		self.draw3dBorder = true;
         
         [self addSubview:_titleLabel];
         [self setupViews];
@@ -393,15 +395,18 @@
     CGContextStrokePath(ctx);
     CGPathRelease(externalBorderPath);
 
-    //3D border of the content view
-    CGRect cvRect = _contentView.frame;
-    //firstLine
-    CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
-    CGContextStrokeRect(ctx, cvRect);
-    //secondLine
-    cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
-    CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
-    CGContextStrokeRect(ctx, cvRect);
+	if (self.draw3dBorder == true)
+	{
+		//3D border of the content view
+		CGRect cvRect = _contentView.frame;
+		//firstLine
+		CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+		CGContextStrokeRect(ctx, cvRect);
+		//secondLine
+		cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
+		CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
+		CGContextStrokeRect(ctx, cvRect);
+	}
     
     
     
