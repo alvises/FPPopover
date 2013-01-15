@@ -160,7 +160,9 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return YES;
+	if ([_viewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)])
+		return [_viewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+	return YES;
 }
 
 
@@ -295,11 +297,48 @@
 
 -(void)deviceOrientationDidChange:(NSNotification*)notification
 {
-    _deviceOrientation = [UIDevice currentDevice].orientation;
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        [self setupView]; 
-    }];
+	_deviceOrientation = [UIDevice currentDevice].orientation;
+
+	BOOL shouldResetView;
+	if ([_viewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)])
+	{
+		UIInterfaceOrientation interfaceOrientation;
+		switch (_deviceOrientation)
+		{
+			case UIDeviceOrientationLandscapeLeft:
+				interfaceOrientation = UIInterfaceOrientationLandscapeLeft;
+				break;
+			case UIDeviceOrientationLandscapeRight:
+				interfaceOrientation = UIInterfaceOrientationLandscapeRight;
+				break;
+			case UIDeviceOrientationPortrait:
+				interfaceOrientation = UIInterfaceOrientationPortrait;
+				break;
+			case UIDeviceOrientationPortraitUpsideDown:
+				interfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
+				break;
+			default:
+				return;	// just ignore face up / face down, etc.
+		}
+
+		shouldResetView
+		  = (interfaceOrientation != _viewController.interfaceOrientation
+			 && [_viewController shouldAutorotateToInterfaceOrientation:interfaceOrientation]
+			 && ((UIInterfaceOrientationIsPortrait(interfaceOrientation)
+				  && UIInterfaceOrientationIsLandscape(_viewController.interfaceOrientation))
+				 ||
+				 (UIInterfaceOrientationIsLandscape(interfaceOrientation)
+				  && UIInterfaceOrientationIsPortrait(_viewController.interfaceOrientation))));
+	}
+	else
+	{
+		shouldResetView = YES;
+	}
+
+	if (shouldResetView)
+		[UIView animateWithDuration:0.2 animations:^{
+			[self setupView]; 
+		}];
 }
 
 -(void)willPresentNewPopover:(NSNotification*)notification
