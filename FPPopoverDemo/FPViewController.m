@@ -17,6 +17,8 @@
 
 @implementation FPViewController
 
+@synthesize noArrow = _noArrow;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,7 +48,7 @@
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     
     popover.tint = FPPopoverDefaultTint;
-    
+	
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         popover.contentSize = CGSizeMake(300, 500);
@@ -55,12 +57,24 @@
         popover.contentSize = CGSizeMake(200, 300);
     }
     
-    popover.arrowDirection = FPPopoverArrowDirectionAny;
+	if (sender == _noArrow)
+	{
+		popover.arrowDirection = FPPopoverNoArrow;
+	}
+	else {
+		popover.arrowDirection = FPPopoverArrowDirectionAny;
+	}
     
     //sender is the UIButton view
-    [popover presentPopoverFromView:sender]; 
+	if (sender == _noArrow)
+	{
+		// CGPointMake y cordinate is set to center the popover in the view
+		[popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
+	}
+	else {
+		[popover presentPopoverFromView:sender];
+	}
 }
-
 
 - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
@@ -120,6 +134,11 @@
 -(IBAction)bottomRight:(id)sender
 {
     [self popover:sender];
+}
+
+- (IBAction)noArrow:(id)sender
+{
+	[self popover:sender];
 }
 
 

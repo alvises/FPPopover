@@ -36,6 +36,12 @@
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
 
+@synthesize draw3dBorder = _draw3dBorder;
+@synthesize displayTitle = _displayTitle;
+
+@synthesize borderColor = _borderColor;
+@synthesize borderLineWidth = _borderLineWidth;
+
 -(void)addObservers
 {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
@@ -118,6 +124,49 @@
     return self;
 }
 
+-(void)setBorderColor:(UIColor *)borderColor
+{
+    _contentView.borderColor = borderColor;
+    [_contentView setNeedsDisplay];
+}
+
+-(UIColor *)borderColor
+{
+    return _contentView.borderColor;
+}
+
+-(void)setBorderLineWidth:(CGFloat)borderLineWidth
+{
+    _contentView.borderLineWidth = borderLineWidth;
+    [_contentView setNeedsDisplay];
+}
+
+-(CGFloat)borderLineWidth
+{
+    return _contentView.borderLineWidth;
+}
+
+-(void)setDraw3dBorder:(BOOL)draw3dBorder
+{
+    _contentView.draw3dBorder = draw3dBorder;
+    [_contentView setNeedsDisplay];
+}
+
+-(BOOL)draw3dBorder
+{
+    return _contentView.draw3dBorder;
+}
+
+-(void)setDisplayTitle:(BOOL)displayTitle
+{
+    _contentView.displayTitle = displayTitle;
+    [_contentView setNeedsDisplay];
+}
+
+-(BOOL)displayTitle
+{
+    return _contentView.displayTitle;
+}
 
 -(void)setTint:(FPPopoverTint)tint
 {
@@ -169,12 +218,10 @@
 -(CGFloat)parentWidth
 {
     return _parentView.bounds.size.width;
-    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
 }
 -(CGFloat)parentHeight
 {
     return _parentView.bounds.size.height;
-    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
 }
 
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
@@ -195,20 +242,16 @@
             [_parentView addSubview:self.view];
             [_viewController viewDidAppear:YES];
         }
-        
-   }
-    else
-    {
+	}
+	else
+	{
         [self dismissPopoverAnimated:NO];
-    }
-    
-    
+	}
     
     [self setupView];
     self.view.alpha = 0.0;
     [UIView animateWithDuration:0.2 animations:^{
-        
-        self.view.alpha = 1.0;
+		self.view.alpha = 1.0;
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FPNewPopoverPresented" object:self];
@@ -237,15 +280,18 @@
     {
         p.x = fromView.frame.origin.x;
         p.y = fromView.frame.origin.y + fromView.frame.size.height/2.0;
-    }
+    } else { //Silence the static analyzer
+		p.x = fromView.frame.origin.x;
+        p.y = fromView.frame.origin.y;
+	}
 
     return p;
 }
 
 -(void)presentPopoverFromView:(UIView*)fromView
 {
-     _fromView = fromView;
-    [self presentPopoverFromPoint:[self originFromView:_fromView]];
+	_fromView = fromView;
+	[self presentPopoverFromPoint:[self originFromView:_fromView]];
 }
 
 -(void)dismissPopover
@@ -423,8 +469,13 @@
 
 -(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v
 {
-    CGPoint p = [v.superview convertPoint:v.frame.origin toView:self.view];
-    
+	// If we presentFromPoint with _fromView nil will calculate based on self.orgin with 2x2 size.
+	// Fix for presentFromPoint from avolovoy's FPPopover fork
+    CGPoint p = CGPointMake(self.origin.x, self.origin.y);
+	
+    if (v != nil)
+		p = [v.superview convertPoint:v.frame.origin toView:self.view];
+	
     CGFloat ht = p.y; //available vertical space on top of the view
     CGFloat hb = [self parentHeight] -  (p.y + v.frame.size.height); //on the bottom
     CGFloat wl = p.x; //on the left
@@ -463,8 +514,6 @@
         
 
     }
-    
-    
     else 
     {
         //ok, will be horizontal 
@@ -530,7 +579,7 @@
         if(r.origin.y <= 20) r.origin.y += 20;
     }
 
-    //check if the developer wants and arror
+    //check if the developer wants and arrow
     if(self.arrowDirection != FPPopoverNoArrow)
         _contentView.arrowDirection = bestDirection;
     
@@ -571,7 +620,5 @@
         }
     }
 }
-
-
 
 @end

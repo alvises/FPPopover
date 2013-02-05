@@ -42,6 +42,11 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
