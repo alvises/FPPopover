@@ -218,12 +218,10 @@
 -(CGFloat)parentWidth
 {
     return _parentView.bounds.size.width;
-    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
 }
 -(CGFloat)parentHeight
 {
     return _parentView.bounds.size.height;
-    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
 }
 
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
@@ -244,20 +242,16 @@
             [_parentView addSubview:self.view];
             [_viewController viewDidAppear:YES];
         }
-        
-   }
-    else
-    {
+	}
+	else
+	{
         [self dismissPopoverAnimated:NO];
-    }
-    
-    
+	}
     
     [self setupView];
     self.view.alpha = 0.0;
     [UIView animateWithDuration:0.2 animations:^{
-        
-        self.view.alpha = 1.0;
+		self.view.alpha = 1.0;
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FPNewPopoverPresented" object:self];
@@ -286,15 +280,18 @@
     {
         p.x = fromView.frame.origin.x;
         p.y = fromView.frame.origin.y + fromView.frame.size.height/2.0;
-    }
+    } else { //Silence the static analyzer
+		p.x = fromView.frame.origin.x;
+        p.y = fromView.frame.origin.y;
+	}
 
     return p;
 }
 
 -(void)presentPopoverFromView:(UIView*)fromView
 {
-     _fromView = fromView;
-    [self presentPopoverFromPoint:[self originFromView:_fromView]];
+	_fromView = fromView;
+	[self presentPopoverFromPoint:[self originFromView:_fromView]];
 }
 
 -(void)dismissPopover
@@ -472,7 +469,6 @@
 
 -(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v
 {
-	
 	// If we presentFromPoint with _fromView nil will calculate based on self.orgin with 2x2 size.
 	// Fix for presentFromPoint from avolovoy's FPPopover fork
     CGPoint p = CGPointMake(self.origin.x, self.origin.y);
@@ -518,8 +514,6 @@
         
 
     }
-    
-    
     else 
     {
         //ok, will be horizontal 
@@ -626,7 +620,5 @@
         }
     }
 }
-
-
 
 @end
