@@ -46,6 +46,8 @@
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     
     popover.tint = FPPopoverNoBorder;
+
+    // Add content background color just for the no border tint style
     [popover.contentView setContentBackgroundColor:[UIColor lightGrayColor]];
   
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
