@@ -34,6 +34,7 @@ typedef enum FPPopoverArrowDirection: NSUInteger {
 #endif
 
 typedef enum {
+    FPPopoverNoBorder,
     FPPopoverBlackTint,
     FPPopoverLightGrayTint,
     FPPopoverGreenTint,
@@ -48,6 +49,8 @@ typedef enum {
     UIView *_contentView;
     UILabel *_titleLabel;
 }
+
+@property(nonatomic,strong) UIColor *contentBackgroundColor;
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,assign) CGPoint relativeOrigin;
 @property(nonatomic,assign) FPPopoverTint tint;
