@@ -45,8 +45,9 @@
     controller.delegate = self;
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     
-    popover.tint = FPPopoverDefaultTint;
-    
+    popover.tint = FPPopoverNoBorder;
+    [popover.contentView setContentBackgroundColor:[UIColor lightGrayColor]];
+  
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         popover.contentSize = CGSizeMake(300, 500);

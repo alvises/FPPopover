@@ -68,6 +68,7 @@ vary according to the what is found to be the optimal size to fit the popover on
 * FPPopoverLightGrayTint
 * FPPopoverGreenTint
 * FPPopoverRedTint
+* FPPopoverNoBorder
 
         popover.tint = FPPopoverRedTint;
     

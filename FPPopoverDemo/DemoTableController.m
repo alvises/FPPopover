@@ -21,6 +21,7 @@
     [super viewDidLoad];
     
     self.title = @"Popover Title";
+  [self.tableView setBackgroundColor:[UIColor lightGrayColor]];
 }
 
 
@@ -47,7 +48,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.text = [NSString stringWithFormat:@"cell %d",indexPath.row];
-    
+  [cell.contentView setBackgroundColor:[UIColor lightGrayColor]];
     return cell;
 }
 
