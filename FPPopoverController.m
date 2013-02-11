@@ -36,6 +36,7 @@
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
 @synthesize draw3dBorder = _draw3dBorder;
+@synthesize alpha = _alpha;
 
 -(void)addObservers
 {
@@ -79,9 +80,11 @@
     if(self)
     {
 		self.delegate = delegate;
-
+        
+        self.alpha = 1.0;
         self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
+
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
         _touchView.backgroundColor = [UIColor clearColor];
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -211,11 +214,12 @@
     self.view.alpha = 0.0;
     [UIView animateWithDuration:0.2 animations:^{
         
-        self.view.alpha = 1.0;
+        self.view.alpha = self.alpha;
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FPNewPopoverPresented" object:self];
 }
+
 
 -(CGPoint)originFromView:(UIView*)fromView
 {
@@ -629,6 +633,13 @@
 -(BOOL)draw3dBorder
 {
     return _contentView.draw3dBorder;
+}
+
+#pragma mark Transparency
+-(void)setAlpha:(CGFloat)alpha
+{
+    _alpha = alpha;
+    self.view.alpha = alpha;
 }
 
 @end

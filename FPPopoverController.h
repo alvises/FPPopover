@@ -46,6 +46,7 @@
 
 @property(nonatomic,assign) CGSize contentSize;
 @property(nonatomic,assign) CGPoint origin;
+@property(nonatomic,assign) CGFloat alpha;
 
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;

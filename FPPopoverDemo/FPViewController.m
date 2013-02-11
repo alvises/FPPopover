@@ -17,6 +17,7 @@
 
 @implementation FPViewController
 @synthesize noArrow = _noArrow;
+@synthesize transparentPopover;
 
 - (void)viewDidLoad
 {
@@ -49,7 +50,7 @@
 }
 
 
--(void)popover:(id)sender
+-(IBAction)popover:(id)sender
 {
     //the controller we want to present as a popover
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
@@ -65,6 +66,10 @@
     }
     else {
         popover.contentSize = CGSizeMake(200, 300);
+    }
+    if(sender == transparentPopover)
+    {
+        popover.alpha = 0.5;
     }
     
     if(sender == _noArrow) {
@@ -158,5 +163,6 @@
     NSLog(@"SELECTED ROW %d",rowNum);
     [popover dismissPopoverAnimated:YES];
 }
+
 
 @end
