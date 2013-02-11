@@ -16,11 +16,14 @@
 @end
 
 @implementation FPViewController
+@synthesize noArrow = _noArrow;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -55,6 +58,7 @@
     
     popover.tint = FPPopoverDefaultTint;
     
+    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         popover.contentSize = CGSizeMake(300, 500);
@@ -63,10 +67,22 @@
         popover.contentSize = CGSizeMake(200, 300);
     }
     
-    popover.arrowDirection = FPPopoverArrowDirectionAny;
-    
-    //sender is the UIButton view
-    [popover presentPopoverFromView:sender]; 
+    if(sender == _noArrow) {
+        //no arrow
+        popover.arrowDirection = FPPopoverNoArrow;
+        [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
+    }
+    else {
+        //sender is the UIButton view
+        popover.arrowDirection = FPPopoverArrowDirectionAny;
+        [popover presentPopoverFromView:sender];
+    }
+
+}
+
+-(IBAction)noArrow:(id)sender
+{
+    [self popover:sender];
 }
 
 

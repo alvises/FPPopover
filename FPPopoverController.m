@@ -457,7 +457,19 @@
 
 -(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v
 {
-    CGPoint p = [v.superview convertPoint:v.frame.origin toView:self.view];
+    //thanks @Niculcea
+    // If we presentFromPoint with _fromView nil will calculate based on self.orgin with 2x2 size.
+    // Fix for presentFromPoint from avolovoy's FPPopover fork
+    float width = 2.0f;
+    float height = 2.0f;
+    CGPoint p = CGPointMake(self.origin.x, self.origin.y);
+    
+    if (v != nil) {
+        p = [v.superview convertPoint:v.frame.origin toView:self.view];
+        width = v.frame.size.width;
+        height = v.frame.size.height;
+    }
+    
     
     CGFloat ht = p.y; //available vertical space on top of the view
     CGFloat hb = [self parentHeight] -  (p.y + v.frame.size.height); //on the bottom
@@ -564,7 +576,7 @@
         if(r.origin.y <= 20) r.origin.y += 20;
     }
 
-    //check if the developer wants and arror
+    //check if the developer wants and arrow
     if(self.arrowDirection != FPPopoverNoArrow)
         _contentView.arrowDirection = bestDirection;
     

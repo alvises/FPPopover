@@ -13,6 +13,7 @@
 {
     FPPopoverController *popover;
 }
+@property (weak, nonatomic) IBOutlet UIButton *noArrow;
 
 
 -(IBAction)topLeft:(id)sender;
@@ -34,4 +35,7 @@
 -(IBAction)goToTableView:(id)sender;
 
 -(void)selectedTableRow:(NSUInteger)rowNum;
+
+-(IBAction)noArrow:(id)sender;
+
 @end

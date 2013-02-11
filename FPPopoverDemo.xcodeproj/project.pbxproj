@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1851C5EA16C972A000CCCDB3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1851C5E916C972A000CCCDB3 /* Default-568h@2x.png */; };
 		186C43741538512100502D64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43731538512100502D64 /* UIKit.framework */; };
 		186C43761538512100502D64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43751538512100502D64 /* Foundation.framework */; };
 		186C43781538512100502D64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43771538512100502D64 /* CoreGraphics.framework */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1851C5E916C972A000CCCDB3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		186C436F1538512100502D64 /* FPPopoverDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPPopoverDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		186C43731538512100502D64 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		186C43751538512100502D64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +104,7 @@
 		186C43641538512100502D64 = {
 			isa = PBXGroup;
 			children = (
+				1851C5E916C972A000CCCDB3 /* Default-568h@2x.png */,
 				18D8FA4815505DFD005E2222 /* LICENSE */,
 				186C439A153851F600502D64 /* Readme.md */,
 				186C43931538512A00502D64 /* FPPopover */,
@@ -299,6 +302,7 @@
 				18EF6DEB154ED27D005AB1DD /* background.png in Resources */,
 				18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */,
 				18D8FA45155051BA005E2222 /* background_iPad.png in Resources */,
+				1851C5EA16C972A000CCCDB3 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
