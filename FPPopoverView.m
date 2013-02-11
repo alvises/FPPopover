@@ -23,7 +23,7 @@
 @synthesize title;
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
-
+@synthesize draw3dBorder = _draw3dBorder;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -40,7 +40,9 @@
 
         //to get working the animations
         self.contentMode = UIViewContentModeRedraw;
-        
+
+        //3d border default is on
+        self.draw3dBorder = YES;
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.backgroundColor = [UIColor clearColor];
@@ -377,15 +379,16 @@
     CGPathRelease(externalBorderPath);
 
     //3D border of the content view
-    CGRect cvRect = _contentView.frame;
-    //firstLine
-    CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
-    CGContextStrokeRect(ctx, cvRect);
-    //secondLine
-    cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
-    CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
-    CGContextStrokeRect(ctx, cvRect);
-    
+    if(self.draw3dBorder) {
+        CGRect cvRect = _contentView.frame;
+        //firstLine
+        CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+        CGContextStrokeRect(ctx, cvRect);
+        //secondLine
+        cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
+        CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
+        CGContextStrokeRect(ctx, cvRect);        
+    }
     
     
     CGContextRestoreGState(ctx);

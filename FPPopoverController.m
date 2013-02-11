@@ -35,6 +35,7 @@
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
+@synthesize draw3dBorder = _draw3dBorder;
 
 -(void)addObservers
 {
@@ -618,6 +619,16 @@
     }
 }
 
+#pragma mark 3D Border
+-(void)setDraw3dBorder:(BOOL)draw3dBorder
+{
+    _contentView.draw3dBorder = draw3dBorder;
+    [_contentView setNeedsDisplay];
+}
 
+-(BOOL)draw3dBorder
+{
+    return _contentView.draw3dBorder;
+}
 
 @end

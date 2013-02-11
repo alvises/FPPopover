@@ -50,6 +50,9 @@
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
 
+//3d border implementation, thanks Ruben Niculcea
+@property(nonatomic,assign) BOOL draw3dBorder;
+
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
