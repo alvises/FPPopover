@@ -38,6 +38,14 @@
     }
 }
 
+//iOS6 implementation of the rotation
+- (NSUInteger)supportedInterfaceOrientations
+{
+    //All orientations
+    return UIInterfaceOrientationMaskAll;
+}
+
+
 -(void)popover:(id)sender
 {
     //the controller we want to present as a popover
