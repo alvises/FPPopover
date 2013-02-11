@@ -50,6 +50,9 @@
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
 
+/** @brief The opacity of the popover. Defaults to fully opaque. **/
+@property(nonatomic,assign) CGFloat alpha;
+
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
