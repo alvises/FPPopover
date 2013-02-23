@@ -120,3 +120,17 @@ Use this delegate method to know when a new different popover is displayed. If y
 
 Use this delegate method to know when the popover is dismissed. This could happen when the user taps outside the popover or when a dismiss message is sent by other actions.
 
+### Contributors
+
+Thank you to the following wonderful people for contributing:
+alphabetically sorted
+
+ * [@avolovoy](https://github.com/avolovoy)
+ * [@johnlinvc](https://github.com/johnlinvc)
+ * [@markd2](https://github.com/markd2)
+ * [@markrickert](https://github.com/markrickert)
+ * [@romanr](https://github.com/romanr)
+ * [@RubenSandwich](https://github.com/RubenSandwich)
+ 
+ 
+

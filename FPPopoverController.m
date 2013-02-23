@@ -21,7 +21,6 @@
  * If the "from point" will be on the left, the arrow will be on the left and the 
  * view will be move on the right of the from point.
  */
--(CGRect)bestViewFrameForFromPoint:(CGPoint)point;
 
 -(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v;
 
@@ -304,7 +303,7 @@
 {
 	_deviceOrientation = [UIDevice currentDevice].orientation;
 
-	BOOL shouldResetView;
+	BOOL shouldResetView = NO;
 
     //iOS6 has a new orientation implementation.
     //we ask to reset the view if is >= 6.0
@@ -364,105 +363,10 @@
 
 
 #pragma mark Space management
-/* This methods helps the controller to found a proper way to display the view.
- * If the "from point" will be on the left, the arrow will be on the left and the 
- * view will be move on the right of the from point.
- *
- * Consider only x direction
- *
- *  |--lm--|-----s-----|--rm--|
- *
- * s is the frame of our view (s < screen width). 
- * if our origin point is in lm or rm we move s
- * if the origin point is in s we move the arrow
- */
--(CGRect)bestViewFrameForFromPoint:(CGPoint)point
-{
-    //content view size
-    CGRect r;
-    r.size = self.contentSize;
-    r.size.width += 20;
-    r.size.height += 50;
-    
-    //size limits
-    CGFloat w = MIN(r.size.width, [self parentWidth]);
-    CGFloat h = MIN(r.size.height,[self parentHeight]);
-    
-    r.size.width = (w == [self parentWidth]) ? [self parentWidth]-50 : w;
-    r.size.height = (h == [self parentHeight]) ? [self parentHeight]-30 : h;
-    
-    CGFloat r_w = r.size.width;
-    CGFloat r_h = r.size.height;
-    
-    //lm + rm
-    CGFloat wm = [self parentWidth] - r_w;
-    CGFloat wm_l = wm/2.0;
-    CGFloat ws = r_w;
-    CGFloat rm_x = wm_l + ws;
-    
-    CGFloat hm = [self parentHeight] - r_h;
-    CGFloat hm_t = hm/2.0; //top
-    CGFloat hs = r_h;
-    CGFloat hm_b = hm_t + hs; //bottom
-    
-    if(wm > 0)
-    {
-        //s < lm + rm
-        //our content size is smaller then width
-        
-        //15px are the number of point from the border to the arrow when the
-        //arrow is totally at left
-        //I have considered a standard border of 2px
-
-        if(point.x+15 <= wm_l)
-        {
-            //move the popup to the left, with the left side near the origin point
-            r.origin.x = point.x-15;
-        }
-        else if(point.x+15 >= rm_x)
-        {
-            //move the popup to the right, with the right side near the origin point
-            r.origin.x = point.x - ws + 22;
-        }
-        
-        else
-        {
-            //the point is in the "s" zone and then I will move only the arrow
-            //put in the x center the popup
-            r.origin.x = wm_l;
-        }
-    }
-    
-    
-    if(hm > 0)
-    {
-        //the point is on the top
-        //let's move up the view
-        if(point.y <= hm_t)
-        {
-            r.origin.y = point.y;            
-        }
-        //the point is on the bottom, 
-        //let's move down the view
-        else if(point.y > hm_b)
-        {
-            r.origin.y = point.y - hs;
-        }
-        
-        else
-        {
-            //we need to resize the content
-            r.origin.y = point.y;
-            r.size.height = MIN(self.contentSize.height,[self parentHeight] - point.y - 10); //resizing
-        }
-    }
-    
-     return r;
-}
 
 -(CGRect)bestArrowDirectionAndFrameFromView:(UIView*)v
 {
-    //thanks @Niculcea
+    // thanks @Niculcea
     // If we presentFromPoint with _fromView nil will calculate based on self.orgin with 2x2 size.
     // Fix for presentFromPoint from avolovoy's FPPopover fork
     float width = 2.0f;
@@ -518,8 +422,9 @@
     
     else 
     {
-        //ok, will be horizontal 
-        if(wl == best_w || self.arrowDirection == FPPopoverArrowDirectionRight)
+        //ok, will be horizontal
+        //the arrow must NOT be forced to left
+        if((wl == best_w || self.arrowDirection == FPPopoverArrowDirectionRight) && self.arrowDirection != FPPopoverArrowDirectionLeft)
         {
             //on the left and arrow right
             bestDirection = FPPopoverArrowDirectionRight;
