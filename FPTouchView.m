@@ -10,7 +10,6 @@
 
 @implementation FPTouchView
 
-
 -(void)setTouchedOutsideBlock:(FPTouchedOutsideBlock)outsideBlock
 {
     _outsideBlock = outsideBlock;
@@ -19,6 +18,11 @@
 -(void)setTouchedInsideBlock:(FPTouchedInsideBlock)insideBlock
 {
     _insideBlock = insideBlock;
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+	return YES;
 }
 
 -(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
@@ -45,7 +49,7 @@
         {
             _insideBlock();
         }
-        else if(!touchedInside && _outsideBlock)
+        else if(self.isFirstResponder && !touchedInside && _outsideBlock)
         {
             _outsideBlock();
         }
