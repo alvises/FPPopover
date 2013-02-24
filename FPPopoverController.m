@@ -109,9 +109,6 @@
         self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.clipsToBounds = NO;
 
-        _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _touchView.clipsToBounds = NO;
-        
         //setting contentview
         _contentView.title = _viewController.title;
         _contentView.clipsToBounds = NO;
