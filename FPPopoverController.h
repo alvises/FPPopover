@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "ARCMacros.h"
+
 #import "FPPopoverView.h"
 #import "FPTouchView.h"
+
 
 @class FPPopoverController;
 @protocol FPPopoverControllerDelegate <NSObject>
@@ -22,19 +25,14 @@
 @end
 
 @interface FPPopoverController : UIViewController
-{
-    FPTouchView *_touchView;
-    FPPopoverView *_contentView;
-    UIViewController *_viewController;
-    UIWindow *_window;
-    UIView *_parentView;
-    UIView *_fromView;
-    UIDeviceOrientation _deviceOrientation;
-    
-    BOOL _shadowsHidden;
-    CGColorRef _shadowColor;
-}
-@property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
+
+//ARC-enable and disable support
+#if __has_feature(objc_arc)
+    @property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
+#else
+    @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
+#endif
+
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
  **/
 

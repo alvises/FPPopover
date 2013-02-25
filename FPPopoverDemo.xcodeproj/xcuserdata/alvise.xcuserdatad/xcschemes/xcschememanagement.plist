@@ -7,12 +7,17 @@
 		<key>FPPopoverDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>FPPopoverTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
 		<key>fppopover.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -23,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>1830EA151550504100A8776B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1855E8FC16D973D000154B42</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1855E91216D9750700154B42</key>
 		<dict>
 			<key>primary</key>
 			<true/>

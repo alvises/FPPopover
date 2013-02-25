@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1851C5EA16C972A000CCCDB3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1851C5E916C972A000CCCDB3 /* Default-568h@2x.png */; };
+		1855E91416D9750700154B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43731538512100502D64 /* UIKit.framework */; };
+		1855E91516D9750700154B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43751538512100502D64 /* Foundation.framework */; };
+		1855E91616D9750700154B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43771538512100502D64 /* CoreGraphics.framework */; };
+		1855E93616D9754400154B42 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1855E93016D9754300154B42 /* Default.png */; };
+		1855E93716D9754400154B42 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1855E93116D9754300154B42 /* Default@2x.png */; };
+		1855E93916D9754400154B42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1855E93416D9754300154B42 /* main.m */; };
 		186C43741538512100502D64 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43731538512100502D64 /* UIKit.framework */; };
 		186C43761538512100502D64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43751538512100502D64 /* Foundation.framework */; };
 		186C43781538512100502D64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43771538512100502D64 /* CoreGraphics.framework */; };
@@ -29,6 +35,13 @@
 		18D8FA4315505122005E2222 /* libfppopover.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D8FA30155050F0005E2222 /* libfppopover.a */; };
 		18D8FA45155051BA005E2222 /* background_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D8FA44155051BA005E2222 /* background_iPad.png */; };
 		18DF90A616C97B50006FFF28 /* alpha_popover.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DF90A516C97B50006FFF28 /* alpha_popover.png */; };
+		18E1272316D9756F00FB6CD0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E1272216D9756F00FB6CD0 /* Default-568h@2x.png */; };
+		18E1272516D9765A00FB6CD0 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E1272416D9765A00FB6CD0 /* GHUnitIOS.framework */; };
+		18E1272816D9771200FB6CD0 /* MemoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1272716D9771200FB6CD0 /* MemoryTests.m */; };
+		18E1272916D977D000FB6CD0 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43951538513B00502D64 /* FPPopoverController.m */; };
+		18E1272A16D977D000FB6CD0 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43971538513B00502D64 /* FPPopoverView.m */; };
+		18E1272B16D977D000FB6CD0 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43AB153CAD1000502D64 /* FPTouchView.m */; };
+		18E1272E16D9791800FB6CD0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E1272D16D9791800FB6CD0 /* QuartzCore.framework */; };
 		18EF6DEB154ED27D005AB1DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DE9154ED27D005AB1DD /* background.png */; };
 		18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DEA154ED27D005AB1DD /* background@2x.png */; };
 		18F357271584E6E700AD4F07 /* FPDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */; };
@@ -46,6 +59,12 @@
 
 /* Begin PBXFileReference section */
 		1851C5E916C972A000CCCDB3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1855E91316D9750700154B42 /* FPPopoverTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPPopoverTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1855E93016D9754300154B42 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		1855E93116D9754300154B42 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		1855E93216D9754300154B42 /* FPPopoverTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FPPopoverTests-Info.plist"; sourceTree = "<group>"; };
+		1855E93316D9754300154B42 /* FPPopoverTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FPPopoverTests-Prefix.pch"; sourceTree = "<group>"; };
+		1855E93416D9754300154B42 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		186C436F1538512100502D64 /* FPPopoverDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPPopoverDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		186C43731538512100502D64 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		186C43751538512100502D64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,6 +93,11 @@
 		18D8FA44155051BA005E2222 /* background_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_iPad.png; sourceTree = "<group>"; };
 		18D8FA4815505DFD005E2222 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		18DF90A516C97B50006FFF28 /* alpha_popover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_popover.png; sourceTree = "<group>"; };
+		18E1272216D9756F00FB6CD0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		18E1272416D9765A00FB6CD0 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = FPPopoverTests/GHUnitIOS.framework; sourceTree = "<group>"; };
+		18E1272716D9771200FB6CD0 /* MemoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryTests.m; sourceTree = "<group>"; };
+		18E1272D16D9791800FB6CD0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		18E1272F16D97A6500FB6CD0 /* ARCMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARCMacros.h; sourceTree = "<group>"; };
 		18EF6DE9154ED27D005AB1DD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		18EF6DEA154ED27D005AB1DD /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		18F357251584E6E700AD4F07 /* FPDemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPDemoTableViewController.h; sourceTree = "<group>"; };
@@ -81,6 +105,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1855E91016D9750700154B42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18E1272E16D9791800FB6CD0 /* QuartzCore.framework in Frameworks */,
+				1855E91416D9750700154B42 /* UIKit.framework in Frameworks */,
+				1855E91516D9750700154B42 /* Foundation.framework in Frameworks */,
+				1855E91616D9750700154B42 /* CoreGraphics.framework in Frameworks */,
+				18E1272516D9765A00FB6CD0 /* GHUnitIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		186C436C1538512100502D64 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -103,9 +139,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1855E91716D9750700154B42 /* FPPopoverTests */ = {
+			isa = PBXGroup;
+			children = (
+				18E1272C16D977DA00FB6CD0 /* Tests */,
+				1855E91816D9750700154B42 /* Supporting Files */,
+			);
+			path = FPPopoverTests;
+			sourceTree = "<group>";
+		};
+		1855E91816D9750700154B42 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1855E93016D9754300154B42 /* Default.png */,
+				1855E93116D9754300154B42 /* Default@2x.png */,
+				18E1272216D9756F00FB6CD0 /* Default-568h@2x.png */,
+				1855E93216D9754300154B42 /* FPPopoverTests-Info.plist */,
+				1855E93316D9754300154B42 /* FPPopoverTests-Prefix.pch */,
+				1855E93416D9754300154B42 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		186C43641538512100502D64 = {
 			isa = PBXGroup;
 			children = (
+				18E1272D16D9791800FB6CD0 /* QuartzCore.framework */,
 				18DF90A316C9792F006FFF28 /* images */,
 				1851C5E916C972A000CCCDB3 /* Default-568h@2x.png */,
 				18D8FA4815505DFD005E2222 /* LICENSE */,
@@ -113,6 +172,7 @@
 				186C43931538512A00502D64 /* FPPopover */,
 				186C43791538512100502D64 /* FPPopoverDemo */,
 				18D8FA32155050F0005E2222 /* fppopover */,
+				1855E91716D9750700154B42 /* FPPopoverTests */,
 				186C43721538512100502D64 /* Frameworks */,
 				186C43701538512100502D64 /* Products */,
 			);
@@ -123,6 +183,7 @@
 			children = (
 				186C436F1538512100502D64 /* FPPopoverDemo.app */,
 				18D8FA30155050F0005E2222 /* libfppopover.a */,
+				1855E91316D9750700154B42 /* FPPopoverTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +191,7 @@
 		186C43721538512100502D64 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18E1272416D9765A00FB6CD0 /* GHUnitIOS.framework */,
 				186C43731538512100502D64 /* UIKit.framework */,
 				186C43751538512100502D64 /* Foundation.framework */,
 				186C43771538512100502D64 /* CoreGraphics.framework */,
@@ -170,6 +232,7 @@
 		186C43931538512A00502D64 /* FPPopover */ = {
 			isa = PBXGroup;
 			children = (
+				18E1272F16D97A6500FB6CD0 /* ARCMacros.h */,
 				186C43941538513B00502D64 /* FPPopoverController.h */,
 				186C43951538513B00502D64 /* FPPopoverController.m */,
 				186C43961538513B00502D64 /* FPPopoverView.h */,
@@ -202,6 +265,14 @@
 				18DF90A516C97B50006FFF28 /* alpha_popover.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		18E1272C16D977DA00FB6CD0 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				18E1272716D9771200FB6CD0 /* MemoryTests.m */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 		18EF6DD9154ECC72005AB1DD /* Resources */ = {
@@ -238,6 +309,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		1855E91216D9750700154B42 /* FPPopoverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1855E92916D9750700154B42 /* Build configuration list for PBXNativeTarget "FPPopoverTests" */;
+			buildPhases = (
+				1855E90F16D9750700154B42 /* Sources */,
+				1855E91016D9750700154B42 /* Frameworks */,
+				1855E91116D9750700154B42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FPPopoverTests;
+			productName = FPPopoverTests;
+			productReference = 1855E91316D9750700154B42 /* FPPopoverTests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		186C436E1538512100502D64 /* FPPopoverDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 186C43901538512200502D64 /* Build configuration list for PBXNativeTarget "FPPopoverDemo" */;
@@ -297,11 +385,22 @@
 			targets = (
 				186C436E1538512100502D64 /* FPPopoverDemo */,
 				18D8FA2F155050F0005E2222 /* fppopover */,
+				1855E91216D9750700154B42 /* FPPopoverTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1855E91116D9750700154B42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1855E93616D9754400154B42 /* Default.png in Resources */,
+				1855E93716D9754400154B42 /* Default@2x.png in Resources */,
+				18E1272316D9756F00FB6CD0 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		186C436D1538512100502D64 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,6 +420,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1855E90F16D9750700154B42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1855E93916D9754400154B42 /* main.m in Sources */,
+				18E1272816D9771200FB6CD0 /* MemoryTests.m in Sources */,
+				18E1272916D977D000FB6CD0 /* FPPopoverController.m in Sources */,
+				18E1272A16D977D000FB6CD0 /* FPPopoverView.m in Sources */,
+				18E1272B16D977D000FB6CD0 /* FPTouchView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		186C436B1538512100502D64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +492,63 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1855E92A16D9750700154B42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FPPopoverTests\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FPPopoverTests/FPPopoverTests-Prefix.pch";
+				INFOPLIST_FILE = "FPPopoverTests/FPPopoverTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1855E92B16D9750700154B42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FPPopoverTests\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FPPopoverTests/FPPopoverTests-Prefix.pch";
+				INFOPLIST_FILE = "FPPopoverTests/FPPopoverTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		186C438E1538512200502D64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -429,7 +597,7 @@
 		186C43911538512200502D64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FPPopoverDemo/FPPopoverDemo-Prefix.pch";
 				INFOPLIST_FILE = "FPPopoverDemo/FPPopoverDemo-Info.plist";
@@ -442,7 +610,7 @@
 		186C43921538512200502D64 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FPPopoverDemo/FPPopoverDemo-Prefix.pch";
 				INFOPLIST_FILE = "FPPopoverDemo/FPPopoverDemo-Info.plist";
@@ -455,7 +623,7 @@
 		18D8FA39155050F0005E2222 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/fppopover.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fppopover/fppopover-Prefix.pch";
@@ -469,7 +637,7 @@
 		18D8FA3A155050F0005E2222 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/fppopover.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fppopover/fppopover-Prefix.pch";
@@ -483,6 +651,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1855E92916D9750700154B42 /* Build configuration list for PBXNativeTarget "FPPopoverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1855E92A16D9750700154B42 /* Debug */,
+				1855E92B16D9750700154B42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		186C43691538512100502D64 /* Build configuration list for PBXProject "FPPopoverDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -52,11 +52,15 @@
 
 -(IBAction)popover:(id)sender
 {
+    //NSLog(@"popover retain count: %d",[popover retainCount]);
+
+    SAFE_ARC_RELEASE(popover); popover=nil;
+    
     //the controller we want to present as a popover
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
     controller.delegate = self;
     popover = [[FPPopoverController alloc] initWithViewController:controller];
-    
+
     popover.tint = FPPopoverDefaultTint;
     
     

@@ -9,6 +9,24 @@
 
 #import "FPPopoverController.h"
 
+//ivars
+@interface FPPopoverController()
+{
+    FPTouchView *_touchView;
+    FPPopoverView *_contentView;
+    UIViewController *_viewController;
+    UIWindow *_window;
+    UIView *_parentView;
+    UIView *_fromView;
+    UIDeviceOrientation _deviceOrientation;
+    
+    BOOL _shadowsHidden;
+    CGColorRef _shadowColor;
+}
+@end
+
+
+//private methods
 @interface FPPopoverController(Private)
 -(CGPoint)originFromView:(UIView*)fromView;
 
@@ -66,6 +84,17 @@
 {
     [self removeObservers];
     if(_shadowColor) CGColorRelease(_shadowColor);
+
+#ifdef FP_DEBUG
+    NSLog(@"FPPopoverController dealloc");
+#endif
+
+    SAFE_ARC_RELEASE(_contentView);
+    SAFE_ARC_RELEASE(_touchView);
+    self.delegate = nil;
+    _viewController = nil;
+    
+    SAFE_ARC_SUPER_DEALLOC();
 }
 
 -(id)initWithViewController:(UIViewController*)viewController {
@@ -89,7 +118,8 @@
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
-		
+        
+        
         __block typeof (self) bself = self;
         [_touchView setTouchedOutsideBlock:^{
             [bself dismissPopoverAnimated:YES];

@@ -8,10 +8,21 @@
 
 
 #import "FPPopoverView.h"
+#import "ARCMacros.h"
 
 #define FP_POPOVER_ARROW_HEIGHT 20.0
 #define FP_POPOVER_ARROW_BASE 20.0
 #define FP_POPOVER_RADIUS 10.0
+
+//iVars
+@interface FPPopoverView()
+{
+    //default FPPopoverArrowDirectionUp
+    FPPopoverArrowDirection _arrowDirection;
+    UIView *_contentView;
+    UILabel *_titleLabel;
+}
+@end
 
 
 @interface FPPopoverView(Private)
@@ -24,6 +35,17 @@
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
 @synthesize draw3dBorder = _draw3dBorder;
+
+-(void)dealloc
+{
+#ifdef FP_DEBUG
+    NSLog(@"FPPopoverView dealloc");
+#endif
+
+    SAFE_ARC_RELEASE(_titleLabel);
+    SAFE_ARC_SUPER_DEALLOC();
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {

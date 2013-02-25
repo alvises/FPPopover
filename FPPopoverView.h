@@ -42,12 +42,7 @@ typedef enum {
 } FPPopoverTint;
 
 @interface FPPopoverView : UIView
-{
-    //default FPPopoverArrowDirectionUp
-    FPPopoverArrowDirection _arrowDirection;
-    UIView *_contentView;
-    UILabel *_titleLabel;
-}
+
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,assign) CGPoint relativeOrigin;
 @property(nonatomic,assign) FPPopoverTint tint;
