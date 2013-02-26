@@ -100,12 +100,24 @@ If you want a popover like a popup, with no arrow
 ```objective-c
 popover.arrowDirection = FPPopoverNoArrow;
 ```
-<img src="wiki_images/no_arrow.png">
+<img src="wiki_images/no_arrow.png" height=200>
 
-### Transparency 
+##No title
+
+```objective-c
+//the view controller you want to present as popover
+YourViewController *controller = [[YourViewController alloc] init]; 
+controller.title = nil;
+```
+
+<img src="wiki_images/no_title.png" height=200>
+
+
+## Transparency 
 If you want to change alpha channel and handle the transparency of the popover
     
         popover.alpha = 0.8;
+        
 ![transparent popover](https://raw.github.com/50pixels/FPPopover/master/alpha_popover.png)
 
 ###Delegate messages
