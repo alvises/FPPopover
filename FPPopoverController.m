@@ -52,7 +52,7 @@
 @synthesize origin = _origin;
 @synthesize arrowDirection = _arrowDirection;
 @synthesize tint = _tint;
-@synthesize draw3dBorder = _draw3dBorder;
+@synthesize border = _border;
 @synthesize alpha = _alpha;
 
 -(void)addObservers
@@ -112,7 +112,8 @@
         self.alpha = 1.0;
         self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
-
+        _border = YES;
+        
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
         _touchView.backgroundColor = [UIColor clearColor];
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -215,6 +216,14 @@
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
 {
     self.origin = fromPoint;
+    
+    //NO BORDER
+    if(self.border == NO)
+    {
+        _viewController.title = nil;
+        _viewController.view.clipsToBounds = YES;
+    }
+    
     _contentView.relativeOrigin = [_parentView convertPoint:fromPoint toView:_contentView];
 
     [self.view removeFromSuperview];
@@ -559,15 +568,12 @@
 }
 
 #pragma mark 3D Border
--(void)setDraw3dBorder:(BOOL)draw3dBorder
-{
-    _contentView.draw3dBorder = draw3dBorder;
-    [_contentView setNeedsDisplay];
-}
 
--(BOOL)draw3dBorder
+-(void)setBorder:(BOOL)border
 {
-    return _contentView.draw3dBorder;
+    _border = border;
+    _contentView.border = border;
+    [_contentView setNeedsDisplay];
 }
 
 #pragma mark Transparency

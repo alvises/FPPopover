@@ -34,6 +34,7 @@ typedef enum FPPopoverArrowDirection: NSUInteger {
 #endif
 
 typedef enum {
+    FPPopoverWhiteTint,
     FPPopoverBlackTint,
     FPPopoverLightGrayTint,
     FPPopoverGreenTint,
@@ -47,6 +48,7 @@ typedef enum {
 @property(nonatomic,assign) CGPoint relativeOrigin;
 @property(nonatomic,assign) FPPopoverTint tint;
 @property(nonatomic,assign) BOOL draw3dBorder;
+@property(nonatomic,assign) BOOL border; //default YES
 
 -(void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection;
 -(FPPopoverArrowDirection)arrowDirection;

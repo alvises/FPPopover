@@ -35,6 +35,7 @@
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
 @synthesize draw3dBorder = _draw3dBorder;
+@synthesize border = _border;
 
 -(void)dealloc
 {
@@ -65,6 +66,9 @@
 
         //3d border default is on
         self.draw3dBorder = YES;
+        
+        //border
+        self.border = YES;
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.backgroundColor = [UIColor clearColor];
@@ -102,6 +106,18 @@
     [self setupViews];
 }
 
+-(void)setBorder:(BOOL)border
+{
+    _border = border;
+    //NO BORDER
+    if(self.border == NO) {
+        _contentView.clipsToBounds = YES;
+        self.clipsToBounds = YES;
+        self.draw3dBorder = NO;
+        _contentView.layer.cornerRadius = FP_POPOVER_RADIUS;
+    }
+}
+
 #pragma mark drawing
 
 //the content with the arrow
@@ -113,6 +129,11 @@
     CGFloat aw = FP_POPOVER_ARROW_BASE/2.0; //is the 1/2 of the base of the arrow
     CGFloat radius = FP_POPOVER_RADIUS;
     CGFloat b = borderWidth;
+    
+    //NO BORDER
+    if(self.border == NO) {
+        b = 10.0;
+    }
     
     CGRect rect;
     if(direction == FPPopoverArrowDirectionUp)
@@ -168,9 +189,10 @@
     else if (ay +2*aw + 2*b > self.bounds.size.height) ay = self.bounds.size.height - 2*aw - 2*b;
     
     
+    
     //ROUNDED RECT
     // arrow UP
-    CGRect innerRect = CGRectInset(rect, radius, radius);
+    CGRect  innerRect = CGRectInset(rect, radius, radius);
 	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
 	CGFloat outside_right = rect.origin.x + rect.size.width;
 	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
@@ -179,6 +201,7 @@
 	CGFloat outside_top = rect.origin.y;
 	CGFloat outside_left = rect.origin.x;
 
+    
     
     //drawing the border with arrow
     CGMutablePathRef path = CGPathCreateMutable();
@@ -312,7 +335,12 @@
             colors[3] = colors[7] = 1.0;
         }        
     }
-    
+    else if(self.tint == FPPopoverWhiteTint)
+    {
+        colors[0] = colors[1] = colors[2] = 1.0;
+        colors[0] = colors[1] = colors[2] = 1.0;
+        colors[3] = colors[7] = 1.0;
+    }
     
 
     CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
@@ -337,7 +365,8 @@
     //content fill
     CGPathRef contentPath = [self newContentPathWithBorderWidth:2.0 arrowDirection:_arrowDirection];
     
-    CGContextAddPath(ctx, contentPath);    
+    
+    CGContextAddPath(ctx, contentPath);
     CGContextClip(ctx);
 
     //  Draw a linear gradient from top to bottom
@@ -375,6 +404,10 @@
     else if(self.tint == FPPopoverGreenTint)
     {
         CGContextSetRGBFillColor(ctx, 0.18, 0.30, 0.03, 1.0);        
+    }
+    else if(self.tint == FPPopoverWhiteTint)
+    {
+        CGContextSetRGBFillColor(ctx, 1, 1, 1, 1.0);
     }
 
     

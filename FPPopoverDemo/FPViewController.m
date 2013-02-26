@@ -60,7 +60,6 @@
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
     controller.delegate = self;
     popover = [[FPPopoverController alloc] initWithViewController:controller];
-    
     popover.tint = FPPopoverDefaultTint;
     
     
