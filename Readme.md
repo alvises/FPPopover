@@ -115,24 +115,28 @@ controller.title = nil;
 
 ## Transparency 
 If you want to change alpha channel and handle the transparency of the popover
-    
-        popover.alpha = 0.8;
-        
+
+```objective-c
+popover.alpha = 0.8;
+```
+
 ![transparent popover](https://raw.github.com/50pixels/FPPopover/master/alpha_popover.png)
 
-###Delegate messages
+##Delegate messages
 
 Set your delegate
-    
-        YourViewController *controller = [[YourViewController alloc] init]; 
-        FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller]; 
-        popover.delegate = controller;
-        ....
-        
+
+```objective-c    
+YourViewController *controller = [[YourViewController alloc] init]; 
+FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller]; 
+popover.delegate = controller;
+....
+```
+
 In this case we are setting up the YourViewController as our popover delegate.
 
 ####Know when a new popover is displayed
-
+```objective-c
     - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
 
@@ -144,14 +148,16 @@ Use this delegate method to know when a new different popover is displayed. If y
             [visiblePopoverController dismissPopoverAnimated:YES];
             [visiblePopoverController autorelease];
         }
+```
 
 ####Know when the popover is dismissed
-
+```objective-c
     - (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController;
+```
 
 Use this delegate method to know when the popover is dismissed. This could happen when the user taps outside the popover or when a dismiss message is sent by other actions.
 
-### Contributors
+## Contributors
 
 Thank you to the following wonderful people for contributing:
 alphabetically sorted
