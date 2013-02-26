@@ -17,6 +17,7 @@ Features
 * Customize the look of popovers (color, dimensions).
 * Automatic orientation. It will find the best orientation and size for every situation.
 * Can draw popover with no arrows
+* Borderless popover
 * MIT License (you can use it for commercial apps, edit and redistribute).
 * Using ARC (see [ARC-Support](https://github.com/50pixels/FPPopover/wiki/ARC-support))
 
