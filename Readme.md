@@ -18,7 +18,7 @@ Features
 * Automatic orientation. It will find the best orientation and size for every situation.
 * Can draw popover with no arrows
 * MIT License (you can use it for commercial apps, edit and redistribute).
-* Using ARC (see )
+* Using ARC (see [ARC-Support](https://github.com/50pixels/FPPopover/wiki/ARC-support))
 
 What you need
 ---
@@ -112,6 +112,14 @@ controller.title = nil;
 
 <img src="wiki_images/no_title.png" height=200>
 
+##Borderless popover
+
+```objective-c
+popover.border = NO;
+popover.tint = FPPopoverWhiteTint;
+```
+
+<img src="wiki_images/borderless.png" height=200>
 
 ## Transparency 
 If you want to change alpha channel and handle the transparency of the popover
