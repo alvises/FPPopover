@@ -5,6 +5,10 @@ adding support for iPhone and additional opportunities to customize the look and
 
 The development started as first as a [Mobiloud](http://www.mobiloud.com) open source component, after some commits we realized was a appreciated library so I decided to continue the development, also the development is continuing thank to your feedbacks and pull requests!
 
+<center><img src="wiki_images/main.png" height=300 border=1></center>
+
+
+
 
 Features
 ========
