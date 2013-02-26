@@ -5,9 +5,7 @@ adding support for iPhone and additional opportunities to customize the look and
 
 The development started as first as a [Mobiloud](http://www.mobiloud.com) open source component, after some commits we realized was a appreciated library so I decided to continue the development, also the development is continuing thank to your feedbacks and pull requests!
 
-<center><img src="wiki_images/main.png" height=300 border=1></center>
-
-
+<img src="wiki_images/main.png" height=300 border=1>
 
 
 Features
@@ -63,34 +61,46 @@ This will display a black popover with automatic arrow positioning and a maximum
 
 The title of YourViewController (controller.title) will be presented on the top.
 
-###Customize the size
-Default content size is 200x300. This can be set using the following property
+##Customize the size
 
-    popover.contentSize = CGSizeMake(150,200);
+Default content size is 200x300. This can be set using the following property
+```objective-c
+popover.contentSize = CGSizeMake(150,200);
+```
 
 This property defines a maximum boundary for content, but the actual content area displayed may
 vary according to the what is found to be the optimal size to fit the popover on the screen (e.g. when adjusting the layout from portrait to landscape mode).
 
-###Customize the tint
+
+
+##Customize the tint
 
 * FPPopoverBlackTint  (default)
 * FPPopoverLightGrayTint
 * FPPopoverGreenTint
 * FPPopoverRedTint
 
-        popover.tint = FPPopoverRedTint;
-    
+```objective-c
+popover.tint = FPPopoverRedTint;
+```
+
 Contact us if you need more tints!
 
-###Force the arrow direction
+##Force the arrow direction
+
 If you need to force the arrow direction use the arrowDirection property
 
-        popover.arrowDirection = FPPopoverArrowDirectionUp;
+```objective-c
+popover.arrowDirection = FPPopoverArrowDirectionUp;
+```
 
-###No arrow
+##No arrow
 If you want a popover like a popup, with no arrow
 
-        popover.arrowDirection = FPPopoverNoArrow;
+```objective-c
+popover.arrowDirection = FPPopoverNoArrow;
+```
+<img src="wiki_images/no_arrow.png">
 
 ### Transparency 
 If you want to change alpha channel and handle the transparency of the popover
