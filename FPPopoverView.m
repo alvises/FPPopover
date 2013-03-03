@@ -30,12 +30,32 @@
 @end
 
 
-@implementation FPPopoverView
+@implementation FPPopoverView{
+    CGFloat _customColors[CUSTOMCOLORS];
+    CGFloat _customGradientColors[GRADIENTCOLORS];
+}
 @synthesize title;
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
 @synthesize draw3dBorder = _draw3dBorder;
 @synthesize border = _border;
+@synthesize customColors;
+
+- (CGFloat *)customColors {
+    return _customColors;
+}
+
+- (void)setCustomColors:(CGFloat *)cColors {
+    memcpy(_customColors, cColors, CUSTOMCOLORS * sizeof *_customColors);
+}
+
+- (CGFloat *)customGradientColors {
+    return _customGradientColors;
+}
+
+- (void)setCustomGradientColors:(CGFloat *)cColors {
+    memcpy(_customGradientColors, cColors, GRADIENTCOLORS * sizeof *_customGradientColors);
+}
 
 -(void)dealloc
 {
@@ -341,8 +361,11 @@
         colors[0] = colors[1] = colors[2] = 1.0;
         colors[3] = colors[7] = 1.0;
     }
+    else if(self.tint == FPPopoverCustomTint)
+    {
+        memcpy(colors, _customGradientColors, GRADIENTCOLORS * sizeof *colors);
+    }
     
-
     CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
 
     CFRelease(colorSpace);
@@ -409,6 +432,11 @@
     {
         CGContextSetRGBFillColor(ctx, 1, 1, 1, 1.0);
     }
+    else if(self.tint == FPPopoverCustomTint)
+    {
+        CGContextSetRGBFillColor(ctx, _customColors[0], _customColors[1], _customColors[2], _customColors[3]);
+    }
+    
 
     
     CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));

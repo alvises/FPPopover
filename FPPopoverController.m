@@ -164,6 +164,28 @@
     return _contentView.tint;
 }
 
+-(void)setCustomColors:(CGFloat*)colors
+{
+    _contentView.customColors = colors;
+    [_contentView setNeedsDisplay];
+}
+
+-(CGFloat*)customColors
+{
+    return _contentView.customColors;
+}
+
+-(void)setCustomGradientColors:(CGFloat*)colors
+{
+    _contentView.customGradientColors = colors;
+    [_contentView setNeedsDisplay];
+}
+
+-(CGFloat*)customGradientColors
+{
+    return _contentView.customGradientColors;
+}
+
 #pragma mark - View lifecycle
 
 -(void)setupView
