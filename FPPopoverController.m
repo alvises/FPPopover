@@ -120,8 +120,7 @@
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
         
-        
-        __block typeof (self) bself = self;
+        FPPopoverWeakSelf bself = self;
         [_touchView setTouchedOutsideBlock:^{
             [bself dismissPopoverAnimated:YES];
         }];
