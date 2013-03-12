@@ -59,4 +59,5 @@
     #define SAFE_ARC_AUTORELEASE_POOL_END() [pool release];
 #endif
 
-
+#define FPPopoverWeakObject(o) __block __typeof__((__typeof__(o))o)
+#define FPPopoverWeakSelf FPPopoverWeakObject(self)
