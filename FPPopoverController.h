@@ -74,7 +74,8 @@ typedef void (^FPPopoverCompletion)();
 /** @brief Hide the shadows to get better performances **/
 -(void)setShadowsHidden:(BOOL)hidden;
 
-
+/** @brief Set Custom Tint color **/
+-(void)setViewShadowOpacity:(float)opacity andRadius:(float)radius withOffset:(CGSize)offset;
 
 
 @end

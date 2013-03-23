@@ -338,7 +338,13 @@
     else if(self.tint == FPPopoverWhiteTint)
     {
         colors[0] = colors[1] = colors[2] = 1.0;
+        colors[4] = colors[5] = colors[6] = 0.3;
+        colors[3] = colors[7] = 1.0;
+    }
+    else if (self.tint == FPPopoverPureWhiteTint)
+    {
         colors[0] = colors[1] = colors[2] = 1.0;
+        colors[4] = colors[5] = colors[6] = 1.0;
         colors[3] = colors[7] = 1.0;
     }
     
@@ -409,13 +415,25 @@
     {
         CGContextSetRGBFillColor(ctx, 1, 1, 1, 1.0);
     }
+    else if(self.tint == FPPopoverPureWhiteTint)
+    {
+        CGContextSetRGBFillColor(ctx, 1, 1, 1, 1.0);
+    }
 
     
     CGContextFillRect(ctx, CGRectMake(0, end.y, self.bounds.size.width, self.bounds.size.height-end.y));
     //internal border
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, contentPath);
-    CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+    
+    //For PureWhite
+    if(self.tint == FPPopoverPureWhiteTint){
+        CGContextSetRGBStrokeColor(ctx, 1.0, 1.0, 1.0, 1.0);
+    }else{
+        CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+    }
+    
+    
     CGContextSetLineWidth(ctx, 1);
     CGContextSetLineCap(ctx,kCGLineCapRound);
     CGContextSetLineJoin(ctx, kCGLineJoinRound);
@@ -437,12 +455,20 @@
     if(self.draw3dBorder) {
         CGRect cvRect = _contentView.frame;
         //firstLine
-        CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+        if(self.tint == FPPopoverPureWhiteTint){
+            CGContextSetRGBStrokeColor(ctx, 1.0, 1.0, 1.0, 1.0);
+        }else{
+           CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+        }
         CGContextStrokeRect(ctx, cvRect);
         //secondLine
         cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
-        CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
-        CGContextStrokeRect(ctx, cvRect);        
+        if(self.tint == FPPopoverPureWhiteTint){
+            CGContextSetRGBStrokeColor(ctx, 1.0, 1.0, 1.0, 1.0);
+        }else{
+            CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
+        }
+        CGContextStrokeRect(ctx, cvRect);
     }
     
     
