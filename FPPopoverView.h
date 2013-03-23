@@ -39,6 +39,7 @@ typedef enum {
     FPPopoverLightGrayTint,
     FPPopoverGreenTint,
     FPPopoverRedTint,
+    FPPopoverPureWhiteTint,
     FPPopoverDefaultTint = FPPopoverBlackTint
 } FPPopoverTint;
 

@@ -567,6 +567,14 @@
     }
 }
 
+-(void)setViewShadowOpacity:(float)opacity andRadius:(float)radius withOffset:(CGSize)offset
+{
+    _contentView.layer.shadowOpacity = opacity;
+    _contentView.layer.shadowRadius = radius;
+    _contentView.layer.shadowOffset = offset;
+    
+}
+
 #pragma mark 3D Border
 
 -(void)setBorder:(BOOL)border
