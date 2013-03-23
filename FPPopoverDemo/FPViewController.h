@@ -39,8 +39,10 @@
 -(IBAction)bottomRight:(id)sender;
 
 -(IBAction)goToTableView:(id)sender;
+-(IBAction)navControllerPopover:(id)sender;
 
 -(void)selectedTableRow:(NSUInteger)rowNum;
+
 
 -(IBAction)noArrow:(id)sender;
 -(IBAction)popover:(id)sender;

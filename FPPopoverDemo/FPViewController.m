@@ -154,6 +154,25 @@
     [self popover:sender];
 }
 
+-(IBAction)navControllerPopover:(id)sender
+{
+    SAFE_ARC_RELEASE(popover); popover=nil;
+    
+    //the controller we want to present as a popover
+    DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:controller];
+    SAFE_ARC_RELEASE(controller); controller=nil;
+
+    popover = [[FPPopoverController alloc] initWithViewController:nc];
+    popover.tint = FPPopoverDefaultTint;
+    popover.contentSize = CGSizeMake(300, 500);
+    [popover presentPopoverFromView:sender];
+    CGRect nc_bar_frame = nc.navigationBar.frame;
+    nc_bar_frame.origin.y = 0;
+    nc.navigationBar.frame = nc_bar_frame;
+    
+}
+
 
 -(IBAction)goToTableView:(id)sender
 {
