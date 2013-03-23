@@ -597,7 +597,7 @@
 		186C43911538512200502D64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FPPopoverDemo/FPPopoverDemo-Prefix.pch";
 				INFOPLIST_FILE = "FPPopoverDemo/FPPopoverDemo-Info.plist";
@@ -610,7 +610,7 @@
 		186C43921538512200502D64 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FPPopoverDemo/FPPopoverDemo-Prefix.pch";
 				INFOPLIST_FILE = "FPPopoverDemo/FPPopoverDemo-Info.plist";

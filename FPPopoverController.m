@@ -84,7 +84,8 @@
 {
     [self removeObservers];
     if(_shadowColor) CGColorRelease(_shadowColor);
-
+#define FP_DEBUG
+    
 #ifdef FP_DEBUG
     NSLog(@"FPPopoverController dealloc");
 #endif
@@ -120,8 +121,13 @@
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
         
-        
+#if __has_feature(objc_arc)
+        //ARC on
+        __weak typeof (self)bself = self;
+#else
+        //ARC off
         __block typeof (self) bself = self;
+#endif
         [_touchView setTouchedOutsideBlock:^{
             [bself dismissPopoverAnimated:YES];
         }];
