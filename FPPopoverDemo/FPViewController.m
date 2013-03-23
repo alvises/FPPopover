@@ -167,10 +167,10 @@
     popover.tint = FPPopoverDefaultTint;
     popover.contentSize = CGSizeMake(300, 500);
     [popover presentPopoverFromView:sender];
-    CGRect nc_bar_frame = nc.navigationBar.frame;
-    nc_bar_frame.origin.y = 0;
-    nc.navigationBar.frame = nc_bar_frame;
-    
+
+//    CGRect nc_bar_frame = nc.navigationBar.frame;
+//    nc_bar_frame.origin.y = 0;
+//    nc.navigationBar.frame = nc_bar_frame;
 }
 
 

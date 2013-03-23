@@ -262,6 +262,16 @@
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FPNewPopoverPresented" object:self];
+    
+    //navigation controller bar fix
+    if([_viewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController *nc = (UINavigationController*)_viewController;
+        UINavigationBar *b = nc.navigationBar;
+        CGRect bar_frame = b.frame;
+        bar_frame.origin.y = 0;
+        b.frame = bar_frame;
+    }
 }
 
 
