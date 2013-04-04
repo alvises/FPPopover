@@ -93,6 +93,8 @@
     SAFE_ARC_RELEASE(_contentView);
     SAFE_ARC_RELEASE(_touchView);
     self.delegate = nil;
+    
+    SAFE_ARC_RELEASE(_viewController);
     _viewController = nil;
     
     SAFE_ARC_SUPER_DEALLOC();
@@ -137,7 +139,7 @@
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
                                               self.contentSize.width, self.contentSize.height)];
         
-        _viewController = viewController;
+        _viewController = SAFE_ARC_RETAIN(viewController);
         
         [_touchView addSubview:_contentView];
         
