@@ -24,21 +24,14 @@
 
 -(void)setTouchedOutsideBlock:(FPTouchedOutsideBlock)outsideBlock
 {
-#if __has_feature(objc_arc)
-    _outsideBlock = outsideBlock;
-#else
+    SAFE_ARC_RELEASE(_outsideBlock);
     _outsideBlock = [outsideBlock copy];
-#endif
 }
 
 -(void)setTouchedInsideBlock:(FPTouchedInsideBlock)insideBlock
 {
-#if __has_feature(objc_arc)
-    _insideBlock = insideBlock;
-#else
+    SAFE_ARC_RELEASE(_insideBlock);
     _insideBlock = [insideBlock copy];
-#endif
-
 }
 
 -(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event

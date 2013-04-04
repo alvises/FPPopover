@@ -28,7 +28,7 @@
 
 //ARC-enable and disable support
 #if __has_feature(objc_arc)
-    @property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
+    @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
 #else
     @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
 #endif

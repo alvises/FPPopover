@@ -84,7 +84,6 @@
 {
     [self removeObservers];
     if(_shadowColor) CGColorRelease(_shadowColor);
-#define FP_DEBUG
     
 #ifdef FP_DEBUG
     NSLog(@"FPPopoverController dealloc");
@@ -125,11 +124,12 @@
         
 #if __has_feature(objc_arc)
         //ARC on
-        __weak typeof (self)bself = self;
+        id bself = self;
 #else
         //ARC off
-        __block typeof (self) bself = self;
+        __block id bself = self;
 #endif
+        
         [_touchView setTouchedOutsideBlock:^{
             [bself dismissPopoverAnimated:YES];
         }];
@@ -307,7 +307,8 @@
 
 -(void)presentPopoverFromView:(UIView*)fromView
 {
-     _fromView = fromView;
+    SAFE_ARC_RELEASE(_fromView);
+    _fromView = SAFE_ARC_RETAIN(fromView);
     [self presentPopoverFromPoint:[self originFromView:_fromView]];
 }
 
