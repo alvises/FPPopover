@@ -61,7 +61,7 @@
     controller.delegate = self;
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     popover.tint = FPPopoverDefaultTint;
-    
+    popover.radius = 5.0;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
@@ -166,6 +166,7 @@
     popover = [[FPPopoverController alloc] initWithViewController:nc];
     popover.tint = FPPopoverDefaultTint;
     popover.contentSize = CGSizeMake(300, 500);
+    popover.radius = 5.0;
     [popover presentPopoverFromView:sender];
 
 //    CGRect nc_bar_frame = nc.navigationBar.frame;

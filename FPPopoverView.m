@@ -12,7 +12,7 @@
 
 #define FP_POPOVER_ARROW_HEIGHT 20.0
 #define FP_POPOVER_ARROW_BASE 20.0
-#define FP_POPOVER_RADIUS 10.0
+
 
 //iVars
 @interface FPPopoverView()
@@ -36,6 +36,7 @@
 @synthesize tint = _tint;
 @synthesize draw3dBorder = _draw3dBorder;
 @synthesize border = _border;
+@synthesize radius = _radius;
 
 -(void)dealloc
 {
@@ -69,6 +70,9 @@
         
         //border
         self.border = YES;
+
+        //radius
+        self.radius = FP_POPOVER_RADIUS;
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.backgroundColor = [UIColor clearColor];
@@ -114,7 +118,15 @@
         _contentView.clipsToBounds = YES;
         self.clipsToBounds = YES;
         self.draw3dBorder = NO;
-        _contentView.layer.cornerRadius = FP_POPOVER_RADIUS;
+        _contentView.layer.cornerRadius = _radius;
+    }
+}
+
+-(void)setRadius:(CGFloat)radius
+{
+    _radius = radius;
+    if(self.border == NO) {
+        _contentView.layer.cornerRadius = _radius;
     }
 }
 
@@ -127,7 +139,7 @@
     CGFloat h = self.bounds.size.height;
     CGFloat ah = FP_POPOVER_ARROW_HEIGHT; //is the height of the triangle of the arrow
     CGFloat aw = FP_POPOVER_ARROW_BASE/2.0; //is the 1/2 of the base of the arrow
-    CGFloat radius = FP_POPOVER_RADIUS;
+    CGFloat radius = self.radius;
     CGFloat b = borderWidth;
     
     //NO BORDER

@@ -54,6 +54,7 @@
 @synthesize tint = _tint;
 @synthesize border = _border;
 @synthesize alpha = _alpha;
+@synthesize radius = _radius;
 
 -(void)addObservers
 {
@@ -115,6 +116,7 @@
         self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
         _border = YES;
+        _radius = FP_POPOVER_RADIUS;
         
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
         _touchView.backgroundColor = [UIColor clearColor];
@@ -150,16 +152,18 @@
 
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _touchView.clipsToBounds = NO;
-        
+
         //setting contentview
         _contentView.title = _viewController.title;
         _contentView.clipsToBounds = NO;
+        _contentView.radius = _radius;
         
         [_viewController addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 
+#pragma mark - Property overrides
 
 -(void)setTint:(FPPopoverTint)tint
 {
@@ -170,6 +174,15 @@
 -(FPPopoverTint)tint
 {
     return _contentView.tint;
+}
+
+-(void)setRadius:(CGFloat)radius {
+    _contentView.radius = radius;
+    [_contentView setNeedsDisplay];
+}
+
+-(CGFloat)radius {
+    return _contentView.radius;
 }
 
 #pragma mark - View lifecycle
