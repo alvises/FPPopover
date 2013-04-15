@@ -61,7 +61,6 @@
     controller.delegate = self;
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     popover.tint = FPPopoverDefaultTint;
-    popover.radius = 5.0;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
