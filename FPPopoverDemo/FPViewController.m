@@ -62,7 +62,6 @@
     popover = [[FPPopoverController alloc] initWithViewController:controller];
     popover.tint = FPPopoverDefaultTint;
     
-    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         popover.contentSize = CGSizeMake(300, 500);
@@ -78,6 +77,7 @@
     if(sender == _noArrow) {
         //no arrow
         popover.arrowDirection = FPPopoverNoArrow;
+        popover.title = nil;
         [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
     }
     else {
@@ -166,6 +166,7 @@
     popover = [[FPPopoverController alloc] initWithViewController:nc];
     popover.tint = FPPopoverDefaultTint;
     popover.contentSize = CGSizeMake(300, 500);
+    popover.radius = 5.0;
     [popover presentPopoverFromView:sender];
 
 //    CGRect nc_bar_frame = nc.navigationBar.frame;
