@@ -185,6 +185,15 @@
     return _contentView.radius;
 }
 
+-(void)setTitle:(NSString *)title {
+    _contentView.title = title;
+    [_contentView setNeedsDisplay];
+}
+
+-(NSString*)title {
+    return _contentView.title;
+}
+
 #pragma mark - View lifecycle
 
 -(void)setupView

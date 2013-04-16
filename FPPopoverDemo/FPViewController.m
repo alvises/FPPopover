@@ -77,6 +77,7 @@
     if(sender == _noArrow) {
         //no arrow
         popover.arrowDirection = FPPopoverNoArrow;
+        popover.title = nil;
         [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
     }
     else {
