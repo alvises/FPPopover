@@ -13,6 +13,70 @@
 #define FP_POPOVER_ARROW_HEIGHT 20.0
 #define FP_POPOVER_ARROW_BASE 20.0
 #define FP_POPOVER_RADIUS 10.0
+#define FP_MARGIN 10.0
+
+@interface UIView (CustomView)
+
+@property(nonatomic, assign) CGFloat left;
+@property(nonatomic, assign) CGFloat top;
+@property(nonatomic, assign, readonly) CGFloat right;
+@property(nonatomic, assign, readonly) CGFloat bottom;
+@property(nonatomic, assign) CGFloat width;
+@property(nonatomic, assign) CGFloat height;
+
+@end
+
+@implementation UIView (CustomView)
+
+- (CGFloat)left {
+    return self.frame.origin.x;
+}
+
+- (void)setLeft:(CGFloat)x {
+    CGRect frame = self.frame;
+    frame.origin.x = x;
+    self.frame = frame;
+}
+
+- (CGFloat)top {
+    return self.frame.origin.y;
+}
+
+- (void)setTop:(CGFloat)y {
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
+}
+
+- (CGFloat)right {
+    return self.frame.origin.x + self.frame.size.width;
+}
+
+- (CGFloat)bottom {
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+- (CGFloat)width {
+    return self.frame.size.width;
+}
+
+- (void)setWidth:(CGFloat)width {
+    CGRect frame = self.frame;
+    frame.size.width = width;
+    self.frame = frame;
+}
+
+- (CGFloat)height {
+    return self.frame.size.height;
+}
+
+- (void)setHeight:(CGFloat)height {
+    CGRect frame = self.frame;
+    frame.size.height = height;
+    self.frame = frame;
+}
+
+@end
 
 //iVars
 @interface FPPopoverView()
@@ -456,59 +520,53 @@
 	
     if(_arrowDirection == FPPopoverArrowDirectionUp)
     {
-        contentRect.origin = CGPointMake(10, 60);  
-        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
-        _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);    
-		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 30);
-			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
-		}
+        if (self.title == nil || self.title.length == 0)
+            _titleLabel.frame = CGRectMake(FP_MARGIN, FP_POPOVER_ARROW_HEIGHT, self.width - FP_MARGIN * 2, 0);
+        else
+            _titleLabel.frame = CGRectMake(FP_MARGIN, FP_MARGIN + FP_POPOVER_ARROW_HEIGHT, self.width - FP_MARGIN * 2, 20);
+        contentRect.origin = CGPointMake(FP_MARGIN, _titleLabel.bottom + FP_MARGIN);
+        contentRect.size = CGSizeMake(self.width - FP_MARGIN * 2, self.height - contentRect.origin.y - FP_MARGIN);
     }
     else if(_arrowDirection == FPPopoverArrowDirectionDown)
     {
-        contentRect.origin = CGPointMake(10, 40);        
-        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
-		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 10); 
-			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
-		}
+        if (self.title == nil || self.title.length == 0)
+            _titleLabel.frame = CGRectMake(FP_MARGIN, 0, self.width - FP_MARGIN * 2, 0);
+        else
+            _titleLabel.frame = CGRectMake(FP_MARGIN, FP_MARGIN, self.width - FP_MARGIN * 2, 20);
+        contentRect.origin = CGPointMake(FP_MARGIN, _titleLabel.bottom + FP_MARGIN);
+        contentRect.size = CGSizeMake(self.width - FP_MARGIN * 2, self.height - contentRect.origin.y - FP_MARGIN - FP_POPOVER_ARROW_HEIGHT);
     }
-    
     
     else if(_arrowDirection == FPPopoverArrowDirectionRight)
     {
-        contentRect.origin = CGPointMake(10, 40);        
-        contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);    
-		if (self.title==nil || self.title.length==0) {
-			 contentRect.origin = CGPointMake(10, 10);
-			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
-		}
+        if (self.title == nil || self.title.length == 0)
+            _titleLabel.frame = CGRectMake(FP_MARGIN, 0, self.width - FP_MARGIN * 2, 0);
+        else
+            _titleLabel.frame = CGRectMake(FP_MARGIN, FP_MARGIN, self.width - FP_MARGIN * 2 - FP_POPOVER_ARROW_HEIGHT, 20);
+        contentRect.origin = CGPointMake(FP_MARGIN, _titleLabel.bottom + FP_MARGIN);
+        contentRect.size = CGSizeMake(self.width - FP_MARGIN * 2 - FP_POPOVER_ARROW_HEIGHT, self.height - contentRect.origin.y - FP_MARGIN);
     }
-
+    
     else if(_arrowDirection == FPPopoverArrowDirectionLeft)
     {
-        contentRect.origin = CGPointMake(10 + FP_POPOVER_ARROW_HEIGHT, 40);        
-        contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20); 
-		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10+ FP_POPOVER_ARROW_HEIGHT, 10);
-			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
-		}
+        if (self.title == nil || self.title.length == 0)
+            _titleLabel.frame = CGRectMake(FP_MARGIN + FP_POPOVER_ARROW_HEIGHT, 0, self.width - FP_MARGIN * 2, 0);
+        else
+            _titleLabel.frame = CGRectMake(FP_MARGIN + FP_POPOVER_ARROW_HEIGHT, FP_MARGIN, self.width - FP_MARGIN * 2 - FP_POPOVER_ARROW_HEIGHT, 20);
+        contentRect.origin = CGPointMake(FP_MARGIN + FP_POPOVER_ARROW_HEIGHT, _titleLabel.bottom + FP_MARGIN);
+        contentRect.size = CGSizeMake(self.width - FP_MARGIN * 2 - FP_POPOVER_ARROW_HEIGHT, self.height - contentRect.origin.y - FP_MARGIN);
     }
     
     else if(_arrowDirection == FPPopoverNoArrow)
     {
-        contentRect.origin = CGPointMake(10, 40);
-        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
-		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 30);
-			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
-		}
+        if (self.title == nil || self.title.length == 0)
+            _titleLabel.frame = CGRectMake(FP_MARGIN, 0, self.width - FP_MARGIN * 2, 0);
+        else
+            _titleLabel.frame = CGRectMake(FP_MARGIN, FP_MARGIN, self.width - FP_MARGIN * 2, 20);
+        contentRect.origin = CGPointMake(FP_MARGIN, _titleLabel.bottom + FP_MARGIN);
+        contentRect.size = CGSizeMake(self.width - FP_MARGIN * 2, self.height - contentRect.origin.y - FP_MARGIN);
     }
-
+    
     _contentView.frame = contentRect;
     _titleLabel.text = self.title;    
     
