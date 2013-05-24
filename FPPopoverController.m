@@ -321,6 +321,7 @@
     }
      _window=nil;
      _parentView=nil;
+    
 }
 
 -(void)dismissPopoverAnimated:(BOOL)animated {
