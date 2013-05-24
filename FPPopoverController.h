@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-
-#import "ARCMacros.h"
-
 #import "FPPopoverView.h"
 #import "FPTouchView.h"
-
 
 @class FPPopoverController;
 @protocol FPPopoverControllerDelegate <NSObject>
@@ -26,12 +22,7 @@
 
 @interface FPPopoverController : UIViewController
 
-//ARC-enable and disable support
-#if __has_feature(objc_arc)
-    @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
-#else
-    @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
-#endif
+@property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
 
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
  **/
@@ -52,27 +43,26 @@
 /** @brief Popover border, default is YES **/
 @property(nonatomic, assign) BOOL border;
 
-/** @brief Initialize the popover with the content view controller
- **/
--(id)initWithViewController:(UIViewController*)viewController;
--(id)initWithViewController:(UIViewController*)viewController
+/** @brief Initialize the popover with the content view controller **/
+- (id)initWithViewController:(UIViewController*)viewController;
+- (id)initWithViewController:(UIViewController*)viewController
 				   delegate:(id<FPPopoverControllerDelegate>)delegate;
 
 /** @brief Presenting the popover from a specified view **/
--(void)presentPopoverFromView:(UIView*)fromView;
+- (void)presentPopoverFromView:(UIView*)fromView;
 
 /** @brief Presenting the popover from a specified point **/
--(void)presentPopoverFromPoint:(CGPoint)fromPoint;
+- (void)presentPopoverFromPoint:(CGPoint)fromPoint;
 
 /** @brief Dismiss the popover **/
--(void)dismissPopoverAnimated:(BOOL)animated;
+- (void)dismissPopoverAnimated:(BOOL)animated;
 
 /** @brief Dismiss the popover with completion block for post-animation cleanup **/
 typedef void (^FPPopoverCompletion)();
--(void)dismissPopoverAnimated:(BOOL)animated completion:(FPPopoverCompletion)completionBlock;
+- (void)dismissPopoverAnimated:(BOOL)animated completion:(FPPopoverCompletion)completionBlock;
 
 /** @brief Hide the shadows to get better performances **/
--(void)setShadowsHidden:(BOOL)hidden;
+- (void)setShadowsHidden:(BOOL)hidden;
 
 
 

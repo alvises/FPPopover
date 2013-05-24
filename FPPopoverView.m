@@ -6,17 +6,14 @@
 //
 //  https://github.com/50pixels/FPPopover
 
-
 #import "FPPopoverView.h"
-#import "ARCMacros.h"
 
 #define FP_POPOVER_ARROW_HEIGHT 20.0
 #define FP_POPOVER_ARROW_BASE 20.0
 #define FP_POPOVER_RADIUS 10.0
 
 //iVars
-@interface FPPopoverView()
-{
+@interface FPPopoverView() {
     //default FPPopoverArrowDirectionUp
     FPPopoverArrowDirection _arrowDirection;
     UIView *_contentView;
@@ -37,19 +34,14 @@
 @synthesize draw3dBorder = _draw3dBorder;
 @synthesize border = _border;
 
--(void)dealloc
-{
+-(void)dealloc {
 #ifdef FP_DEBUG
     NSLog(@"FPPopoverView dealloc");
 #endif
-
-    SAFE_ARC_RELEASE(_titleLabel);
-    SAFE_ARC_SUPER_DEALLOC();
 }
 
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -85,18 +77,17 @@
 }
 
 #pragma mark setters
--(void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection
-{
+
+-(void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection {
     _arrowDirection = arrowDirection;
     [self setNeedsDisplay];
 }
 
--(FPPopoverArrowDirection)arrowDirection
-{
+-(FPPopoverArrowDirection)arrowDirection {
     return _arrowDirection;
 }
--(void)addContentView:(UIView *)contentView
-{
+
+-(void)addContentView:(UIView *)contentView {
     if(_contentView != contentView)
     {
         [_contentView removeFromSuperview];
@@ -106,8 +97,7 @@
     [self setupViews];
 }
 
--(void)setBorder:(BOOL)border
-{
+-(void)setBorder:(BOOL)border {
     _border = border;
     //NO BORDER
     if(self.border == NO) {
@@ -121,8 +111,7 @@
 #pragma mark drawing
 
 //the content with the arrow
--(CGPathRef)newContentPathWithBorderWidth:(CGFloat)borderWidth arrowDirection:(FPPopoverArrowDirection)direction
-{
+-(CGPathRef)newContentPathWithBorderWidth:(CGFloat)borderWidth arrowDirection:(FPPopoverArrowDirection)direction {
     CGFloat w = self.bounds.size.width;
     CGFloat h = self.bounds.size.height;
     CGFloat ah = FP_POPOVER_ARROW_HEIGHT; //is the height of the triangle of the arrow
@@ -262,10 +251,7 @@
     return path;
 }
 
-
-
--(CGGradientRef)newGradient
-{
+-(CGGradientRef)newGradient {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 
     // make a gradient
@@ -349,10 +335,7 @@
     return gradient;
 }
 
-
-
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
 
@@ -449,8 +432,7 @@
     CGContextRestoreGState(ctx);
 }
 
--(void)setupViews
-{
+-(void)setupViews {
     //content posizion and size
     CGRect contentRect = _contentView.frame;
 	
@@ -514,22 +496,19 @@
     
 }
 
-
--(void)layoutSubviews
-{
+-(void)layoutSubviews {
     [super layoutSubviews];
     [self setupViews];
 }
 
--(void)setFrame:(CGRect)frame
-{
+-(void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     [self setupViews];
 }
 
--(void)setBounds:(CGRect)bounds
-{
+-(void)setBounds:(CGRect)bounds {
     [super setBounds:bounds];
     [self setupViews];
 }
+
 @end

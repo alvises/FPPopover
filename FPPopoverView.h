@@ -50,9 +50,9 @@ typedef enum {
 @property(nonatomic,assign) BOOL draw3dBorder;
 @property(nonatomic,assign) BOOL border; //default YES
 
--(void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection;
--(FPPopoverArrowDirection)arrowDirection;
+- (void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection;
+- (FPPopoverArrowDirection)arrowDirection;
 
--(void)addContentView:(UIView*)contentView;
+- (void)addContentView:(UIView*)contentView;
 
 @end
