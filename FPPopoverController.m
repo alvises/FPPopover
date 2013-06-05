@@ -117,8 +117,7 @@
             [bself dismissPopoverAnimated:YES];
         }];
         
-        self.contentSize = CGSizeMake(113, ([[KWApp currentApp].tagMenuItemOrderedSet count]+1)*33+8); //default size
-        
+        self.contentSize = CGSizeMake(113, 300);
         _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0,
                                                                        self.contentSize.width, self.contentSize.height)];
         
@@ -144,7 +143,6 @@
     }
     return self;
 }
-
 
 - (void)setTint:(FPPopoverTint)tint {
     _contentView.tint = tint;
