@@ -116,11 +116,11 @@
         [_touchView setTouchedOutsideBlock:^{
             [bself dismissPopoverAnimated:YES];
         }];
-
-        self.contentSize = CGSizeMake(200, 300); //default size
-
-        _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0, 
-                                              self.contentSize.width, self.contentSize.height)];
+        
+        self.contentSize = CGSizeMake(113, ([[KWApp currentApp].tagMenuItemOrderedSet count]+1)*33+8); //default size
+        
+        _contentView = [[FPPopoverView alloc] initWithFrame:CGRectMake(0, 0,
+                                                                       self.contentSize.width, self.contentSize.height)];
         
         _viewController = viewController;
         
@@ -129,6 +129,8 @@
         [_contentView addContentView:_viewController.view];
         _viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+
         self.view.clipsToBounds = NO;
 
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -434,11 +436,11 @@
     
     //need to moved left ? 
     if (r.origin.x + r.size.width > [self parentWidth]) {
-        r.origin.x = [self parentWidth] - r.size.width;
+        r.origin.x = [self parentWidth] - r.size.width - 10.0;
     }
     //need to moved right ?
     else if(r.origin.x < 0) {
-        r.origin.x = 0;
+        r.origin.x = 10.0;
     }
     
     //need to move up?
