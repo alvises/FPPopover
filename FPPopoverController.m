@@ -16,7 +16,6 @@
     FPPopoverView *_contentView;
     UIViewController *_viewController;
     UIWindow *_window;
-    UIView *_parentView;
     UIView *_fromView;
     UIDeviceOrientation _deviceOrientation;
     
@@ -64,6 +63,7 @@
      selector:@selector(deviceOrientationDidChange:) 
      name:@"UIDeviceOrientationDidChangeNotification" 
      object:nil]; 
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
@@ -602,5 +602,8 @@
     _alpha = alpha;
     self.view.alpha = alpha;
 }
+
+
+
 
 @end

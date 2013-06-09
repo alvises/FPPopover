@@ -11,6 +11,8 @@
 
 #import "FPPopoverController.h"
 #import "FPDemoTableViewController.h"
+
+
 @interface FPViewController ()
 
 @end
@@ -24,7 +26,18 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
     
+    //KEYBOARD OBSERVERS
+    /************************/
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    /************************/
 }
 
 - (void)viewDidUnload
@@ -59,9 +72,9 @@
     //the controller we want to present as a popover
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
     controller.delegate = self;
-    popover = [[FPPopoverController alloc] initWithViewController:controller];
+    popover = [[FPPopoverKeyboardResponsiveController alloc] initWithViewController:controller];
     popover.tint = FPPopoverDefaultTint;
-    
+    popover.keyboardHeight = _keyboardHeight;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
@@ -163,7 +176,7 @@
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:controller];
     SAFE_ARC_RELEASE(controller); controller=nil;
 
-    popover = [[FPPopoverController alloc] initWithViewController:nc];
+    popover = [[FPPopoverKeyboardResponsiveController alloc] initWithViewController:nc];
     popover.tint = FPPopoverDefaultTint;
     popover.contentSize = CGSizeMake(300, 500);
     [popover presentPopoverFromView:sender];
@@ -187,4 +200,21 @@
 }
 
 
+-(void)keyboardWillShow:(NSNotification*)notification {
+    NSDictionary *info = notification.userInfo;
+    CGRect keyboardRect = [[info valueForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    _keyboardHeight = keyboardRect.size.height;
+
+    //if the popover is present will be refreshed
+    popover.keyboardHeight = _keyboardHeight;
+    [popover setupView];
+}
+
+-(void)keyboardWillHide:(NSNotification*)notification {
+    _keyboardHeight = 0.0;
+    
+    //if the popover is present will be refreshed
+    popover.keyboardHeight = _keyboardHeight;
+    [popover setupView];    
+}
 @end

@@ -25,6 +25,7 @@
 		186C438D1538512200502D64 /* FPViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186C438B1538512200502D64 /* FPViewController_iPad.xib */; };
 		186C439B153851F600502D64 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 186C439A153851F600502D64 /* Readme.md */; };
 		186C43A115386E2200502D64 /* DemoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43A015386E2200502D64 /* DemoTableController.m */; };
+		18C427041764920D001D4A24 /* FPPopoverKeyboardResponsiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C427031764920D001D4A24 /* FPPopoverKeyboardResponsiveController.m */; };
 		18D8FA31155050F0005E2222 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186C43751538512100502D64 /* Foundation.framework */; };
 		18D8FA3B155050FE005E2222 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43951538513B00502D64 /* FPPopoverController.m */; };
 		18D8FA3C155050FE005E2222 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C43971538513B00502D64 /* FPPopoverView.m */; };
@@ -88,6 +89,8 @@
 		186C43A015386E2200502D64 /* DemoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableController.m; sourceTree = "<group>"; };
 		186C43AA153CAD1000502D64 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		186C43AB153CAD1000502D64 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
+		18C427021764920D001D4A24 /* FPPopoverKeyboardResponsiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverKeyboardResponsiveController.h; sourceTree = "<group>"; };
+		18C427031764920D001D4A24 /* FPPopoverKeyboardResponsiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverKeyboardResponsiveController.m; sourceTree = "<group>"; };
 		18D8FA30155050F0005E2222 /* libfppopover.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfppopover.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D8FA34155050F0005E2222 /* fppopover-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fppopover-Prefix.pch"; sourceTree = "<group>"; };
 		18D8FA44155051BA005E2222 /* background_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_iPad.png; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				186C43861538512200502D64 /* FPViewController.m */,
 				18F357251584E6E700AD4F07 /* FPDemoTableViewController.h */,
 				18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */,
+				18C427021764920D001D4A24 /* FPPopoverKeyboardResponsiveController.h */,
+				18C427031764920D001D4A24 /* FPPopoverKeyboardResponsiveController.m */,
 				186C43881538512200502D64 /* FPViewController_iPhone.xib */,
 				186C438B1538512200502D64 /* FPViewController_iPad.xib */,
 				186C437A1538512100502D64 /* Supporting Files */,
@@ -441,6 +446,7 @@
 				186C43871538512200502D64 /* FPViewController.m in Sources */,
 				186C43A115386E2200502D64 /* DemoTableController.m in Sources */,
 				18F357271584E6E700AD4F07 /* FPDemoTableViewController.m in Sources */,
+				18C427041764920D001D4A24 /* FPPopoverKeyboardResponsiveController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

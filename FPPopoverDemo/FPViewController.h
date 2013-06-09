@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "FPPopoverController.h"
 #import "ARCMacros.h"
+
+#import "FPPopoverKeyboardResponsiveController.h"
+
 @interface FPViewController : UIViewController <FPPopoverControllerDelegate>
 {
-    FPPopoverController *popover;
+    FPPopoverKeyboardResponsiveController *popover;
+    CGFloat _keyboardHeight;
 }
 //ARC-enable and disable support
 #if __has_feature(objc_arc)

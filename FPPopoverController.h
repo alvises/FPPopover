@@ -16,6 +16,7 @@
 
 
 @class FPPopoverController;
+
 @protocol FPPopoverControllerDelegate <NSObject>
 
 @optional
@@ -25,7 +26,9 @@
 @end
 
 @interface FPPopoverController : UIViewController
-
+{
+    UIView *_parentView;
+}
 //ARC-enable and disable support
 #if __has_feature(objc_arc)
     @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
@@ -74,7 +77,8 @@ typedef void (^FPPopoverCompletion)();
 /** @brief Hide the shadows to get better performances **/
 -(void)setShadowsHidden:(BOOL)hidden;
 
-
+/** @brief Refresh popover **/
+-(void)setupView;
 
 
 @end
