@@ -27,12 +27,17 @@
 @end
 
 
-@implementation FPPopoverView
+@implementation FPPopoverView {
+    CGFloat _bgColors[8];
+    CGFloat _borderColor[4];
+}
 @synthesize title;
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
 @synthesize draw3dBorder = _draw3dBorder;
 @synthesize border = _border;
+@synthesize borderWidth;
+@synthesize bgAlpha;
 
 -(void)dealloc {
 #ifdef FP_DEBUG
@@ -40,6 +45,21 @@
 #endif
 }
 
+- (CGFloat *)bgColors{
+    return _bgColors;
+}
+
+- (void)setBgColors:(CGFloat *)bgColors {
+    memcpy(_bgColors, bgColors, 8 * sizeof *_bgColors);
+}
+
+- (CGFloat *)borderColor{
+    return _borderColor;
+}
+
+- (void)setBorderColor:(CGFloat *)borderColor {
+    memcpy(_borderColor, borderColor, 4 * sizeof *_borderColor);
+}
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -61,6 +81,12 @@
         
         //border
         self.border = YES;
+        self.borderWidth = 1.0;
+        self.borderColor[0] = 0.7;
+        self.borderColor[1] = 0.7;
+        self.borderColor[2] = 0.7;
+        self.borderColor[3] = 1.0;        
+        self.bgAlpha = 1.0;
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.backgroundColor = [UIColor clearColor];
@@ -304,7 +330,6 @@
             colors[3] = colors[7] = 1.0;
         }        
     }
-    
     else if(self.tint == FPPopoverPlainBlackTint)
     {
         colors[0] = colors[1] = colors[2] = colors[4] = colors[5] = colors[6] = 0.0;
@@ -331,6 +356,16 @@
         colors[0] = colors[1] = colors[2] = 1.0;
         colors[0] = colors[1] = colors[2] = 1.0;
         colors[3] = colors[7] = 1.0;
+    }
+    else if(self.tint == FPPopoverCustomTint){
+        if(self.bgColors == nil){
+            self.tint = FPPopoverDefaultTint;
+        }
+        else{
+            for(int n=0;n<=7;n++){
+                colors[n] = self.bgColors[n];
+            }
+        }
     }
     
 
@@ -372,7 +407,7 @@
     }
 
 
-    CGContextSetAlpha(ctx, 0.8);
+    CGContextSetAlpha(ctx, self.bgAlpha);
     CGContextDrawLinearGradient(ctx, gradient, start, end, 2);
     
     CGGradientRelease(gradient);
@@ -407,8 +442,8 @@
     //internal border
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, contentPath);
-    CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
-    CGContextSetLineWidth(ctx, 0);
+    CGContextSetRGBStrokeColor(ctx, self.borderColor[0], self.borderColor[1], self.borderColor[2], self.borderColor[3]);
+    CGContextSetLineWidth(ctx, self.borderWidth);
     CGContextSetLineCap(ctx,kCGLineCapRound);
     CGContextSetLineJoin(ctx, kCGLineJoinRound);
     CGContextStrokePath(ctx);
@@ -418,8 +453,9 @@
     CGPathRef externalBorderPath = [self newContentPathWithBorderWidth:1.0f arrowDirection:_arrowDirection];
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, externalBorderPath);
-    CGContextSetRGBStrokeColor(ctx, 1.0, 1.0, 1.0, 1.0);
-    CGContextSetLineWidth(ctx, 1);
+    CGContextSetRGBStrokeColor(ctx, self.borderColor[0], self.borderColor[1], self.borderColor[2], self.borderColor[3]);
+
+    CGContextSetLineWidth(ctx, 0);
     CGContextSetLineCap(ctx,kCGLineCapRound);
     CGContextSetLineJoin(ctx, kCGLineJoinRound);
     CGContextStrokePath(ctx);

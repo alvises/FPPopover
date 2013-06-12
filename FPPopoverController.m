@@ -45,7 +45,10 @@
 
 @end
 
-@implementation FPPopoverController
+@implementation FPPopoverController{
+    CGFloat _borderColor[4];
+    CGFloat _bgColors[8];
+}
 
 @synthesize delegate = _delegate;
 @synthesize contentView = _contentView;
@@ -56,6 +59,8 @@
 @synthesize tint = _tint;
 @synthesize border = _border;
 @synthesize alpha = _alpha;
+@synthesize borderWidth = _borderWidth;
+@synthesize bgAlpha = _bgAlpha;
 
 - (void)addObservers {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
@@ -105,6 +110,12 @@
         self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
         _border = YES;
+        self.borderWidth = 1.0;
+        self.borderColor[0] = 0.7;
+        self.borderColor[1] = 0.7;
+        self.borderColor[2] = 0.7;
+        self.borderColor[3] = 1.0;
+        self.bgAlpha = 1.0;
         
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
         _touchView.backgroundColor = [UIColor clearColor];
@@ -198,6 +209,11 @@
 
 - (void)presentPopoverFromPoint:(CGPoint)fromPoint {
     self.origin = fromPoint;
+    
+    _contentView.borderWidth = self.borderWidth;
+    _contentView.bgAlpha = self.bgAlpha;
+    _contentView.bgColors = self.bgColors;
+    _contentView.borderColor = self.borderColor;
     
     //NO BORDER
     if(self.border == NO) {
@@ -510,8 +526,26 @@
 #pragma mark Transparency
 
 - (void)setAlpha:(CGFloat)alpha {
-    _alpha = alpha;
+    _alpha = alpha; 
     self.view.alpha = alpha;
 }
+
+
+- (CGFloat *)bgColors{
+    return _bgColors;
+}
+
+- (void)setBgColors:(CGFloat *)bgColors {
+    memcpy(_bgColors, bgColors, 8 * sizeof *_bgColors);
+}
+
+- (CGFloat *)borderColor{
+    return _borderColor;
+}
+
+- (void)setBorderColor:(CGFloat *)borderColor {
+    memcpy(_borderColor, borderColor, 4 * sizeof *_borderColor);
+}
+
 
 @end

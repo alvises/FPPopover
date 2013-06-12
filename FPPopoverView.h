@@ -37,6 +37,7 @@ typedef enum {
     FPPopoverWhiteTint,
     FPPopoverBlackTint,
     FPPopoverPlainBlackTint,
+    FPPopoverCustomTint,
     FPPopoverLightGrayTint,
     FPPopoverGreenTint,
     FPPopoverRedTint,
@@ -50,6 +51,10 @@ typedef enum {
 @property(nonatomic,assign) FPPopoverTint tint;
 @property(nonatomic,assign) BOOL draw3dBorder;
 @property(nonatomic,assign) BOOL border; //default YES
+@property CGFloat borderWidth;
+@property CGFloat bgAlpha;
+@property (nonatomic) CGFloat *borderColor;
+@property (nonatomic) CGFloat *bgColors;
 
 - (void)setArrowDirection:(FPPopoverArrowDirection)arrowDirection;
 - (FPPopoverArrowDirection)arrowDirection;
