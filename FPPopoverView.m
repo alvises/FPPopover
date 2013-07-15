@@ -303,14 +303,14 @@
     {
         if(_arrowDirection == FPPopoverArrowDirectionUp)
         {
-            colors[0] = colors[1] = colors[2] = 0.8;
-            colors[4] = colors[5] = colors[6] = 0.3;
+            colors[0] = colors[1] = colors[2] = 0.89;
+            colors[4] = colors[5] = colors[6] = 0.98;
             colors[3] = colors[7] = 1.0;
         }
         else
         {
-            colors[0] = colors[1] = colors[2] = 0.6;
-            colors[4] = colors[5] = colors[6] = 0.1;
+            colors[0] = colors[1] = colors[2] = 0.98;
+            colors[4] = colors[5] = colors[6] = 0.89;
             colors[3] = colors[7] = 1.0;
         }        
     }
