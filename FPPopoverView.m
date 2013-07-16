@@ -118,13 +118,13 @@
 #pragma mark drawing
 
 //the content with the arrow
--(CGPathRef)newContentPathWithBorderWidth:(CGFloat)eBorderWidth arrowDirection:(FPPopoverArrowDirection)direction {
+-(CGPathRef)newContentPathWithBorderWidth:(CGFloat)aBorderWidth arrowDirection:(FPPopoverArrowDirection)direction {
     CGFloat w = self.bounds.size.width;
     CGFloat h = self.bounds.size.height;
     CGFloat ah = FP_POPOVER_ARROW_HEIGHT; //is the height of the triangle of the arrow
     CGFloat aw = FP_POPOVER_ARROW_BASE/2.0; //is the 1/2 of the base of the arrow
     CGFloat radius = FP_POPOVER_RADIUS;
-    CGFloat b = eBorderWidth;
+    CGFloat b = aBorderWidth;
     
     //NO BORDER
     if(self.border == NO) {
