@@ -45,10 +45,7 @@
 
 @end
 
-@implementation FPPopoverController{
-    CGFloat _borderColor[4];
-    CGFloat _bgColors[8];
-}
+@implementation FPPopoverController
 
 @synthesize delegate = _delegate;
 @synthesize contentView = _contentView;
@@ -61,6 +58,9 @@
 @synthesize alpha = _alpha;
 @synthesize borderWidth = _borderWidth;
 @synthesize bgAlpha = _bgAlpha;
+@synthesize borderColor;
+@synthesize bgColorBottom;
+@synthesize bgColorTop;
 
 - (void)addObservers {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
@@ -111,10 +111,10 @@
         self.view.userInteractionEnabled = YES;
         _border = YES;
         self.borderWidth = 1.0;
-        self.borderColor[0] = 0.7;
-        self.borderColor[1] = 0.7;
-        self.borderColor[2] = 0.7;
-        self.borderColor[3] = 1.0;
+        self.borderColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        self.bgColorTop = [UIColor colorWithWhite:0.3 alpha:1.0];
+        self.bgColorBottom = [UIColor colorWithWhite:0.4 alpha:1.0];
+        
         self.bgAlpha = 1.0;
         
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
@@ -212,8 +212,9 @@
     
     _contentView.borderWidth = self.borderWidth;
     _contentView.bgAlpha = self.bgAlpha;
-    _contentView.bgColors = self.bgColors;
     _contentView.borderColor = self.borderColor;
+    _contentView.bgColorBottom = self.bgColorBottom;
+    _contentView.bgColorTop = self.bgColorTop;
     
     //NO BORDER
     if(self.border == NO) {
@@ -515,6 +516,13 @@
     }
 }
 
+- (void) setTopColor:(UIColor*)topColor bottom:(UIColor*)bottomColor{
+    if(topColor && bottomColor){
+        self.bgColorBottom = bottomColor;
+        self.bgColorTop = topColor;
+    }
+}
+
 #pragma mark 3D Border
 
 - (void)setBorder:(BOOL)border {
@@ -528,23 +536,6 @@
 - (void)setAlpha:(CGFloat)alpha {
     _alpha = alpha; 
     self.view.alpha = alpha;
-}
-
-
-- (CGFloat *)bgColors{
-    return _bgColors;
-}
-
-- (void)setBgColors:(CGFloat *)bgColors {
-    memcpy(_bgColors, bgColors, 8 * sizeof *_bgColors);
-}
-
-- (CGFloat *)borderColor{
-    return _borderColor;
-}
-
-- (void)setBorderColor:(CGFloat *)borderColor {
-    memcpy(_borderColor, borderColor, 4 * sizeof *_borderColor);
 }
 
 

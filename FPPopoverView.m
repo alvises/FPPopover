@@ -27,10 +27,8 @@
 @end
 
 
-@implementation FPPopoverView {
-    CGFloat _bgColors[8];
-    CGFloat _borderColor[4];
-}
+@implementation FPPopoverView
+
 @synthesize title;
 @synthesize relativeOrigin;
 @synthesize tint = _tint;
@@ -38,27 +36,14 @@
 @synthesize border = _border;
 @synthesize borderWidth;
 @synthesize bgAlpha;
+@synthesize borderColor;
+@synthesize bgColorTop;
+@synthesize bgColorBottom;
 
 -(void)dealloc {
 #ifdef FP_DEBUG
     NSLog(@"FPPopoverView dealloc");
 #endif
-}
-
-- (CGFloat *)bgColors{
-    return _bgColors;
-}
-
-- (void)setBgColors:(CGFloat *)bgColors {
-    memcpy(_bgColors, bgColors, 8 * sizeof *_bgColors);
-}
-
-- (CGFloat *)borderColor{
-    return _borderColor;
-}
-
-- (void)setBorderColor:(CGFloat *)borderColor {
-    memcpy(_borderColor, borderColor, 4 * sizeof *_borderColor);
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -81,11 +66,7 @@
         
         //border
         self.border = YES;
-        self.borderWidth = 1.0;
-        self.borderColor[0] = 0.7;
-        self.borderColor[1] = 0.7;
-        self.borderColor[2] = 0.7;
-        self.borderColor[3] = 1.0;        
+        self.borderWidth = 1.0;  
         self.bgAlpha = 1.0;
         
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -358,13 +339,12 @@
         colors[3] = colors[7] = 1.0;
     }
     else if(self.tint == FPPopoverCustomTint){
-        if(self.bgColors == nil){
+        if(self.bgColorTop == nil || self.bgColorBottom == nil){
             self.tint = FPPopoverDefaultTint;
         }
         else{
-            for(int n=0;n<=7;n++){
-                colors[n] = self.bgColors[n];
-            }
+                [self.bgColorTop getRed:&colors[0] green:&colors[1] blue:&colors[2] alpha:&colors[3]];
+                [self.bgColorBottom getRed:&colors[4] green:&colors[5] blue:&colors[6] alpha:&colors[7]];
         }
     }
     
@@ -442,7 +422,9 @@
     //internal border
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, contentPath);
-    CGContextSetRGBStrokeColor(ctx, self.borderColor[0], self.borderColor[1], self.borderColor[2], self.borderColor[3]);
+    const CGFloat* components = CGColorGetComponents(self.borderColor.CGColor);
+    
+    CGContextSetRGBStrokeColor(ctx, components[0], components[1], components[2], components[3]);
     CGContextSetLineWidth(ctx, self.borderWidth);
     CGContextSetLineCap(ctx,kCGLineCapRound);
     CGContextSetLineJoin(ctx, kCGLineJoinRound);
@@ -453,7 +435,7 @@
     CGPathRef externalBorderPath = [self newContentPathWithBorderWidth:1.0f arrowDirection:_arrowDirection];
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, externalBorderPath);
-    CGContextSetRGBStrokeColor(ctx, self.borderColor[0], self.borderColor[1], self.borderColor[2], self.borderColor[3]);
+    CGContextSetRGBStrokeColor(ctx, components[0], components[1], components[2], components[3]);
 
     CGContextSetLineWidth(ctx, 0);
     CGContextSetLineCap(ctx,kCGLineCapRound);

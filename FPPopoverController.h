@@ -38,8 +38,9 @@
 @property(nonatomic,assign) CGFloat alpha;
 @property CGFloat borderWidth;
 @property CGFloat bgAlpha;
-@property (nonatomic) CGFloat *borderColor;
-@property (nonatomic) CGFloat *bgColors;
+@property (nonatomic) UIColor *borderColor;
+@property (nonatomic) UIColor* bgColorTop;
+@property (nonatomic) UIColor* bgColorBottom;
 
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
@@ -51,6 +52,8 @@
 - (id)initWithViewController:(UIViewController*)viewController;
 - (id)initWithViewController:(UIViewController*)viewController
 				   delegate:(id<FPPopoverControllerDelegate>)delegate;
+
+- (void) setTopColor:(UIColor*)topColor bottom:(UIColor*)bottomColor;
 
 /** @brief Presenting the popover from a specified view **/
 - (void)presentPopoverFromView:(UIView*)fromView;
