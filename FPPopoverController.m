@@ -145,6 +145,8 @@
         [_touchView addSubview:_contentView];
         
         [_contentView addContentView:_viewController.view];
+        [self addChildViewController:_viewController];
+        
         _viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.clipsToBounds = NO;
@@ -244,9 +246,10 @@
         //keep the first subview
         if(_window.subviews.count > 0)
         {
+            [_viewController beginAppearanceTransition:YES animated:NO];
             _parentView = [_window.subviews objectAtIndex:0];
             [_parentView addSubview:self.view];
-            [_viewController viewDidAppear:YES];
+            [_viewController endAppearanceTransition];
         }
         
    }

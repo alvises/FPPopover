@@ -23,6 +23,14 @@
     self.title = @"Popover Title";
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
