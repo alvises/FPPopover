@@ -11,6 +11,7 @@
 
 #import "FPPopoverController.h"
 #import "FPDemoTableViewController.h"
+#import "UIBarButtonItem+FPPopover.h"
 
 
 @interface FPViewController ()
@@ -24,7 +25,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
+    UIBarButtonItem *barButtonSample = [[UIBarButtonItem alloc]initWithTitle:@"BarButtonSample"
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(popover:)];
+    self.navigationItem.rightBarButtonItem = barButtonSample;
     
     //KEYBOARD OBSERVERS
     /************************/
@@ -92,6 +98,9 @@
         //no arrow
         popover.arrowDirection = FPPopoverNoArrow;
         [popover presentPopoverFromPoint: CGPointMake(self.view.center.x, self.view.center.y - popover.contentSize.height/2)];
+    }
+    else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        [popover presentPopoverFromBarButtonItem:sender];
     }
     else {
         //sender is the UIButton view

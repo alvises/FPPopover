@@ -67,6 +67,10 @@
 /** @brief Presenting the popover from a specified point **/
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint;
 
+/** @brief PResenting the popover from uibarbuttonitem  **/
+- (void)presentPopoverFromBarButtonItem:(UIBarButtonItem*)barButtonItem;
+
+
 /** @brief Dismiss the popover **/
 -(void)dismissPopoverAnimated:(BOOL)animated;
 

@@ -46,6 +46,7 @@
 		18EF6DEB154ED27D005AB1DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DE9154ED27D005AB1DD /* background.png */; };
 		18EF6DEC154ED27D005AB1DD /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EF6DEA154ED27D005AB1DD /* background@2x.png */; };
 		18F357271584E6E700AD4F07 /* FPDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */; };
+		EDF3CDC217C512FF000331D4 /* UIBarButtonItem+FPPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF3CDC117C512FF000331D4 /* UIBarButtonItem+FPPopover.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		18EF6DEA154ED27D005AB1DD /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		18F357251584E6E700AD4F07 /* FPDemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPDemoTableViewController.h; sourceTree = "<group>"; };
 		18F357261584E6E700AD4F07 /* FPDemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPDemoTableViewController.m; sourceTree = "<group>"; };
+		EDF3CDC017C512FF000331D4 /* UIBarButtonItem+FPPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+FPPopover.h"; sourceTree = "<group>"; };
+		EDF3CDC117C512FF000331D4 /* UIBarButtonItem+FPPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+FPPopover.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +222,8 @@
 				18EF6DD9154ECC72005AB1DD /* Resources */,
 				186C439F15386E2200502D64 /* DemoTableController.h */,
 				186C43A015386E2200502D64 /* DemoTableController.m */,
+				EDF3CDC017C512FF000331D4 /* UIBarButtonItem+FPPopover.h */,
+				EDF3CDC117C512FF000331D4 /* UIBarButtonItem+FPPopover.m */,
 			);
 			path = FPPopoverDemo;
 			sourceTree = "<group>";
@@ -447,6 +452,7 @@
 				186C43A115386E2200502D64 /* DemoTableController.m in Sources */,
 				18F357271584E6E700AD4F07 /* FPDemoTableViewController.m in Sources */,
 				18C427041764920D001D4A24 /* FPPopoverKeyboardResponsiveController.m in Sources */,
+				EDF3CDC217C512FF000331D4 /* UIBarButtonItem+FPPopover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

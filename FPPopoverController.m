@@ -8,6 +8,7 @@
 
 
 #import "FPPopoverController.h"
+#import "UIBarButtonItem+FPPopover.h"
 
 //ivars
 @interface FPPopoverController()
@@ -303,6 +304,12 @@
     }
 
     return p;
+}
+
+- (void)presentPopoverFromBarButtonItem:(UIBarButtonItem*)barButtonItem {
+    UIView *lastView = [self lastView];
+    CGRect rect = [barButtonItem frameInView:lastView];
+    [self presentPopoverFromPoint:CGPointMake(rect.origin.x + rect.size.width/2, rect.size.height + rect.origin.y)];
 }
 
 -(void)presentPopoverFromView:(UIView*)fromView
@@ -601,6 +608,17 @@
 {
     _alpha = alpha;
     self.view.alpha = alpha;
+}
+
+#pragma mark - View Helpers
+
+- (UIView*)lastView {
+    UIWindow *w = [[UIApplication sharedApplication] keyWindow];
+    if (w.subviews.count > 0) {
+        return [w.subviews objectAtIndex:0];
+    } else {
+        return w;
+    }
 }
 
 
