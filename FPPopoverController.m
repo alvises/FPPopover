@@ -279,7 +279,8 @@
 
 -(CGPoint)originFromView:(UIView*)fromView
 {
-    CGPoint p;
+    CGPoint p = CGPointZero;
+    
     if([_contentView arrowDirection] == FPPopoverArrowDirectionUp ||
        [_contentView arrowDirection] == FPPopoverNoArrow)
     {
@@ -289,7 +290,7 @@
     else if([_contentView arrowDirection] == FPPopoverArrowDirectionDown)
     {
         p.x = fromView.frame.origin.x + fromView.frame.size.width/2.0;
-        p.y = fromView.frame.origin.y;        
+        p.y = fromView.frame.origin.y;
     }
     else if([_contentView arrowDirection] == FPPopoverArrowDirectionLeft)
     {
@@ -362,41 +363,15 @@
 {
 	_deviceOrientation = [UIDevice currentDevice].orientation;
 
-	BOOL shouldResetView = NO;
-
     //iOS6 has a new orientation implementation.
     //we ask to reset the view if is >= 6.0
-	if ([_viewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)] &&
-        [[[UIDevice currentDevice] systemVersion] floatValue] < 6.0)
+	if (![_viewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)] ||
+        [[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
 	{
-		UIInterfaceOrientation interfaceOrientation;
-		switch (_deviceOrientation)
-		{
-			case UIDeviceOrientationLandscapeLeft:
-				interfaceOrientation = UIInterfaceOrientationLandscapeLeft;
-				break;
-			case UIDeviceOrientationLandscapeRight:
-				interfaceOrientation = UIInterfaceOrientationLandscapeRight;
-				break;
-			case UIDeviceOrientationPortrait:
-				interfaceOrientation = UIInterfaceOrientationPortrait;
-				break;
-			case UIDeviceOrientationPortraitUpsideDown:
-				interfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
-				break;
-			default:
-				return;	// just ignore face up / face down, etc.
-		}
-	}
-	else
-	{
-		shouldResetView = YES;
-	}
-
-	if (shouldResetView)
-		[UIView animateWithDuration:0.2 animations:^{
-			[self setupView]; 
+        [UIView animateWithDuration:0.2 animations:^{
+			[self setupView];
 		}];
+	}
 }
 
 -(void)willPresentNewPopover:(NSNotification*)notification
@@ -428,14 +403,11 @@
     // thanks @Niculcea
     // If we presentFromPoint with _fromView nil will calculate based on self.orgin with 2x2 size.
     // Fix for presentFromPoint from avolovoy's FPPopover fork
-    float width = 2.0f;
-    float height = 2.0f;
+    
     CGPoint p = CGPointMake(self.origin.x, self.origin.y);
     
     if (v != nil) {
         p = [v.superview convertPoint:v.frame.origin toView:self.view];
-        width = v.frame.size.width;
-        height = v.frame.size.height;
     }
     
     
