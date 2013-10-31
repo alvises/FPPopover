@@ -124,7 +124,7 @@
         
 #if __has_feature(objc_arc)
         //ARC on
-        id bself = self;
+        __weak id bself = self;
 #else
         //ARC off
         __block id bself = self;
