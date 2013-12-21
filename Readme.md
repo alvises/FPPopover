@@ -1,3 +1,7 @@
+New Plans, please read!
+========
+<a href="http://www.gingerbeard.me/2013/12/21/ios-new-plans-for-fppopover-please-leave-your-opinion/"> New Plans article/discussion</a>
+
 FPPopover
 ========
 This library provides an alternative to the native iOS UIPopoverController, 
