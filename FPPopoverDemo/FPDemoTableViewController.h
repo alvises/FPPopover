@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DemoTableController.h"
 
-@interface FPDemoTableViewController : UITableViewController
+
+@interface FPDemoTableViewController : UITableViewController<DemoTableViewControllerDelegate>
 
 @end
