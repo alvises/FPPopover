@@ -1,6 +1,6 @@
-New Plans, please read!
+How To
 ========
-<a href="http://www.gingerbeard.me/2013/12/21/ios-new-plans-for-fppopover-please-leave-your-opinion/"> New Plans article/discussion</a>
+<a href="http://blog.poeticoding.com/fppopover-a-customizable-uipopovercontroller-for-iphone-and-ipad/">FPPopover, a customizable UIPopoverController for iPhone and iPad</a>
 
 FPPopover
 ========
