@@ -243,7 +243,11 @@
         //keep the first subview
         if(_window.subviews.count > 0)
         {
-            _parentView = [_window.subviews objectAtIndex:0];
+            // add to the last UIView that is not a textview (work around for DCIntrospect)
+            [_window.subviews enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(UIView * view, NSUInteger idx, BOOL *stop) {
+                _parentView = view;
+                *stop = ![view isKindOfClass:[UITextView class]] && view.alpha != 0;
+            }];
             [_parentView addSubview:self.view];
             [_viewController viewDidAppear:YES];
         }
