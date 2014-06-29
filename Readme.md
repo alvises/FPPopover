@@ -32,7 +32,7 @@ To use FPPopoverController you only need
 
 * FPPopoverController.m and .h    (the controller)
 * FPPopoverView.m and .h
-* FPTouchView.m and .m
+* FPTouchView.m and .h
 * ARCMacros.h  
 
 That's it.
