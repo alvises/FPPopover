@@ -8,6 +8,7 @@
 
 
 #import "FPPopoverController.h"
+#import "UIBarButtonItem+FPPopover.h"
 
 //ivars
 @interface FPPopoverController()
@@ -144,6 +145,8 @@
         [_touchView addSubview:_contentView];
         
         [_contentView addContentView:_viewController.view];
+        [self addChildViewController:_viewController];
+        
         _viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.clipsToBounds = NO;
@@ -243,9 +246,10 @@
         //keep the first subview
         if(_window.subviews.count > 0)
         {
+            [_viewController beginAppearanceTransition:YES animated:NO];
             _parentView = [_window.subviews objectAtIndex:0];
             [_parentView addSubview:self.view];
-            [_viewController viewDidAppear:YES];
+            [_viewController endAppearanceTransition];
         }
         
    }
@@ -303,6 +307,12 @@
     }
 
     return p;
+}
+
+- (void)presentPopoverFromBarButtonItem:(UIBarButtonItem*)barButtonItem {
+    UIView *lastView = [self lastView];
+    CGRect rect = [barButtonItem frameInView:lastView];
+    [self presentPopoverFromPoint:CGPointMake(rect.origin.x + rect.size.width/2, rect.size.height + rect.origin.y)];
 }
 
 -(void)presentPopoverFromView:(UIView*)fromView
@@ -601,6 +611,17 @@
 {
     _alpha = alpha;
     self.view.alpha = alpha;
+}
+
+#pragma mark - View Helpers
+
+- (UIView*)lastView {
+    UIWindow *w = [[UIApplication sharedApplication] keyWindow];
+    if (w.subviews.count > 0) {
+        return [w.subviews objectAtIndex:0];
+    } else {
+        return w;
+    }
 }
 
 
