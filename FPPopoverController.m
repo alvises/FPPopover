@@ -117,7 +117,7 @@
         _border = YES;
         
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
-        _touchView.backgroundColor = [UIColor clearColor];
+        _touchView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1]; // iOS 7's popover always dims the background
         _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
