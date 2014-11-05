@@ -327,8 +327,13 @@
     
     if(_arrowDirection == FPPopoverArrowDirectionUp)
     {
-        contentRect.origin = CGPointMake(2, 13);
-        contentRect.size = CGSizeMake(self.bounds.size.width-4, self.bounds.size.height-16);
+        contentRect.origin = CGPointMake(10, 60);
+        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
+        _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);
+        if (self.title==nil || self.title.length==0) {
+            contentRect.origin = CGPointMake(2, 13);
+            contentRect.size = CGSizeMake(self.bounds.size.width-4, self.bounds.size.height-16);
+        }
     }
     else if(_arrowDirection == FPPopoverArrowDirectionDown)
     {
