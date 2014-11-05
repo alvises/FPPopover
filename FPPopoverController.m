@@ -446,15 +446,6 @@
         height = v.frame.size.height;
     }
     
-    
-    CGFloat ht = p.y; //available vertical space on top of the view
-    CGFloat hb = [self parentHeight] -  (p.y + v.frame.size.height); //on the bottom
-    CGFloat wl = p.x; //on the left
-    CGFloat wr = [self parentWidth] - (p.x + v.frame.size.width); //on the right
-    
-    CGFloat best_h = MAX(ht, hb); //much space down or up ?
-    CGFloat best_w = MAX(wl, wr);
-    
     CGRect r;
     r.size = self.contentSize;
     
