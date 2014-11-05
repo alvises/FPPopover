@@ -318,6 +318,7 @@
     CGPathRelease(externalBorderPath);
     
     CGContextRestoreGState(ctx);
+    CGPathRelease(contentPath);
 }
 
 -(void)setupViews
