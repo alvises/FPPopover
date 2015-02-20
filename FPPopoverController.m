@@ -285,6 +285,19 @@
     }
 }
 
+- (void)setHeight:(double)contentHeight
+{
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         CGRect f = _contentView.frame;
+                         _contentView.frame = CGRectMake(f.origin.x, f.origin.y, f.size.width, contentHeight);
+                     }
+                     completion:^(BOOL finished){
+                     }];
+}
+
 
 -(CGPoint)originFromView:(UIView*)fromView
 {

@@ -74,7 +74,7 @@ typedef void (^FPPopoverCompletion)();
 /** @brief Hide the shadows to get better performances **/
 -(void)setShadowsHidden:(BOOL)hidden;
 
-
+- (void)setHeight:(double)contentHeight;
 
 
 @end
