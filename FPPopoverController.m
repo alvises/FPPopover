@@ -67,6 +67,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dismissPopover) name:@"FPopoverShouldHide" object:nil];
     
     _deviceOrientation = [UIDevice currentDevice].orientation;
     
