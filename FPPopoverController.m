@@ -19,7 +19,7 @@
     UIView *_parentView;
     UIView *_fromView;
     UIDeviceOrientation _deviceOrientation;
-    
+    double _contentHeight;
     BOOL _shadowsHidden;
     CGColorRef _shadowColor;
 }
@@ -117,6 +117,7 @@
         self.arrowDirection = FPPopoverArrowDirectionAny;
         self.view.userInteractionEnabled = YES;
         _border = YES;
+        _contentHeight = 0;
         
         _touchView = [[FPTouchView alloc] initWithFrame:self.view.bounds];
         _touchView.backgroundColor = [UIColor clearColor];
@@ -289,15 +290,8 @@
 
 - (void)setHeight:(double)contentHeight
 {
-    [UIView animateWithDuration:0.3
-                          delay:0
-                        options: UIViewAnimationCurveEaseOut
-                     animations:^{
-                         CGRect f = _contentView.frame;
-                         _contentView.frame = CGRectMake(f.origin.x, f.origin.y, f.size.width, contentHeight);
-                     }
-                     completion:^(BOOL finished){
-                     }];
+    _contentHeight = contentHeight;
+    [self setupView];
 }
 
 
@@ -510,6 +504,7 @@
         if(r.origin.y <= 20) r.origin.y += 20;
     }
     
+    r.size.height = _contentHeight == 0 ? r.size.height : _contentHeight;
     //check if the developer wants and arrow
     if(self.arrowDirection != FPPopoverNoArrow)
         _contentView.arrowDirection = arrowDirection;
