@@ -16,24 +16,21 @@
 
 
 @class FPPopoverController;
-
 @protocol FPPopoverControllerDelegate <NSObject>
 
 @optional
 - (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController;
-- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
+- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
 @end
 
 @interface FPPopoverController : UIViewController
-{
-    UIView *_parentView;
-}
+
 //ARC-enable and disable support
 #if __has_feature(objc_arc)
-    @property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
+@property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
 #else
-    @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
+@property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
 #endif
 
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
@@ -59,7 +56,7 @@
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
 -(id)initWithViewController:(UIViewController*)viewController
-				   delegate:(id<FPPopoverControllerDelegate>)delegate;
+                   delegate:(id<FPPopoverControllerDelegate>)delegate;
 
 /** @brief Presenting the popover from a specified view **/
 -(void)presentPopoverFromView:(UIView*)fromView;
@@ -77,8 +74,7 @@ typedef void (^FPPopoverCompletion)();
 /** @brief Hide the shadows to get better performances **/
 -(void)setShadowsHidden:(BOOL)hidden;
 
-/** @brief Refresh popover **/
--(void)setupView;
+- (void)setHeight:(double)contentHeight;
 
 
 @end

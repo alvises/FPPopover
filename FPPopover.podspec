@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'FPPopover'
-  s.version  = '1.4.1'
+  s.version  = '2.0.11'
   s.license  = 'BSD'
   s.summary  = 'Alternative to the native iOS UIPopoverController, with iPhone support and look and feel customization.'
 
