@@ -68,7 +68,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(dismissPopover) name:@"FPopoverShouldHide" object:nil];
+                                             selector:@selector(dismissPopoverWithAnimation) name:@"FPopoverShouldHide" object:nil];
     
     _deviceOrientation = [UIDevice currentDevice].orientation;
     
@@ -328,6 +328,11 @@
     SAFE_ARC_RELEASE(_fromView);
     _fromView = SAFE_ARC_RETAIN(fromView);
     [self presentPopoverFromPoint:[self originFromView:_fromView]];
+}
+
+-(void)dismissPopoverWithAnimation
+{
+    [self dismissPopoverAnimated:YES];
 }
 
 -(void)dismissPopover
