@@ -53,6 +53,7 @@
 @synthesize tint = _tint;
 @synthesize border = _border;
 @synthesize alpha = _alpha;
+@synthesize isPopoverActive = _isPopoverActive;
 
 -(void)addObservers
 {
@@ -246,6 +247,7 @@
             _parentView = [_window.subviews lastObject];
             [_parentView addSubview:self.view];
             [_viewController viewDidAppear:YES];
+            _isPopoverActive = YES;
         }
         
    }
@@ -321,7 +323,7 @@
     }
      _window=nil;
      _parentView=nil;
-    
+    _isPopoverActive = FALSE;
 }
 
 -(void)dismissPopoverAnimated:(BOOL)animated {
