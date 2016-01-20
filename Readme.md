@@ -1,6 +1,6 @@
 How To
 ========
-<a href="http://blog.poeticoding.com/fppopover-a-customizable-uipopovercontroller-for-iphone-and-ipad/">FPPopover, a customizable UIPopoverController for iPhone and iPad</a>
+<a href="http://www.poeticoding.com/fppopover-a-customizable-uipopovercontroller-for-iphone-and-ipad/">FPPopover, a customizable UIPopoverController for iPhone and iPad</a>
 
 FPPopover
 ========
