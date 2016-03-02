@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class FPViewController;
+@class DemoTableController;
+
+@protocol DemoTableViewControllerDelegate
+
+- (void)DemoTableControllerDidFinish:(DemoTableController *)controller selectedValue:(NSString *)textSelected;
+
+@end
+
 
 @interface DemoTableController : UITableViewController
-@property(nonatomic,assign) FPViewController *delegate;
+
+@property(weak,nonatomic) id <DemoTableViewControllerDelegate> delegate;
+
 @end

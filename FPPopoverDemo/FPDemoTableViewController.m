@@ -14,7 +14,11 @@
 
 @end
 
-@implementation FPDemoTableViewController
+@implementation FPDemoTableViewController {
+
+ FPPopoverController *popover;
+ 
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -61,7 +65,7 @@
     //the controller we want to present as a popover
     DemoTableController *controller = [[DemoTableController alloc] initWithStyle:UITableViewStylePlain];
     
-    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+    popover = [[FPPopoverController alloc] initWithViewController:controller];
     
     //popover.arrowDirection = FPPopoverArrowDirectionAny;
     popover.tint = FPPopoverDefaultTint;
@@ -117,6 +121,14 @@
     return YES;
 }
 */
+
+- (void)DemoTableControllerDidFinish:(DemoTableController *)controller selectedField:(NSString *)textSelected {
+    
+    [popover dismissPopoverAnimated:YES];
+
+    NSLog(@"textSelected %@",textSelected);
+    
+}
 
 
 
