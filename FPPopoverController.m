@@ -17,7 +17,7 @@
     UIViewController *_viewController;
     UIWindow *_window;
     UIView *_fromView;
-    UIDeviceOrientation _deviceOrientation;
+    UIInterfaceOrientation _deviceOrientation;
     
     BOOL _shadowsHidden;
     CGColorRef _shadowColor;
@@ -68,7 +68,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
     
-    _deviceOrientation = [UIDevice currentDevice].orientation;
+    _deviceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     
 }
 
@@ -212,13 +212,11 @@
 
 -(CGFloat)parentWidth
 {
-    return _parentView.bounds.size.width;
-    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
+    return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.width : _parentView.frame.size.height;
 }
 -(CGFloat)parentHeight
 {
-    return _parentView.bounds.size.height;
-    //return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
+    return UIDeviceOrientationIsPortrait(_deviceOrientation) ? _parentView.frame.size.height : _parentView.frame.size.width;
 }
 
 -(void)presentPopoverFromPoint:(CGPoint)fromPoint
@@ -360,7 +358,7 @@
 
 -(void)deviceOrientationDidChange:(NSNotification*)notification
 {
-	_deviceOrientation = [UIDevice currentDevice].orientation;
+	_deviceOrientation = [UIApplication sharedApplication].statusBarOrientation;
 
 	BOOL shouldResetView = NO;
 
