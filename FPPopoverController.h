@@ -21,7 +21,7 @@
 
 @optional
 - (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController;
-- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController 
+- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController;
 @end
 
@@ -31,9 +31,9 @@
 }
 //ARC-enable and disable support
 #if __has_feature(objc_arc)
-    @property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
+@property(nonatomic,weak) id<FPPopoverControllerDelegate> delegate;
 #else
-    @property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
+@property(nonatomic,assign) id<FPPopoverControllerDelegate> delegate;
 #endif
 
 /** @brief FPPopoverArrowDirectionAny, FPPopoverArrowDirectionVertical or FPPopoverArrowDirectionHorizontal for automatic arrow direction.
@@ -55,11 +55,24 @@
 /** @brief Popover border, default is YES **/
 @property(nonatomic, assign) BOOL border;
 
+/** @brief Popover dismiss upon touch, default is YES **/
+@property(nonatomic, assign) BOOL dismissUponTouch;
+
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
 -(id)initWithViewController:(UIViewController*)viewController
-				   delegate:(id<FPPopoverControllerDelegate>)delegate;
+				   delegate:(id<FPPopoverControllerDelegate>)delegate
+           autoresizingMask:(UIViewAutoresizing)autoresizingMask;
+-(id)initWithViewController:(UIViewController*)viewController
+				   delegate:(id<FPPopoverControllerDelegate>)delegate
+           autoresizingMask:(UIViewAutoresizing)autoresizingMask
+                contentSize:(CGSize)contentSize;
+-(id)initWithViewController:(UIViewController*)viewController
+				   delegate:(id<FPPopoverControllerDelegate>)delegate
+           autoresizingMask:(UIViewAutoresizing)autoresizingMask
+                contentSize:(CGSize)contentSize
+           dismissUponTouch:(BOOL)dismissUponTouch;
 
 /** @brief Presenting the popover from a specified view **/
 -(void)presentPopoverFromView:(UIView*)fromView;
