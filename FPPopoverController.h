@@ -51,6 +51,8 @@
 
 /** @brief The tint of the popover. **/
 @property(nonatomic,assign) FPPopoverTint tint;
+@property(nonatomic,assign) CGFloat *customColors;
+@property(nonatomic,assign) CGFloat *customGradientColors;
 
 /** @brief Popover border, default is YES **/
 @property(nonatomic, assign) BOOL border;
