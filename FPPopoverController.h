@@ -55,6 +55,9 @@
 /** @brief Popover border, default is YES **/
 @property(nonatomic, assign) BOOL border;
 
+/** @brief value if the popup is currently visible and presented **/
+@property(nonatomic, assign) BOOL isPopoverActive;
+
 /** @brief Initialize the popover with the content view controller
  **/
 -(id)initWithViewController:(UIViewController*)viewController;
