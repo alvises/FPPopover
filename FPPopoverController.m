@@ -200,6 +200,12 @@
 
 #pragma mark Orientation
 
+-(BOOL)shouldAutorotate {
+	if ([_viewController respondsToSelector:@selector(shouldAutorotate)])
+		return [_viewController shouldAutorotate];
+	return YES;
+}
+
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
 	if ([_viewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)])
@@ -363,34 +369,42 @@
 	_deviceOrientation = [UIDevice currentDevice].orientation;
 
 	BOOL shouldResetView = NO;
-
-    //iOS6 has a new orientation implementation.
-    //we ask to reset the view if is >= 6.0
-	if ([_viewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)] &&
-        [[[UIDevice currentDevice] systemVersion] floatValue] < 6.0)
+	UIInterfaceOrientation interfaceOrientation;
+	switch (_deviceOrientation)
 	{
-		UIInterfaceOrientation interfaceOrientation;
-		switch (_deviceOrientation)
+		case UIDeviceOrientationLandscapeLeft:
+			interfaceOrientation = UIInterfaceOrientationLandscapeLeft;
+			break;
+		case UIDeviceOrientationLandscapeRight:
+			interfaceOrientation = UIInterfaceOrientationLandscapeRight;
+			break;
+		case UIDeviceOrientationPortrait:
+			interfaceOrientation = UIInterfaceOrientationPortrait;
+			break;
+		case UIDeviceOrientationPortraitUpsideDown:
+			interfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
+			break;
+		default:
+			return;	// just ignore face up / face down, etc.
+	}
+	if (_viewController.interfaceOrientation == interfaceOrientation)
+		return;
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+	if ([[[UIDevice currentDevice] systemVersion] floatValue] < 6.0)
+	{
+		if ([_viewController
+			 respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)])
 		{
-			case UIDeviceOrientationLandscapeLeft:
-				interfaceOrientation = UIInterfaceOrientationLandscapeLeft;
-				break;
-			case UIDeviceOrientationLandscapeRight:
-				interfaceOrientation = UIInterfaceOrientationLandscapeRight;
-				break;
-			case UIDeviceOrientationPortrait:
-				interfaceOrientation = UIInterfaceOrientationPortrait;
-				break;
-			case UIDeviceOrientationPortraitUpsideDown:
-				interfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
-				break;
-			default:
-				return;	// just ignore face up / face down, etc.
+			shouldResetView
+			  = [_viewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 		}
 	}
 	else
+#endif
 	{
-		shouldResetView = YES;
+		if ([_viewController respondsToSelector:@selector(shouldAutorotate)])
+			shouldResetView = [_viewController shouldAutorotate];
 	}
 
 	if (shouldResetView)
