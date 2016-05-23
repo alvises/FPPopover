@@ -484,7 +484,7 @@
     {
         contentRect.origin = CGPointMake(10, 40);        
         contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);    
+        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20-FP_POPOVER_ARROW_HEIGHT, 20);    
 		if (self.title==nil || self.title.length==0) {
 			 contentRect.origin = CGPointMake(10, 10);
 			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
@@ -495,7 +495,7 @@
     {
         contentRect.origin = CGPointMake(10 + FP_POPOVER_ARROW_HEIGHT, 40);        
         contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20); 
+        _titleLabel.frame = CGRectMake(10+FP_POPOVER_ARROW_HEIGHT, 10, self.bounds.size.width-20-FP_POPOVER_ARROW_HEIGHT, 20); 
 		if (self.title==nil || self.title.length==0) {
 			contentRect.origin = CGPointMake(10+ FP_POPOVER_ARROW_HEIGHT, 10);
 			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
