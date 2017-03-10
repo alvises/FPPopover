@@ -132,7 +132,7 @@
     
     //NO BORDER
     if(self.border == NO) {
-        b = 10.0;
+        b = 0.0;
     }
     
     CGRect rect;
@@ -419,7 +419,12 @@
     //internal border
     CGContextBeginPath(ctx);
     CGContextAddPath(ctx, contentPath);
-    CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+    if (self.border) {
+        CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+    }
+    else {
+        CGContextSetRGBStrokeColor(ctx, 1, 1, 1, 0);
+    }
     CGContextSetLineWidth(ctx, 1);
     CGContextSetLineCap(ctx,kCGLineCapRound);
     CGContextSetLineJoin(ctx, kCGLineJoinRound);
@@ -427,26 +432,28 @@
     CGPathRelease(contentPath);
 
     //external border
-    CGPathRef externalBorderPath = [self newContentPathWithBorderWidth:1.0 arrowDirection:_arrowDirection];
-    CGContextBeginPath(ctx);
-    CGContextAddPath(ctx, externalBorderPath);
-    CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
-    CGContextSetLineWidth(ctx, 1);
-    CGContextSetLineCap(ctx,kCGLineCapRound);
-    CGContextSetLineJoin(ctx, kCGLineJoinRound);
-    CGContextStrokePath(ctx);
-    CGPathRelease(externalBorderPath);
-
-    //3D border of the content view
-    if(self.draw3dBorder) {
-        CGRect cvRect = _contentView.frame;
-        //firstLine
-        CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
-        CGContextStrokeRect(ctx, cvRect);
-        //secondLine
-        cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
+    if (self.border) {
+        CGPathRef externalBorderPath = [self newContentPathWithBorderWidth:1.0 arrowDirection:_arrowDirection];
+        CGContextBeginPath(ctx);
+        CGContextAddPath(ctx, externalBorderPath);
         CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
-        CGContextStrokeRect(ctx, cvRect);        
+        CGContextSetLineWidth(ctx, 1);
+        CGContextSetLineCap(ctx,kCGLineCapRound);
+        CGContextSetLineJoin(ctx, kCGLineJoinRound);
+        CGContextStrokePath(ctx);
+        CGPathRelease(externalBorderPath);
+        
+        //3D border of the content view
+        if(self.draw3dBorder) {
+            CGRect cvRect = _contentView.frame;
+            //firstLine
+            CGContextSetRGBStrokeColor(ctx, 0.7, 0.7, 0.7, 1.0);
+            CGContextStrokeRect(ctx, cvRect);
+            //secondLine
+            cvRect.origin.x -= 1; cvRect.origin.y -= 1; cvRect.size.height += 2; cvRect.size.width += 2;
+            CGContextSetRGBStrokeColor(ctx, 0.4, 0.4, 0.4, 1.0);
+            CGContextStrokeRect(ctx, cvRect);        
+        }
     }
     
     
@@ -458,59 +465,71 @@
     //content posizion and size
     CGRect contentRect = _contentView.frame;
 	
+    CGFloat margin = self.border ? 10 : 0;
+    
     if(_arrowDirection == FPPopoverArrowDirectionUp)
     {
-        contentRect.origin = CGPointMake(10, 60);  
-        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
-        _titleLabel.frame = CGRectMake(10, 30, self.bounds.size.width-20, 20);    
+        _titleLabel.frame = CGRectMake(margin, margin+20, self.bounds.size.width-margin-margin, 20);
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 30);
-			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
+			contentRect.origin = CGPointMake(margin, margin + 20);
+			contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin, self.bounds.size.height-margin-margin-20);
 		}
+        else {
+            contentRect.origin = CGPointMake(margin, margin+20+30);
+            contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin, self.bounds.size.height-margin-margin);
+        }
     }
     else if(_arrowDirection == FPPopoverArrowDirectionDown)
     {
-        contentRect.origin = CGPointMake(10, 40);        
-        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-70);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
+        _titleLabel.frame = CGRectMake(margin, margin, self.bounds.size.width-margin-margin, 20);
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 10); 
-			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
+			contentRect.origin = CGPointMake(margin, margin);
+			contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin, self.bounds.size.height-margin-margin-20);
 		}
+        else {
+            contentRect.origin = CGPointMake(margin, margin+30);
+            contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin, self.bounds.size.height-margin-margin-20-30);
+        }
     }
     
     
     else if(_arrowDirection == FPPopoverArrowDirectionRight)
     {
-        contentRect.origin = CGPointMake(10, 40);        
-        contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);    
+        _titleLabel.frame = CGRectMake(margin, margin, self.bounds.size.width-margin-margin, 20);
 		if (self.title==nil || self.title.length==0) {
-			 contentRect.origin = CGPointMake(10, 10);
-			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
+            contentRect.origin = CGPointMake(margin, margin);
+			contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin-20, self.bounds.size.height-margin-margin);
 		}
+        else {
+            contentRect.origin = CGPointMake(margin, margin+30);
+            contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin-20, self.bounds.size.height-margin-margin-30);
+        }
     }
 
     else if(_arrowDirection == FPPopoverArrowDirectionLeft)
     {
-        contentRect.origin = CGPointMake(10 + FP_POPOVER_ARROW_HEIGHT, 40);        
-        contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20); 
+        _titleLabel.frame = CGRectMake(margin, margin, self.bounds.size.width-margin-margin, 20);
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10+ FP_POPOVER_ARROW_HEIGHT, 10);
-			contentRect.size = CGSizeMake(self.bounds.size.width-40, self.bounds.size.height-20);
+			contentRect.origin = CGPointMake(margin+ FP_POPOVER_ARROW_HEIGHT, margin);
+			contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin-FP_POPOVER_ARROW_HEIGHT, self.bounds.size.height-margin-margin);
 		}
+        else {
+            contentRect.origin = CGPointMake(margin + FP_POPOVER_ARROW_HEIGHT, margin+30);
+            contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin-FP_POPOVER_ARROW_HEIGHT, self.bounds.size.height-margin-margin-30);
+        }
     }
     
     else if(_arrowDirection == FPPopoverNoArrow)
     {
-        contentRect.origin = CGPointMake(10, 40);
-        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-50);
-        _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
+        _titleLabel.frame = CGRectMake(margin, margin, self.bounds.size.width-margin-margin, 20);
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 30);
-			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
+			contentRect.origin = CGPointMake(margin, margin+20);
+			contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin, self.bounds.size.height-margin-margin-20);
 		}
+        else {
+            contentRect.origin = CGPointMake(margin, margin+30);
+            contentRect.size = CGSizeMake(self.bounds.size.width-margin-margin, self.bounds.size.height-margin-margin-30);
+        }
     }
 
     _contentView.frame = contentRect;
